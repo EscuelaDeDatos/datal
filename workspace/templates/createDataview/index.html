@@ -111,7 +111,7 @@
 
         dataviewModel.attachDataset({
             dataset_revision_id: {{dataset_revision.id}},
-            end_point: '{{dataset_revision.end_point}}',
+            end_point: '{{dataset_revision.end_point|safe}}',
             impl_type: {{dataset_revision.impl_type}},
             impl_details: '{{dataset_revision.impl_details|default_if_none:""|safe}}',
             sources: {{sources|jsonify}},
