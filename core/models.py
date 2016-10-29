@@ -136,6 +136,21 @@ class Account(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_parents(self, include_self=True, answer=None):
+        if not answer:
+            answer = []
+
+        if self in answer:
+            return answer
+
+        if include_self:
+            answer.append(self)
+        
+        if self.parent:
+            for parent in self.parent.all():
+                answer.extend(parent.get_parents(answer=answer))
+        return answer
+
     def get_preference(self, key):
         """ use the preferences class with cache """
         from core.daos.preferences import Preferences
@@ -412,15 +427,18 @@ class DataStreamRevision(RevisionModel):
 
     def add_sources(self, sources):
         self.sourcedatastream_set.clear()
+        valid_accounts_ids = map(lambda x: x.id, self.datastream.user.account.get_parents())
 
         for source_field in sources:
-            source_with_name = Source.objects.filter(name=source_field.get('name', ''))
+
+            source_with_name = Source.objects.filter(name=source_field.get('name', ''), account__in=valid_accounts_ids)
             if source_with_name.count():
                 source = source_with_name[0]
             else:
                 source = Source.objects.create(
                     name=source_field.get('name', ''),
-                    url=source_field.get('url', '')
+                    url=source_field.get('url', ''),
+                    account=self.datastream.user.account
                 )
 
             source_datastream, is_new = SourceDatastream.objects.get_or_create(source=source, datastreamrevision=self)
@@ -701,16 +719,21 @@ class DatasetRevision(RevisionModel):
 
     def add_sources(self, sources):
         self.sourcedataset_set.clear()
+        valid_accounts_ids = map(lambda x: x.id, self.dataset.user.account.get_parents())
 
         for source_data in sources:
-            if source_data:
-                if not source_data['url']:
-                    source = Source.objects.get(name= source_data['name'])
-                else:
-                    source = Source.objects.create(name= source_data['name'], url=source_data['url'])
+            source_with_name = Source.objects.filter(name=source_data.get('name', ''), account__in=valid_accounts_ids)
+            if source_with_name.count():
+                source = source_with_name[0]
+            else:
+                source = Source.objects.create(
+                    name= source_data.get('name', ''), 
+                    url= source_data.get('url', ''), 
+                    account=self.dataset.user.account
+                )
 
-                source_dataset, is_new = SourceDataset.objects.get_or_create(source=source, datasetrevision=self)
-                self.sourcedataset_set.add(source_dataset)
+            source_dataset, is_new = SourceDataset.objects.get_or_create(source=source, datasetrevision=self)
+            self.sourcedataset_set.add(source_dataset)
         self.save()
 
     def get_tags(self):
@@ -1128,8 +1151,9 @@ class UserPassTickets(models.Model):
 
 # :TODO: Sin Migrar aun
 class Source(models.Model):
-    name = models.CharField(unique=True, max_length=40, blank=False)
+    name = models.CharField(max_length=40, blank=False)
     url = models.CharField(max_length=2048, blank=False)
+    account = models.ForeignKey(Account, blank=True, null=True)
 
     class Meta:
         db_table = 'ao_sources'

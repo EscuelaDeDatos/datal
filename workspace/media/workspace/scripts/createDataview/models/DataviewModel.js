@@ -126,12 +126,14 @@ var DataviewModel = Backbone.Model.extend({
         limit: 50
     },
 
-    initialize: function () {
+    initialize: function (attributes) {
         this.data = new Backbone.Model();
         this.selection = new DataTableSelectedCollection();
 
         this.filters = new FiltersCollection();
         this.formats = new ColumnsCollection();
+        this.editMode = attributes.edit_mode
+        this.datastream_revision_id = attributes.datastream_id;
     },
 
     url: '/rest/datastreams/sample.json/',
@@ -288,12 +290,22 @@ var DataviewModel = Backbone.Model.extend({
         params.select_statement = this.getSelectStatement();
         params.data_source = this.getDataSource();
 
-        return $.ajax({
-                type: 'POST',
-                url: '/dataviews/create/',
-                data: params,
-                dataType: 'json'
-            });
+        if (this.editMode) {
+            params.datastream_revision_id = this.datastream_revision_id
+            return $.ajax({
+                    type: 'POST',
+                    url: '/dataviews/edit/' + this.datastream_revision_id + '/',
+                    data: params,
+                    dataType: 'json'
+                });
+        } else {
+            return $.ajax({
+                    type: 'POST',
+                    url: '/dataviews/create/',
+                    data: params,
+                    dataType: 'json'
+                });
+        }
     },
 
     onChangeTableId: function (model, value) {
@@ -319,7 +331,116 @@ var DataviewModel = Backbone.Model.extend({
         result[prefix + '-INITIAL_FORMS'] = 0;
         return result;
     },
+    addCategory: function(category_id, category_name) {
+        this.set('category', category_id)
+    },
+    addTitle: function(title) {
+        this.set('title', title)
+    },
+    addDescription: function(title) {
+        this.set('description', title)
+    },
+    addNotes: function(notes) {
+        this.set('notes', notes)
+    },
+    addSources: function(sources) {
+        this.sources = new SourcesCollection(sources)
+    },
+    addTags: function(tags) {
+        this.tags = new TagsCollection(tags)  
+    },
+    addSelectStatement: function(statement, params) {
+        if (window.DOMParser) {
+            parser = new DOMParser();
+            xmlDoc = parser.parseFromString(statement, "text/xml");
+        }
+        else { // Internet Explorer
+            xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+            xmlDoc.async = false;
+            xmlDoc.loadXML(statement);
+        }
+        var filters = xmlDoc.getElementsByTagName("Filter");
+        var rowFiltersCount = 0
+        if (filters.length > 0 ) {
+            for (var i = 0; i < filters.length; i++) {
+                filter = filters[i]
+                operand = filter.getElementsByTagName('Operand1')[0].textContent
+                if (operand == 'rownum') {
+                    row_index = parseInt(filter.getElementsByTagName("Operand2")[0].textContent) + 1
+                    this.selection.add({
+                        classname: 'row',
+                        mode: 'row',
+                        excelRange: row_index + ":" + row_index
+                    })
+                    rowFiltersCount += 1
+                } else {
+                    column_number = operand.replace('column', '')
+                    filterModel = new FilterModel()
+                    filterModel.set('column',column_number)
+                    filterModel.set('excelCol', DataTableUtils.intToExcelCol(parseInt(column_number) + 1))
+                    filterModel.set('operator', filter.getElementsByTagName("LogicalOperator")[0].textContent)
 
+                    operand2 = filter.getElementsByTagName("Operand2")[0].textContent
+                    if (operand2.indexOf('parameter') >= 0) {
+                        position = parseInt(operand2.replace('parameter', ''))
+                        for (var j = 0; j < params.length; j++) {
+                            if ( params[j].position == position ) {
+                                filterModel.set('default', params[j].default)
+                                filterModel.set('name', params[j].name)
+                                filterModel.set('description', params[j].description)
+                                filterModel.set('type', 'parameter')
+                                filterModel.set('position', position)
+                                break
+                            }
+                        }
+                    } else {
+                        filterModel.set('default', operand2)
+                        filterModel.set('type', 'fixed')
+                    }
+                    this.filters.add(filterModel)
+                }
+            }
+        } 
+        var columns = xmlDoc.getElementsByTagName("Column");
+        if (columns.length == 1 && columns[0].textContent == "*" && rowFiltersCount == 0) {
+            this.selection.add({
+                classname: 'table',
+                mode: 'table',
+                excelRange:  ":"
+            })
+        } else if (columns.length > 0 && columns[0].textContent != "*") {
+            if ( columns[0].textContent.indexOf('column') >= 0 ) {
+                for (var i = 0; i < columns.length; i++) {
+                    columna = columns[i]
+                    col_index = parseInt(columna.textContent.replace("column", ""))
+                    col_letter = DataTableUtils.intToExcelCol(col_index+1)
+                    this.selection.add({
+                        classname: 'col',
+                        mode: 'col',
+                        excelRange: col_letter + ":" + col_letter
+                    })
+                }
+            } else if (columns[0].textContent.indexOf('cell') >= 0) {
+                init_number = parseInt(columns[0].textContent.replace("cell", ""))
+                last_number = parseInt(columns[columns.length-1].textContent.replace("cell", ""))
+                totals = this.get('totalCols')
+                this.selection.add({
+                    classname: 'cell',
+                    mode: 'cell',
+                    excelRange: DataTableUtils.rangeToExcel({
+                        from: {
+                            row:parseInt(init_number/totals),
+                            col: init_number % totals
+                        },
+                        to: {
+                            row:parseInt(last_number/totals),
+                            col:last_number % totals
+                        }
+                    })
+                })
+            }
+        }
+    },
     getSelectStatement: function () {
         var tableId = this.get('tableId'),
             isFullTable = this.selection.hasItemsByMode('table'),
@@ -381,7 +502,85 @@ var DataviewModel = Backbone.Model.extend({
             return obj;
         });
     },
+    addDataSource: function(source) {
+        var validFormats = [
+          "#,###",
+          "$ #,###",
+          "#,###.##",
+          "$ #,###.##",
+        ]
+         if (window.DOMParser) {
+            parser = new DOMParser();
+            xmlDoc = parser.parseFromString(source, "text/xml");
+        }
+        else { // Internet Explorer
+            xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+            xmlDoc.async = false;
+            xmlDoc.loadXML(source);
+        }
+        var headers = xmlDoc.getElementsByTagName("Headers")[0].getElementsByTagName("Row");
+        if (headers.length > 0 ) {
+            for (var i = 0; i < headers.length; i++) {
+                header = headers[i]
+                row_index = parseInt(header.textContent.replace('row', '')) + 1
+                this.selection.add({
+                    classname: 'header',
+                    mode: 'header',
+                    excelRange: row_index + ":" + row_index
+                })
+            }
+        } 
+        var columns = xmlDoc.getElementsByTagName("Table")[0].getElementsByTagName("Field");
+        if (columns.length > 0) {
+            for (var i = 0; i < columns.length; i++) {
+                column = columns[i]
+                obj = {}
+                obj.column = column.getAttribute('id').replace('column', '')
+                obj.type = column.getElementsByTagName('type')[0].textContent
+                if (obj.type != 'TEXT') {
+                    obj.decimalSeparator = column.getElementsByTagName('decimals')[0].textContent
+                    obj.thousandSeparator = column.getElementsByTagName('thousands')[0].textContent
+                    if (!obj.decimalSeparator || !obj.thousandSeparator) {
+                        delete obj.decimalSeparator
+                        delete obj.thousandSeparator
+                        obj.separatorType = 'locale'
+                    } else {
+                        obj.separatorType = 'symbol'
+                    }
+                    obj.inputLanguage = column.getElementsByTagName('language')[0].textContent
+                    obj.inputCountry = column.getElementsByTagName('country')[0].textContent
+                    if (obj.inputLanguage == obj.inputCountry) {
+                        obj.inputLocale = obj.inputLanguage
+                    } else {
+                        obj.inputLocale = obj.inputLanguage + '_' + obj.inputCountry
+                    }
+                    if (obj.type == 'NUMBER') {
+                        obj.inputPattern = column.getElementsByTagName('format')[0].getElementsByTagName('pattern')[0].textContent
+                    } else if (obj.type == 'DATE') {
+                        obj.inputPattern = column.getElementsByTagName('format')[0].getElementsByTagName('style')[0].textContent
+                    }
+                    if (validFormats.indexOf(obj.inputPattern) < 0) {
+                        obj.inputCustomPattern = obj.inputPattern
+                        obj.inputPattern = 'custom'
+                    }
+                    obj.outputPattern = column.getElementsByTagName('DisplayFormat')[0].getElementsByTagName('pattern')[0].textContent
+                    if (validFormats.indexOf(obj.outputPattern) < 0) {
+                        obj.outputCustomPattern = obj.outputPattern
+                        obj.outputPattern = 'custom'
+                    }
 
+                    if (obj.type == 'NUMBER') {
+                        obj.numberDisplayLocale = column.getElementsByTagName('DisplayFormat')[0].getElementsByTagName('locale')[0].textContent
+                    } else if (obj.type == 'DATE') {
+                        obj.dateDisplayLocale = column.getElementsByTagName('DisplayFormat')[0].getElementsByTagName('locale')[0].textContent
+                    }
+                    obj.excelCol = DataTableUtils.intToExcelCol(obj.column)
+                    this.formats.add(obj)
+                }
+
+            }
+        }
+    },
     getDataSource: function () {
         var tableId = this.get('tableId'),
             filterCount = this.filters.length,
