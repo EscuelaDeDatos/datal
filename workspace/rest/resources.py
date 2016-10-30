@@ -50,7 +50,8 @@ class ResourceSerializer(serializers.Serializer):
             'published_revision_id': dict(map(lambda x: (x[1], x[0] + '__last_published_revision_id'), cls.resources)),
             'resource_id': dict(map(lambda x: (x[1], x[0] + '__id'), cls.resources)),
             'lib': {
-                settings.TYPE_VISUALIZATION: 'lib'
+                settings.TYPE_VISUALIZATION: 'lib',
+                TYPE_KPI: 'lib'
             },
             'parameters': {
                 settings.TYPE_DATASTREAM: 'parameters',

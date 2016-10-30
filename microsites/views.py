@@ -62,6 +62,8 @@ def get_key(url_name):
         key = 'dataset'
     elif url_name in ['kpi.view']:
         key = 'kpi'
+    elif url_name in ['kpi.embed']:
+        key = 'kpi.embed'
     else:
         #  http referer error http://microsites.dev:8080/dataviews/69620/iep-primer-trimestre-2012-ministerio-de-defensa-nacional
         logger.error('Url_name sin macheo %s' % url_name)

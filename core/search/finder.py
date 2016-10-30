@@ -127,7 +127,7 @@ class Finder:
             return "visualization_id"
         elif r == 'dt':
             return "dataset_id"
-        elif r == 'kp':  # TODO kpi
+        elif r == 'kp':
             return "kpi_id"
 
         for finder in DatalPluginPoint.get_active_with_att('finder'):
@@ -142,7 +142,7 @@ class Finder:
             return self.get_visualization_dictionary(doc)
         elif doc['type'] == 'dt':
             return self.get_dataset_dictionary(doc)
-        elif doc['type'] == 'kp':  # TODO kpi
+        elif doc['type'] == 'kp':
             return self.get_kpi_dictionary(doc)
 
 
