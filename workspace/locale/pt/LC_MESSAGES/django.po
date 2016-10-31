@@ -1219,6 +1219,9 @@ msgstr "Collect Dataset"
 msgid "APP-ACTIONS-CREATEVIEW"
 msgstr "Create Data View"
 
+msgid "APP-ACTIONS-EDITVIEW"
+msgstr "Edit Data View"
+
 msgid "APP-EXPAND-TEXT"
 msgstr "Expand"
 

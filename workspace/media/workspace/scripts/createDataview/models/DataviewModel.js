@@ -537,7 +537,7 @@ var DataviewModel = Backbone.Model.extend({
                 obj = {}
                 obj.column = column.getAttribute('id').replace('column', '')
                 obj.type = column.getElementsByTagName('type')[0].textContent
-                if (obj.type != 'TEXT') {
+                if (obj.type && obj.type != 'TEXT') {
                     obj.decimalSeparator = column.getElementsByTagName('decimals')[0].textContent
                     obj.thousandSeparator = column.getElementsByTagName('thousands')[0].textContent
                     if (!obj.decimalSeparator || !obj.thousandSeparator) {

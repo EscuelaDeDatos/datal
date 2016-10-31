@@ -2,7 +2,12 @@
 {% load i18n extra_tags core_components components compress staticfiles sass_tags %}
 
 {% block title %}
-	{% trans "APP-ACTIONS-CREATEVIEW" %}
+    {% if dao %}
+        {% trans "APP-ACTIONS-EDITVIEW" %}
+    {% else %}        
+	   {% trans "APP-ACTIONS-CREATEVIEW" %}
+    {% endif %}
+
 {% endblock %}
 
 {% block meta %}
