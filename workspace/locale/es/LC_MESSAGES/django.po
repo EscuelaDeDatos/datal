@@ -1219,6 +1219,9 @@ msgstr "Crear <abbr title='Conjuntos'>Conj.</abbr> datos"
 msgid "APP-ACTIONS-CREATEVIEW"
 msgstr "Crear Vista"
 
+msgid "APP-ACTIONS-EDITVIEW"
+msgstr "Editar Vista"
+
 msgid "APP-EXPAND-TEXT"
 msgstr "Expandir"
 

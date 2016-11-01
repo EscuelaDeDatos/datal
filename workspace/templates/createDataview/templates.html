@@ -360,7 +360,13 @@
 
 <script type="text/template" id="step_bar_template">
   <div class="col-xs-8">
-    <h1 class="sub-heading">{% trans 'APP-ACTIONS-CREATEVIEW' %}</h1>
+    <h1 class="sub-heading">
+    {% if dao %}
+    {% trans 'APP-ACTIONS-EDITVIEW' %}
+    {% else %}  
+    {% trans 'APP-ACTIONS-CREATEVIEW' %}
+    {% endif %}
+    </h1>
 
     <div class="buttons_view_container">
       <ul class="buttons-bar">

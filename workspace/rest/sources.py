@@ -16,7 +16,8 @@ class RestSourceViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = SourceSerializer
 
     def get_queryset(self):
-        queryset = self.queryset
+        valid_accounts_ids = map(lambda x: x.id, self.request.user.account.get_parents())
+        queryset = self.queryset.filter(account_id__in=valid_accounts_ids).distinct()
         term = self.request.query_params.get('term', None)
         if term :
             queryset = queryset.filter(name__icontains=term)
