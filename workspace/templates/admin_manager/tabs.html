@@ -32,6 +32,11 @@
                     <a href="{% url 'admin_manager.index_categories' %}">{% trans "ACCOUNT-CATEGORIES-TAB" %}</a>
                 </div>
             </li>
+            <li class="tab{% if sources_tab %} tab-selected{% endif %}">
+                <div class="clearfix">
+                    <a href="{% url 'admin_manager.index_sources' %}">{% trans "ACCOUNT-SOURCES-TAB" %}</a>
+                </div>
+            </li>
             <li class="tab{% if home_tab %} tab-selected{% endif %}">
                 <div class="clearfix">
                     <a href="{% url 'admin_manager.load' %}">{% trans "ACCOUNT-HOME-TAB" %}</a>

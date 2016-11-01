@@ -784,6 +784,9 @@ msgstr "Copy &amp; Paste the code below anywhere you want to show this Visualiza
 msgid "ERROR-DUPLICATED-CATEGORY"
 msgstr "Duplicated category"
 
+msgid "ERROR-DUPLICATED-SOURCE"
+msgstr "Duplicated source"
+
 # —————————— Exceptions Open data portals
 msgid "EXCEPTION-TITLE-REVISION-NOT-EXIST"
 msgstr "A exibição não existe"

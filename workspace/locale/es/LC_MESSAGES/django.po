@@ -148,6 +148,12 @@ msgstr "Crear categoría"
 msgid "WORKSPACE-CATEGORY-DESCRIPTION-LABEL"
 msgstr "Descripción"
 
+msgid "WORKSPACE-SOURCE-NAME-LABEL"
+msgstr "Crear Fuente"
+
+msgid "WORKSPACE-SOURCE-URL-LABEL"
+msgstr "Url"
+
 msgid "WEBSERVICE-NEW-NAME-LABEL"
 msgstr "Nombre"
 
@@ -178,8 +184,14 @@ msgstr "Usuario eliminado con éxito"
 msgid "APP-CATEGORY-CREATEDSUCCESSFULLY-TEXT"
 msgstr "Categoría creada exitosamente"
 
+msgid "APP-SOURCE-CREATEDSUCCESSFULLY-TEXT"
+msgstr "Fuente creada exitosamente"
+
 msgid "APP-CATEGORY-UPDATEDSUCCESSFULLY-TEXT"
 msgstr "La Categoria fue actualizada correctamente"
+
+msgid "APP-SOURCE-UPDATEDSUCCESSFULLY-TEXT"
+msgstr "La Fuente fue actualizada correctamente"
 
 msgid "APP-CATEGORY-DELETESUCCESSFULLY-TEXT"
 msgstr "La Categoria fue eliminada correctamente"
@@ -715,6 +727,9 @@ msgstr "Categorías"
 msgid "WORKSPACE-CREATE-CATEGORY"
 msgstr "Crear categoría"
 
+msgid "WORKSPACE-CREATE-SOURCE"
+msgstr "Crear fuente"
+
 msgid "WORKSPACE-CREATE-TRANSP-CATEGORIES"
 msgstr "Crear categorias de Transparencia"
 
@@ -774,6 +789,9 @@ msgstr "Preferencias del dominio"
 
 msgid "ACCOUNT-CATEGORIES-TAB"
 msgstr "Categorías"
+
+msgid "ACCOUNT-SOURCES-TAB"
+msgstr "Fuentes"
 
 msgid "APP-USERS-TEXT"
 msgstr "Usuarios"
@@ -987,9 +1005,6 @@ msgstr "Creado por"
 
 msgid "APP-EDITEDBY-TEXT"
 msgstr "Editado por"
-
-msgid "APP-SOURCES-TEXT"
-msgstr "Fuentes"
 
 msgid "APP-RELOAD-TEXT"
 msgstr "Recargar"
@@ -1877,7 +1892,10 @@ msgid "APP-CATEGORY-TRANSPARENCY-CANT-BE-EDITED"
 msgstr "Las categorias de transparencia no se pueden editar"
 
 msgid "APP-CATEGORY-DELETEDSUCCESSFULLY-TEXT"
-msgstr "Categoría borrada existosamente"
+msgstr "Categoría borrada exitosamente"
+
+msgid "APP-SOURCE-DELETEDSUCCESSFULLY-TEXT"
+msgstr "Fuente borrada exitosamente"
 
 msgid "ADMIN-HOME-TITLE"
 msgstr "Seleccione el diseño de la página de inicio"
@@ -2363,8 +2381,14 @@ msgstr "Información de la cuenta y contacto"
 msgid "APP-DELETE-CATEGORY-TITLE"
 msgstr "Eliminar categoría"
 
+msgid "APP-DELETE-SOURCE-TITLE"
+msgstr "Eliminar fuente"
+
 msgid "APP-DELETE-CATEGORY-TEXT"
 msgstr "Al eliminar esta categoría, todos estos recursos serán movidos a la categoría por defecto. ¿Está seguro?"
+
+msgid "APP-DELETE-SOURCE-TEXT"
+msgstr "Al eliminar esta fuente, todos estos recursos borraran esta fuente. ¿Está seguro?"
 
 msgid "APP-OVERLAY-DELETE-DATASET-TITLE"
 msgstr "Eliminar conjunto de datos"

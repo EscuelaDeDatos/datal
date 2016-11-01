@@ -60,9 +60,6 @@ msgstr "User uploaded data"
 msgid "APP-PRIVATEDATASOURCE-TEXT"
 msgstr "Private Data Source"
 
-msgid "APP-SOURCES-TEXT"
-msgstr "Sources"
-
 msgid "DSDET-GUID-TIP"
 msgstr "Use it to invoke this data view through the <a href='/developers' title='View more about the API' target='_blank'>API</a>"
 

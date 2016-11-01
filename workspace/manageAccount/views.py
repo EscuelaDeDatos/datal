@@ -503,6 +503,86 @@ def delete_categories(request):
         return HttpResponse(json.dumps(response), content_type='application/json', status = 400)
 
 
+@login_required
+@privilege_required('workspace.can_access_admin')
+def index_sources(request):
+    auth_manager = request.auth_manager
+    account = auth_manager.get_account()
+    preferences = account.get_preferences()
+    form = forms.SourceEditForm()
+    sources = Source.objects.values('id', 'name', 'url').filter(
+        account=auth_manager.account_id
+    )
+    sources_tab = True
+    return render_to_response('admin_manager/sources.html', locals())
+
+
+@login_required
+@privilege_required('workspace.can_access_admin')
+@require_POST
+def create_sources(request):
+    form = forms.SourceCreateForm(request.POST)
+    if form.is_valid():
+        auth_manager = request.auth_manager
+        source_name = form.cleaned_data['name']
+
+        source, created = Source.objects.get_or_create(name=source_name, url=form.cleaned_data['url'], account=auth_manager.get_account())
+
+        # check for duplicates in this account
+        if not created:
+            errors = [ugettext('ERROR-DUPLICATED-SOURCE')]
+            response = {'status': 'error', 'messages': errors}
+            return HttpResponse(json.dumps(response), content_type='application/json', status = 400)
+
+        response = {'status': 'ok', 'messages': [ugettext('APP-SOURCE-CREATEDSUCCESSFULLY-TEXT')]}
+        return HttpResponse(json.dumps(response), content_type='application/json')
+    else:
+        errors = generate_ajax_form_errors(form)
+        response = {'status': 'error', 'messages': errors}
+        return HttpResponse(json.dumps(response), content_type='application/json', status = 400)
+
+
+@login_required
+@privilege_required('workspace.can_access_admin')
+def edit_sources(request):
+    form = forms.SourceEditForm(request.POST)
+    if form.is_valid():
+        source_id = form.cleaned_data['id']
+
+        source = Source.objects.get(id=source_id)
+        source.name = form.cleaned_data['name']
+        source.url = form.cleaned_data['url']
+        source.save()
+
+        response = {'status': 'ok', 'messages': [ugettext('APP-SOURCE-UPDATEDSUCCESSFULLY-TEXT')]}
+        response['id'] = source_id
+        return HttpResponse(json.dumps(response), content_type='application/json')
+    else:
+        errors = generate_ajax_form_errors(form)
+        response = {'status': 'error', 'messages': errors}
+        return HttpResponse(json.dumps(response), content_type='application/json', status=400)
+
+
+@login_required
+@privilege_required('workspace.can_access_admin')
+@require_POST
+def delete_sources(request):
+    logger = logging.getLogger(__name__)
+    form = forms.SourceDeleteForm(request.POST)
+    if form.is_valid():
+        source_id = form.cleaned_data.get('id')
+
+        source = Source.objects.get(pk=source_id)
+        source.delete()
+
+        response = {'status': 'ok', 'messages': [ugettext('APP-SOURCE-DELETEDSUCCESSFULLY-TEXT')], 'source_id':source_id}
+        return HttpResponse(json.dumps(response), content_type='application/json')
+    else:
+        errors = generate_ajax_form_errors(form)
+        response = {'status': 'error', 'messages': errors}
+        return HttpResponse(json.dumps(response), content_type='application/json', status = 400)
+
+
 @require_POST
 def check_email(request):
     email = request.POST.get('email')

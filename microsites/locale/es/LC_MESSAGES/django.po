@@ -60,9 +60,6 @@ msgstr "Datos cargados por el usuario"
 msgid "APP-PRIVATEDATASOURCE-TEXT"
 msgstr "Fuente privada"
 
-msgid "APP-SOURCES-TEXT"
-msgstr "Fuentes"
-
 msgid "DSDET-GUID-TIP"
 msgstr "Úsalo para invocar la vista mediante la <a href='/developers' title='Ver más acerca de la API' target='_blank'>API</a>"
 
