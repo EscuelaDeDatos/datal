@@ -28,6 +28,21 @@
    </div>
    <% }%>
 
+   <% if (category.length !== 0) {%>
+   <div class="filters">
+      <h3 class="">{% trans 'APP-CATEGORY-TEXT' %}</h3>
+      <ul>
+        <% _(category).each(function( item ){ %>
+        <li>
+          <a class="filter-add link black" data-cid="<%= item.cid %>">
+            <%= item.title %>
+          </a>
+        </li>
+        <% }); %>
+      </ul>
+   </div>
+   <% }%>
+
    <% if (author.length !== 0) {%>
    <div class="filters">
       <h3 class="">{% trans 'APP-AUTHOR-TEXT' %}</h3>

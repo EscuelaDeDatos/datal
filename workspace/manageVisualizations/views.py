@@ -67,7 +67,7 @@ def filter(request, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE):
         filters = json.loads(filters_param)
 
         filters_dict['impl_type'] = filters.get('type')
-        filters_dict['category__categoryi18n__name'] = filters.get('category')
+        filters_dict['datastream__last_revision__category__categoryi18n__name'] = filters.get('category')
         filters_dict['visualization__user__nick'] = filters.get('author')
         filters_dict['status'] = filters.get('status')
 
