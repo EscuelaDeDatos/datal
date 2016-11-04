@@ -1157,7 +1157,7 @@ class UserPassTickets(models.Model):
 
 # :TODO: Sin Migrar aun
 class Source(models.Model):
-    name = models.CharField(max_length=40, blank=False)
+    name = models.CharField(max_length=2048, blank=False)
     url = models.CharField(max_length=2048, blank=False)
     account = models.ForeignKey(Account, blank=True, null=True)
 
