@@ -582,6 +582,9 @@ msgstr "Category"
 msgid "APP-CONTACT-EMAIL-FOR-DATASET-TEXT"
 msgstr "Contact e-mail for this Dataset"
 
+msgid "APP-DOC-FOR-DATASET-TEXT"
+msgstr "Documentation for this Dataset"
+
 msgid "APP-UPDATE-FREQUENCY-TEXT"
 msgstr "Update frequency"
 

@@ -576,6 +576,9 @@ msgstr "Categoría"
 msgid "APP-CONTACT-EMAIL-FOR-DATASET-TEXT"
 msgstr "E-mail de contacto para este recurso"
 
+msgid "APP-DOC-FOR-DATASET-TEXT"
+msgstr "Documentación para este recurso"
+
 msgid "APP-UPDATE-FREQUENCY-TEXT"
 msgstr "Frecuencia de actualización"
 
