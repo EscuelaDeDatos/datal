@@ -617,6 +617,8 @@ class DatasetRevision(RevisionModel):
     spatial = models.CharField(max_length=80, blank=True, verbose_name=ugettext_lazy('MODEL_SPATIAL_LABEL'))
     frequency = models.TextField(blank=True, verbose_name=ugettext_lazy('MODEL_FREQUENCY_LABEL'))
     mbox = models.TextField(blank=True, verbose_name=ugettext_lazy('MODEL_MBOX_LABEL'))
+    doc = models.CharField(null=True, blank=True, max_length=2048, verbose_name=ugettext_lazy('MODEL_DOC_LABEL'))
+
 
     class Meta:
         db_table = 'ao_dataset_revisions'
@@ -703,6 +705,9 @@ class DatasetRevision(RevisionModel):
             self.mbox = fields['mbox']
         if 'status' in changed_fields:
             self.status = fields['status']
+        if 'doc' in changed_fields:
+            self.doc = fields['doc']
+
 
         self.save()
 
@@ -756,6 +761,7 @@ class DatasetRevision(RevisionModel):
         dataset_revision.spatial= self.spatial
         dataset_revision.frequency=self.frequency
         dataset_revision.mbox=self.mbox
+        dataset_revision.doc = self.doc
         dataset_revision.save()
 
         for tag in self.tagdataset_set.all():

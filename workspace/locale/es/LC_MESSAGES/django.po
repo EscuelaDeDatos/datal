@@ -265,6 +265,9 @@ msgstr "de"
 msgid "APP-ENDPOINT-TEXT"
 msgstr "Origen"
 
+msgid "APP-DOC-TEXT"
+msgstr "Documentación"
+
 msgid "APP-PAGE-TEXT"
 msgstr "Página"
 
@@ -2314,6 +2317,9 @@ msgstr "E-mail de contacto"
 
 msgid "APP-CONTACT-EMAIL-TIP"
 msgstr "Este es el e-mail de la persona responsable de este conjunto de datos."
+
+msgid "APP-DOC-TIP"
+msgstr "Esta es una url a una documentation opcional de este conjunto de datos."
 
 msgid "APP-LICENSE-TIP"
 msgstr "La licencia con la que se publica el conjunto de datos. Consulte ejemplos de las licencias aquí "

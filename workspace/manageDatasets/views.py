@@ -360,7 +360,7 @@ def edit(request, dataset_revision_id=None):
         notes=dataset.get('notes'), file_name=dataset.get('filename'), end_point=dataset.get('end_point'),
         impl_type=dataset.get('impl_type'), license_url=dataset.get('license_url'), spatial=dataset.get('spatial'),
         frequency=dataset.get('frequency'), mbox=dataset.get('mbox'), sources=dataset.get('sources'),
-        tags=dataset.get('tags')
+        tags=dataset.get('tags'), doc=dataset.get('doc')
     )
 
     if request.method == 'GET':

@@ -17,6 +17,7 @@ var CollectWebserviceModel = StepModel.extend({
 		att_headers: "",
 		params: [],
 		mbox: "",
+		doc: "",
 		license_url: "",
 		license_url_other: null,
 		spatial: "",
@@ -70,7 +71,18 @@ var CollectWebserviceModel = StepModel.extend({
 				}
 			}
 
-		},		
+		},
+		doc: [
+			{
+				required: false
+			},{
+				pattern: /^(?:(ht|f|sf)tp(s?)\:\/\/)/,
+				msg: gettext('VALIDATE-PROTOCOLNOTALLOWED-TEXT')
+			},{
+				pattern: 'url',
+				msg: gettext('VALIDATE-URLNOTVALID-TEXT')
+			}
+		],	
 		mbox: [
 			{
 				required: false
@@ -132,6 +144,7 @@ var CollectWebserviceModel = StepModel.extend({
 		var output = this.get('output');
 		
 		output.mbox = $.trim( this.get('mbox') );
+		output.doc = $.trim( this.get('doc') );
 		output.end_point = $.trim( this.get('end_point') );
 		output.impl_type = $.trim( this.get('impl_type') );
 		output.path_to_headers = $.trim( this.get('path_to_headers') );

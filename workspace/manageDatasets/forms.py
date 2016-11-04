@@ -102,6 +102,16 @@ class DatasetForm(forms.Form):
         })
     )
 
+    # Doc
+    doc = forms.CharField(
+        required=False,
+        label=ugettext_lazy('APP-DOC-TEXT'),
+        widget=forms.URLInput(attrs={
+            'data-bind':'value:doc,events:[\'keyup\']',
+            'autofocus':'autofocus'
+        })
+    )
+
     # Impl_Type
     impl_type = forms.ChoiceField(
         required=False,

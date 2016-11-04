@@ -222,6 +222,9 @@ msgstr "Está muerto"
 msgid "MODEL_END_POINT_LABEL"
 msgstr "End Point"
 
+msgid "MODEL_DOC_LABEL"
+msgstr "Documentación"
+
 msgid "MODEL_FILENAME_LABEL"
 msgstr "Nombre del archivo"
 

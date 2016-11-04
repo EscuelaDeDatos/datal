@@ -6,6 +6,7 @@ var FinishWebserviceModel = FinishModel.extend({
 			data = this.get('data');
 
 		data.mbox = output.mbox;
+		data.doc = output.doc;
 		data.end_point = output.end_point;
 		data.impl_type = output.impl_type;
 		data.path_to_headers = output.path_to_headers;

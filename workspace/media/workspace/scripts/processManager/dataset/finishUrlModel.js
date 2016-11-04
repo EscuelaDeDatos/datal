@@ -7,6 +7,7 @@ var FinishUrlModel = FinishModel.extend({
 
 		data.end_point = output.end_point;
 		data.mbox = output.mbox;
+		data.doc = output.doc;
 		data.spatial = output.spatial;
 		data.license_url = output.license_url;
 		data.frequency = output.frequency;

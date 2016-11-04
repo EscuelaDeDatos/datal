@@ -264,6 +264,9 @@ msgstr "to"
 msgid "APP-ENDPOINT-TEXT"
 msgstr "End-point"
 
+msgid "APP-DOC-TEXT"
+msgstr "Documentation"
+
 msgid "APP-PAGE-TEXT"
 msgstr "Page"
 
@@ -2321,6 +2324,9 @@ msgstr "Contact e-mail"
 
 msgid "APP-CONTACT-EMAIL-TIP"
 msgstr "This is the contact e-mail of the person responsible for this dataset."
+
+msgid "APP-DOC-TIP"
+msgstr "This is a link to optional documentation for this for this dataset."
 
 msgid "APP-LICENSE-TIP"
 msgstr "The license with which the dataset is published. License examples can be found here "

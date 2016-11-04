@@ -3,6 +3,7 @@ var CollectUrlModel = StepModel.extend({
 	defaults:{
 		end_point: "",
 		mbox: "",
+		doc: "",
 		license_url: "",
 		license_url_other: null,
 		spatial: "",
@@ -17,6 +18,17 @@ var CollectUrlModel = StepModel.extend({
 			{
 				required: true,
 				msg: gettext('VALIDATE-REQUIREDFIELD-TEXT')
+			},{
+				pattern: /^(?:(ht|f|sf)tp(s?)\:\/\/)/,
+				msg: gettext('VALIDATE-PROTOCOLNOTALLOWED-TEXT')
+			},{
+				pattern: 'url',
+				msg: gettext('VALIDATE-URLNOTVALID-TEXT')
+			}
+		],
+		doc: [
+			{
+				required: false
 			},{
 				pattern: /^(?:(ht|f|sf)tp(s?)\:\/\/)/,
 				msg: gettext('VALIDATE-PROTOCOLNOTALLOWED-TEXT')
@@ -62,6 +74,7 @@ var CollectUrlModel = StepModel.extend({
 		
 		output.end_point = $.trim( this.get('end_point') );
 		output.mbox = $.trim( this.get('mbox') );
+		output.doc = $.trim( this.get('doc') );
 		output.spatial = $.trim( this.get('spatial') );
 		output.license_url = $.trim( this.get('license_url') );
 		output.frequency = $.trim( this.get('frequency') );
