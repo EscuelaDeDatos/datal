@@ -57,6 +57,11 @@ class DataSetSerializer(ResourceSerializer):
         allow_null=True, 
         required=False,
         help_text=_(u'Correo electronico de quien administra el conjunto de datos'))
+    doc = serializers.URLField(
+        required=False,
+        allow_null=True,
+        allow_blank=True,
+        help_text=_(u'Documentación.'))
     tags = serializers.CharField(
         required=False,
         allow_null=True,

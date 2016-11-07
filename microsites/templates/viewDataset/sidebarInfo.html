@@ -90,6 +90,17 @@
         </article>
         {% endif %}
 
+         {% if dataset.doc %}
+        <!-- Doc -->
+        <article class="permalink">
+            <i></i>
+            <header>
+                <h1>{% trans 'APP-DOC-FOR-DATASET-TEXT' %}</h1>
+            </header>
+            <p><a href="{{dataset.doc}}">{{dataset.doc}}</a></p>
+        </article>
+        {% endif %}
+
         {% if dataset.get_sources %}
         <!-- Sources -->
         <article class="sources">

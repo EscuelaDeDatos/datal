@@ -91,6 +91,20 @@ class CategoryDeleteForm(forms.Form):
     id = forms.IntegerField(required=True)
 
 
+class SourceCreateForm(forms.Form):
+    name = forms.CharField(label=ugettext_lazy('WORKSPACE-SOURCE-NAME-LABEL'), required=True, max_length=128)
+    url = forms.CharField(label=ugettext_lazy('WORKSPACE-SOURCE-URL-LABEL'), required=True, max_length=1024)
+
+
+class SourceEditForm(forms.Form):
+    id = forms.IntegerField(required=True, widget=forms.HiddenInput())
+    name = forms.CharField(label=ugettext_lazy('WORKSPACE-SOURCE-NAME-LABEL'), required=True, max_length=128)
+    url = forms.CharField(label=ugettext_lazy('WORKSPACE-SOURCE-URL-LABEL'), required=True, max_length=1024)
+
+class SourceDeleteForm(forms.Form):
+    id = forms.IntegerField(required=True)
+
+
 class UserForm(forms.Form):
 
     # Patch, deberiamos usa run model i18n

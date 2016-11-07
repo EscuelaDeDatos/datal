@@ -6,6 +6,7 @@ var FinishFileModel = FinishModel.extend({
 			data = this.get('data');
 
 		data.mbox = output.mbox;
+		data.doc = output.doc;
 		data.spatial = output.spatial;
 		data.license_url = output.license_url;
 		data.frequency = output.frequency;

@@ -222,6 +222,9 @@ msgstr "Está muerto"
 msgid "MODEL_END_POINT_LABEL"
 msgstr "End Point"
 
+msgid "MODEL_DOC_LABEL"
+msgstr "Documentación"
+
 msgid "MODEL_FILENAME_LABEL"
 msgstr "Nombre del archivo"
 
@@ -778,6 +781,9 @@ msgstr "Copia y Pega el código de abajo donde quieras mostrar esta visualizaci�
 
 msgid "ERROR-DUPLICATED-CATEGORY"
 msgstr "Categoría duplicada"
+
+msgid "ERROR-DUPLICATED-SOURCE"
+msgstr "Fuente duplicada"
 
 # —————————— Exceptions
 msgid "EXCEPTION-ACTION-GENERIC"

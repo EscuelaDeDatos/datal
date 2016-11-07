@@ -60,9 +60,6 @@ msgstr "Datos cargados por el usuario"
 msgid "APP-PRIVATEDATASOURCE-TEXT"
 msgstr "Fuente privada"
 
-msgid "APP-SOURCES-TEXT"
-msgstr "Fuentes"
-
 msgid "DSDET-GUID-TIP"
 msgstr "Úsalo para invocar la vista mediante la <a href='/developers' title='Ver más acerca de la API' target='_blank'>API</a>"
 
@@ -578,6 +575,9 @@ msgstr "Categoría"
 
 msgid "APP-CONTACT-EMAIL-FOR-DATASET-TEXT"
 msgstr "E-mail de contacto para este recurso"
+
+msgid "APP-DOC-FOR-DATASET-TEXT"
+msgstr "Documentación para este recurso"
 
 msgid "APP-UPDATE-FREQUENCY-TEXT"
 msgstr "Frecuencia de actualización"

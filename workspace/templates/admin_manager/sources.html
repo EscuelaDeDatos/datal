@@ -1,0 +1,125 @@
+{% extends 'base_workspace.html' %}
+{% load i18n extra_tags core_components components compress staticfiles sass_tags %}
+
+{% block meta %}
+{% compress css %}
+<link href="{% sass_src 'workspace/styles/manageCommon.scss' %}" type="text/css" rel="stylesheet" media="screen"/>
+<link href="{% static 'core/styles/dataStreamForm.css' %}" type="text/css" rel="stylesheet" media="screen"/>
+<link href="{% sass_src 'workspace/styles/accountAdmin.scss' %}" type="text/css" rel="stylesheet" media="screen"/>
+{% endcompress %}
+<script type="text/javascript" src="/js_core/libs/jquery_tools/jquery.cookie.js?id={{settings.VERSION_JS_CSS}}"></script>
+
+<script src="{% static 'workspace/scripts/admin_manager/sources.js' %}" type="text/javascript"></script>
+<meta name="main-option" content="id_settings_option"/>
+{% endblock %}
+
+{% block sectionTitle %}
+<div class="context-menu">
+    <div class="col-xs-10">
+        <h1>{% trans "APP-SOURCES-TEXT" %}</h1>
+    </div>
+    <div class="col-xs-2 context-buttons clearfix">
+        <button class="FR button primary" title="{% trans 'WORKSPACE-CREATE-SOURCE' %}" id="id_create_source">{% trans "WORKSPACE-CREATE-SOURCE" %}</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+    
+    {% include "admin_manager/tabs.html" %}
+
+    <div class="formContainer col-xs-12">
+
+        <div class="list-container">
+            <div class="workspaceGrid">
+                <table id="id_sourcesTable">
+                    <thead>
+                        <tr>
+                            <th>{% trans "APP-NAME-TEXT" %}</th>
+                            <th>{% trans "APP-URL-TEXT" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for source in sources %}
+                        <tr data-id="{{source.id}}" data-url="{{source.url}}">
+                            <td>
+                                <span class="name">{{source.name}}</span>
+                                <ul class="actions clearfix">
+                                    <li class="edit">
+                                        <a>{% trans 'APP-EDIT-TEXT' %}</a>
+                                    </li>
+                                    <li class="delete">
+                                        <a>{% trans 'APP-DELETE-TEXT' %}</a>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>{{source.url}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block popupsOverlay %}
+{% overlay id_sourceFormContainer %}
+<div class="In clearfix sourcesForm">
+    <form action="{{form.action}}" method="post" id="id_sourceForm" novalidate>
+        {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
+        {% csrf_token %}
+        <h4>{% trans "WORKSPACE-CREATE-SOURCE" %}</h4>
+        <div class="columns clearfix">
+            <div class="CL">
+                <div class="dataStreamForm">
+                    <fieldset class="form">
+                        <div class="row clearfix">
+                            <label for="{{form.name.auto_id}}">{{form.name.label}}:</label>
+                            <div class="formErrorMessageContainer">
+                                {{form.name}}
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <label for="{{form.url.auto_id}}">{{form.url.label}}:</label>
+                            <div class="formErrorMessageContainer">{{form.url}}</div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="CR"></div>
+        </div>
+        
+        <div class="buttons center">
+            <input type="submit" value="{% trans 'APP-SAVE-TEXT' %}" class="button primary" title="{% trans 'APP-SAVE-TEXT' %}"/>
+        </div>
+    </form>
+    <div class="smallLoader absolute" id="id_imLoader" style="display:none;"><img src="{% static 'core/images/common/im_smallAjaxLoader.gif' %}"/></div>
+</div>
+{% endoverlay %}
+
+{% overlay id_deleteSourceFormContainer %}
+<div class="In clearfix sourcesForm">
+    <form action="{{form.action}}" method="post" id="id_sourceForm" novalidate>
+        {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
+        {% csrf_token %}
+        <h4>{% trans "APP-DELETE-SOURCE-TITLE" %}</h4>
+        <div class="columns clearfix">
+            <div class="CL">
+                <div class="dataStreamForm">
+                    <fieldset class="form">
+                        <p>{% trans "APP-DELETE-SOURCE-TEXT" %}</p>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        
+        <div class="buttons center">
+            <input type="submit" value="{% trans 'APP-DELETE-TEXT' %}" class="button warning" title="{% trans 'APP-DELETE-TEXT' %}"/>
+            <input type="submit" value="{% trans 'APP-CANCEL-TEXT' %}" class="button alpha" title="{% trans 'APP-CANCEL-TEXT' %}"/>
+        </div>
+    </form>
+    <div class="smallLoader absolute" id="id_imLoader" style="display:none;"><img src="{% static 'core/images/common/im_smallAjaxLoader.gif' %}"/></div>
+</div>
+{% endoverlay %}
+{% endblock %}

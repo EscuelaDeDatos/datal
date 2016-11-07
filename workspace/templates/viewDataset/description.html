@@ -82,7 +82,7 @@
 
 		<div class="col-xs-4 col-xs-offset-2">
 
-			{% if dataset.license_url or dataset.frequency or dataset.mbox or dataset.spatial %}
+			{% if dataset.license_url or dataset.frequency or dataset.mbox or dataset.spatial or dataset.doc %}
 			<div class="sidebar sidebar-view">
 
 			    {% if dataset.license_url %}
@@ -103,6 +103,13 @@
 			    <div class="row">
 			        <div class="title">{% trans 'APP-CONTACT-EMAIL-TEXT' %}</div>
 			        <p><a href="mailto:{{dataset.mbox}}" title="{{dataset.mbox}}">{{dataset.mbox}}</a></p>
+			    </div>
+			    {% endif %}
+
+			    {% if dataset.doc %}
+			    <div class="row">
+			        <div class="title">{% trans 'APP-DOC-TEXT' %}</div>
+			        <p><a href="{{dataset.doc}}" title="{{dataset.doc}}">{{dataset.doc}}</a></p>
 			    </div>
 			    {% endif %}
 

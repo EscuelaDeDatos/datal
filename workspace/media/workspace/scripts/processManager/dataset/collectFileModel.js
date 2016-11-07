@@ -5,6 +5,7 @@ var CollectFileModel = StepModel.extend({
 		inputFileId: "#id_file_data",
 		files: [],
 		mbox: "",
+		doc: "",
 		license_url: "",
 		license_url_other: null,
 		spatial: "",
@@ -22,6 +23,17 @@ var CollectFileModel = StepModel.extend({
 			},{
 				pattern: 'email',
 				msg: gettext('VALIDATE-EMAILNOTVALID-TEXT')
+			}
+		],
+		doc: [
+			{
+				required: false
+			},{
+				pattern: /^(?:(ht|f|sf)tp(s?)\:\/\/)/,
+				msg: gettext('VALIDATE-PROTOCOLNOTALLOWED-TEXT')
+			},{
+				pattern: 'url',
+				msg: gettext('VALIDATE-URLNOTVALID-TEXT')
 			}
 		],
 		license_url: function(value, attr, computedState){
@@ -66,6 +78,7 @@ var CollectFileModel = StepModel.extend({
     output.inputFileId = this.get('inputFileId');
 		output.files = this.get('files');
 		output.mbox = $.trim( this.get('mbox') );
+		output.doc = $.trim( this.get('doc') );
 		output.spatial = $.trim( this.get('spatial') );
 		output.license_url = $.trim( this.get('license_url') );
 		output.frequency = $.trim( this.get('frequency') );

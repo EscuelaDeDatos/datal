@@ -5,15 +5,30 @@ var FiltersView = Backbone.View.extend({
         'click a.filter-add': 'onClickAdd',
     },
 
-    initialize: function(){
+    initialize: function(options){
         this.template = _.template($('#filters-template').html());
+        this.itemCollection = options.itemCollection;
 
+        this.listenTo(this.itemCollection, 'sync', this.updateTotalResources); 
         this.listenTo(this.collection, 'change', this.onFilterChange, this);
         this.listenTo(this.collection, 'change sync', this.render);
         this.render();
     },
-
+    updateTotalResources: function(models, response) {
+        this.available_categories = _.uniq(_.map(response.items, function(item) {
+            return item.category
+        }))
+        this.available_authors = _.uniq(_.map(response.items, function(item){
+            return item.user
+        }))
+        this.available_statuses = _.uniq(_.map(response.items, function(item){
+            return item.status_name
+        }))
+        this.render()
+    },
     render: function () {
+
+        var view = this;
         var active = _.filter(this.collection.models, function (item) {
             return item.get('active');
         }).map(function (model) {
@@ -21,19 +36,20 @@ var FiltersView = Backbone.View.extend({
         });
 
         var category = _.filter(this.collection.models, function (model) {
-            return model.get('type') === 'category' && !model.get('active');
+
+            return model.get('type') === 'category' && !model.get('active') && (!view.available_categories || view.available_categories.indexOf(model.get('title')) >= 0);
         }).map(function (model) {
             return _.extend(model.toJSON(), {cid: model.cid});
         });
 
         var author = _.filter(this.collection.models, function (model) {
-            return model.get('type') === 'author' && !model.get('active');
+            return model.get('type') === 'author' && !model.get('active') && (!view.available_authors || view.available_authors.indexOf(model.get('title')) >= 0);
         }).map(function (model) {
             return _.extend(model.toJSON(), {cid: model.cid});
         });
 
         var status = _.filter(this.collection.models, function (model) {
-            return model.get('type') === 'status' && !model.get('active');
+            return model.get('type') === 'status' && !model.get('active') && (!view.available_statuses || view.available_statuses.indexOf(model.get('title')) >= 0);
         }).map(function (model) {
             return _.extend(model.toJSON(), {cid: model.cid});
         });

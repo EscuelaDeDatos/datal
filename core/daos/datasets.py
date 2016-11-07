@@ -117,6 +117,7 @@ class DatasetDBDAO(AbstractDatasetDBDAO):
             title=dataseti18n.title,
             description=dataseti18n.description,
             notes=dataseti18n.notes,
+            doc=dataset_revision.doc,
             tags=tags,
             sources=sources,
             is_cached=dataset_revision.is_cached(), 
@@ -207,6 +208,7 @@ class DatasetDBDAO(AbstractDatasetDBDAO):
                 'dataseti18n__description': ds.dataseti18n_set.filter(language=language).first().description,
                 'created_at': ds.created_at,
                 'modified_at': ds.modified_at,
+                'doc': ds.doc,
                 'size': ds.size,
                 'end_point': ds.end_point,
                 'dataset__user__id': ds.dataset.user.id,
@@ -305,7 +307,8 @@ class DatasetDBDAO(AbstractDatasetDBDAO):
             license_url=fields['license_url'],
             spatial=fields['spatial'],
             frequency=fields['frequency'],
-            mbox=fields['mbox']
+            mbox=fields['mbox'],
+            doc=fields['doc'] if 'doc' in fields else None
         )
 
         DatasetI18n.objects.create(

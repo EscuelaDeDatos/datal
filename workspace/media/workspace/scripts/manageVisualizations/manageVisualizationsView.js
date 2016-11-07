@@ -192,7 +192,8 @@ var ManageVisualizationsView = Backbone.View.extend({
 
 		this.filtersView = new FiltersView({
 			el: this.$('.filters-view'),
-			collection: this.filtersCollection
+			collection: this.filtersCollection,
+			itemCollection: this.listResources
 		});
 
 		this.listenTo(this.filtersView, 'change', function (queryDict) {

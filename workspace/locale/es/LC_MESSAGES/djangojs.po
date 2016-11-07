@@ -306,6 +306,9 @@ msgstr "Atención"
 msgid "CATEGORY-DELETE-CONFIRMATION"
 msgstr "Está a punto de borrar la categoría, todos los recursos serán movidos a la categoría por defecto. ¿Está seguro?"
 
+msgid "SOURCE-DELETE-CONFIRMATION"
+msgstr "Está a punto de borrar la fuente, todos los recursos borraran esta fuente. ¿Está seguro?"
+
 msgid "CATEGORY-ADD-TRANSPARENCY"
 msgstr "Se agregaran las siguientes categorias de trasnparencia, esta seguro?"
 

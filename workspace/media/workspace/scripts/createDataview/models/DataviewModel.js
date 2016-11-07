@@ -518,16 +518,19 @@ var DataviewModel = Backbone.Model.extend({
             xmlDoc.async = false;
             xmlDoc.loadXML(source);
         }
-        var headers = xmlDoc.getElementsByTagName("Headers")[0].getElementsByTagName("Row");
-        if (headers.length > 0 ) {
-            for (var i = 0; i < headers.length; i++) {
-                header = headers[i]
-                row_index = parseInt(header.textContent.replace('row', '')) + 1
-                this.selection.add({
-                    classname: 'header',
-                    mode: 'header',
-                    excelRange: row_index + ":" + row_index
-                })
+        var headers = xmlDoc.getElementsByTagName("Headers")
+        if (headers.length > 0) {
+            headers = headers[0].getElementsByTagName("Row");
+            if (headers.length > 0 ) {
+                for (var i = 0; i < headers.length; i++) {
+                    header = headers[i]
+                    row_index = parseInt(header.textContent.replace('row', '')) + 1
+                    this.selection.add({
+                        classname: 'header',
+                        mode: 'header',
+                        excelRange: row_index + ":" + row_index
+                    })
+                }
             }
         } 
         var columns = xmlDoc.getElementsByTagName("Table")[0].getElementsByTagName("Field");

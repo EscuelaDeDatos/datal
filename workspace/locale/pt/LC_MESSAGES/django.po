@@ -148,6 +148,12 @@ msgstr "Create category"
 msgid "WORKSPACE-CATEGORY-DESCRIPTION-LABEL"
 msgstr "Description"
 
+msgid "WORKSPACE-SOURCE-NAME-LABEL"
+msgstr "Create source"
+
+msgid "WORKSPACE-SOURCE-URL-LABEL"
+msgstr "Url"
+
 msgid "APP-DESCRIPTION-TEXT"
 msgstr "Description"
 
@@ -175,8 +181,14 @@ msgstr "User deleted successfully"
 msgid "APP-CATEGORY-CREATEDSUCCESSFULLY-TEXT"
 msgstr "Category created successfully"
 
+msgid "APP-SOURCE-CREATEDSUCCESSFULLY-TEXT"
+msgstr "Source created successfully"
+
 msgid "APP-CATEGORY-UPDATEDSUCCESSFULLY-TEXT"
 msgstr "The Category was succesfully updated"
+
+msgid "APP-SOURCE-UPDATEDSUCCESSFULLY-TEXT"
+msgstr "The Source was succesfully updated"
 
 msgid "APP-CATEGORY-DELETESUCCESSFULLY-TEXT"
 msgstr "The Category was succesfully deleted"
@@ -249,6 +261,9 @@ msgstr "to"
 
 msgid "APP-ENDPOINT-TEXT"
 msgstr "End-point"
+
+msgid "APP-DOC-TEXT"
+msgstr "Documentation"
 
 msgid "APP-PAGE-TEXT"
 msgstr "Page"
@@ -718,6 +733,9 @@ msgstr "Categories"
 msgid "WORKSPACE-CREATE-CATEGORY"
 msgstr "Create category"
 
+msgid "WORKSPACE-CREATE-SOURCE"
+msgstr "Create source"
+
 msgid "WORKSPACE-CREATE-TRANSP-CATEGORIES"
 msgstr "Create transparency's categories"
 
@@ -780,6 +798,9 @@ msgstr "Domain settings"
 
 msgid "ACCOUNT-CATEGORIES-TAB"
 msgstr "Categories"
+
+msgid "ACCOUNT-SOURCES-TAB"
+msgstr "Sources"
 
 msgid "APP-USERS-TEXT"
 msgstr "Users"
@@ -993,9 +1014,6 @@ msgstr "Created by"
 
 msgid "APP-EDITEDBY-TEXT"
 msgstr "Edited by"
-
-msgid "APP-SOURCES-TEXT"
-msgstr "Sources"
 
 msgid "APP-RELOAD-TEXT"
 msgstr "Reload"
@@ -1879,6 +1897,9 @@ msgstr "Transparency categories can not be edited"
 msgid "APP-CATEGORY-DELETEDSUCCESSFULLY-TEXT"
 msgstr "Category successfully deleted"
 
+msgid "APP-SOURCE-DELETEDSUCCESSFULLY-TEXT"
+msgstr "Source successfully deleted"
+
 msgid "ADMIN-HOME-TITLE"
 msgstr "Select Home page design"
 
@@ -2301,6 +2322,9 @@ msgstr "Contact e-mail"
 msgid "APP-CONTACT-EMAIL-TIP"
 msgstr "This is the contact e-mail of the person responsible for this dataset."
 
+msgid "APP-DOC-TIP"
+msgstr "This is a link to optional documentation for this for this dataset."
+
 msgid "APP-LICENSE-TIP"
 msgstr "The license with which the dataset is published. License examples can be found here "
 
@@ -2366,6 +2390,9 @@ msgstr "Account and contact information"
 
 msgid "APP-DELETE-CATEGORY-TITLE"
 msgstr "Delete category"
+
+msgid "APP-DELETE-SOURCE-TITLE"
+msgstr "Delete source"
 
 msgid "APP-OVERLAY-DELETE-DATASET-TITLE"
 msgstr "Delete Dataset"

@@ -321,6 +321,9 @@ msgstr "Warning"
 msgid "CATEGORY-DELETE-CONFIRMATION"
 msgstr "You are going to delete the category, all the resources will be moved to the default category, are you sure?"
 
+msgid "SOURCE-DELETE-CONFIRMATION"
+msgstr "You are going to delete the source, all the resources will remove this source, are you sure?"
+
 msgid "CATEGORY-ADD-TRANSPARENCY"
 msgstr "You are going to add the following transparency categories, are you sure?"
 

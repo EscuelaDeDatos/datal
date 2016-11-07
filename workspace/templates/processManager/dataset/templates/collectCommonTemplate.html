@@ -1,5 +1,6 @@
 {% load i18n extra_tags components %}
 
+
 {# mbox #}
 <div class="row clearfix">
 	{{ form.mbox.label_tag }}
@@ -42,4 +43,11 @@
 	<input type="text" name="frequency_other" id="id_frequency_other" tabindex="0" data-bind="value:frequency_other,events:['keyup']">
 	<span class="required">*</span>
 	<p class="tip">{% trans 'APP-OTHER-FREQUENCY-TEXT' %}</p>
+</div>
+
+{# doc #}
+<div class="row clearfix">
+	{{ form.doc.label_tag }}
+	{{ form.doc }}
+	<p class="tip">{% trans 'APP-DOC-TIP' %}</p>
 </div>

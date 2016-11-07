@@ -153,7 +153,8 @@ class DatasetLifeCycleManager(AbstractLifeCycleManager):
             file_name=fields['file_name'], end_point=fields['end_point'], file_size=fields.get('file_size', 0),
             notes=fields.get('notes', ''), license_url=fields.get('license_url',''), spatial=fields.get('spatial', ''),
             frequency=fields.get('frequency', ''), mbox=fields.get('mbox', ''), tags=fields.get('tags', []),
-            sources=fields.get('sources', []), params=fields.get('params', []), impl_details=impl_details)
+            sources=fields.get('sources', []), params=fields.get('params', []), impl_details=impl_details, 
+            doc=fields.get('doc', ''))
 
         self.resource = self.dataset
         self.revision = self.dataset_revision
