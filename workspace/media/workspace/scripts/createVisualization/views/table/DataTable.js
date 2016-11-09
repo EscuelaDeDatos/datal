@@ -37,7 +37,7 @@ var DataTableView = Backbone.View.extend({
     TEXT: Handsontable.renderers.TextRenderer,
     LINK: Handsontable.renderers.HtmlRenderer,
     NUMBER: Handsontable.renderers.NumericRenderer,
-    DATE: Handsontable.renderers.DateRenderer
+    DATE: Handsontable.renderers.TextRenderer
   },
 
   initialize: function (options) {
