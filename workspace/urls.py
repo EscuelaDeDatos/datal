@@ -12,10 +12,10 @@ from workspace.rest.datasets import RestDataSetViewSet
 from workspace.rest.datastreams import RestDataStreamViewSet
 from workspace.rest.maps import RestMapViewSet
 from workspace.rest.charts import RestChartViewSet
-from workspace.rest.sources import RestSourceViewSet
-from workspace.rest.tags import RestTagViewSet
+from core.rest.sources import RestSourceViewSet
+from core.rest.tags import RestTagViewSet
 from workspace.rest.resources import MultipleResourceViewSet
-from workspace.rest.categories import RestCategoryViewSet 
+from core.rest.categories import RestCategoryViewSet 
 from workspace.rest.users import RestUserViewSet
 
 

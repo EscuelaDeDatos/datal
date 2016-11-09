@@ -3,6 +3,9 @@ from core.models import AccountAnonymousUser
 
 class ApiPermission(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
+        if type(obj) != dict:
+            return True
+
         return ('account_id' in obj and 
                 obj['account_id'] in [x['id'] for x in request.auth['account'].account_set.values('id').all()] + [request.auth['account'].id])
 

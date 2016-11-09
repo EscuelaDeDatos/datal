@@ -11,11 +11,19 @@ from api.v2.datasets import DataSetViewSet
 from api.v2.visualizations import VisualizationViewSet
 from api.v2.resources import APIResourceViewSet
 
+from core.rest.sources import RestSourceViewSet
+from core.rest.tags import RestTagViewSet
+from core.rest.categories import RestCategoryViewSet 
+
+
 router = routers.DefaultRouter()
 router.register(r'resources', APIResourceViewSet, base_name='resources')
 router.register(r'datastreams', DataStreamViewSet, base_name='datastreams')
 router.register(r'datasets', DataSetViewSet, base_name='datasets')
 router.register(r'visualizations', VisualizationViewSet, base_name='visualizations')
+router.register(r'sources', RestSourceViewSet, base_name='sources')
+router.register(r'tags', RestTagViewSet, base_name='tags')
+router.register(r'categories', RestCategoryViewSet, base_name='categories')
 
 # Implemento los routers que tenga el plugin
 plugins = DatalPluginPoint.get_plugins()
