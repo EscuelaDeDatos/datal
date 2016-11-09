@@ -315,7 +315,8 @@ class WebserviceForm(DatasetForm):
         required=False,
         label=ugettext_lazy('APP-PASSWORD-TEXT'),
         widget=forms.PasswordInput(attrs={
-            'data-bind':'value:password,events:[\'keyup\']'
+            'data-bind':'value:password,events:[\'keyup\']',
+            'autocomplete':'new-password'
         })
     )
 
