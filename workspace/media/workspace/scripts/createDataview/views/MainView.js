@@ -20,6 +20,9 @@ var MainView = Backbone.View.extend({
             this.render();
             this.listenTo(this.stateModel, 'change:step', this.render, this);
         }, this);
+        this.listenTo(this.dataviewModel, 'change:tableId', function() {
+            this.render();
+        })
         this.listenTo(this.stepBarView, 'save', this.onClickSave, this);
         this.listenTo(this.stepBarView, 'next', this.onClickNext, this);
         this.listenTo(this.stepBarView, 'prev', this.onClickPrev, this);

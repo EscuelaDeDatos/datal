@@ -440,6 +440,10 @@ var DataviewModel = Backbone.Model.extend({
                 })
             }
         }
+        var table = xmlDoc.getElementsByTagName("Table");
+        if (table.length == 1 ) {
+            this.set('tableId', parseInt(table[0].textContent.replace('table', "")))
+        }
     },
     getSelectStatement: function () {
         var tableId = this.get('tableId'),
