@@ -20,6 +20,7 @@ from core.daos.resource import AbstractDataStreamDBDAO
 from django.conf import settings
 from core.exceptions import SearchIndexNotFoundException, DataStreamNotFoundException
 from django.core.exceptions import FieldError
+from core.templatetags.dataset_tags import status_str
 
 from core.choices import STATUS_CHOICES, StatusChoices, ChannelTypes, CollectTypeChoices
 from core.models import DatastreamI18n, DataStream, DataStreamRevision, Category, VisualizationRevision, DataStreamHits, Setting, DataStreamParameter
@@ -201,8 +202,7 @@ class DataStreamDBDAO(AbstractDataStreamDBDAO):
         )
 
         return datastream
-
-    def query(self, account_id=None, language=None, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE,
+    def query_base(self, account_id=None, language=None, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE,
           sort_by='-id', filters_dict=None, filter_name=None, exclude=None, filter_status=None,
           filter_category=None, filter_text=None, filter_user=None, full=False):
         """ Consulta y filtra los datastreams por diversos campos """
@@ -241,6 +241,25 @@ class DataStreamDBDAO(AbstractDataStreamDBDAO):
 
         if filter_user is not None:
             query = query.filter(datastream__user__nick=filter_user)
+
+        return query
+
+
+    def query_total_filters(self, account_id=None, language=None, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE,
+          sort_by='-id', filters_dict=None, filter_name=None, exclude=None, filter_status=None,
+          filter_category=None, filter_text=None, filter_user=None, full=False):
+        query = self.query_base(account_id, language, page, itemsxpage, sort_by, filters_dict, filter_name, exclude, filter_status, 
+            filter_category, filter_text, filter_user, full)
+        total_categories = list(set(query.values_list('category__categoryi18n__name', flat=True).distinct()))
+        total_authors = list(set(query.values_list('datastream__user__name', flat=True).distinct()))
+        total_statuses = map(lambda x: status_str(x).capitalize(), list(set(query.values_list('status', flat=True).distinct())))
+        return total_categories, total_authors, total_statuses
+
+    def query(self, account_id=None, language=None, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE,
+          sort_by='-id', filters_dict=None, filter_name=None, exclude=None, filter_status=None,
+          filter_category=None, filter_text=None, filter_user=None, full=False):
+        query = self.query_base(account_id, language, page, itemsxpage, sort_by, filters_dict, filter_name, exclude, filter_status, 
+            filter_category, filter_text, filter_user, full)
 
         total_resources = query.count()
         query = query.values(
