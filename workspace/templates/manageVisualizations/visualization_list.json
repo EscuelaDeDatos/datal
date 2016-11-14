@@ -3,6 +3,21 @@
 {
   "total_entries": {{total_entries}},
   "total_resources": {{total_resources}},
+  "total_categories": [
+    {% for cat in total_categories %}
+    "{{cat}}"{% if not forloop.last %}, {% endif%}
+    {% endfor %}
+  ],
+  "total_authors": [
+    {% for cat in total_authors %}
+    "{{cat}}"{% if not forloop.last %}, {% endif%}
+    {% endfor %}
+  ],
+  "total_statuses": [
+    {% for cat in total_statuses %}
+    "{{cat}}"{% if not forloop.last %}, {% endif%}
+    {% endfor %}
+  ],
   "items": [
     {% for item in items %}
     {

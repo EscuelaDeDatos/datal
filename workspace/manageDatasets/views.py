@@ -210,10 +210,22 @@ def filter(request, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE):
         exclude=exclude
     )
 
+    total_categories, total_authors, total_statuses = DatasetDBDAO().query_total_filters(
+        account_id=request.account.id,
+        language=request.user.language,
+        page=page,
+        itemsxpage=itemsxpage,
+        filters_dict = filters_dict,
+        sort_by=sort_by,
+        filter_name=filter_name,
+        exclude=exclude
+    )
+
     for resource in resources:
         resource['url'] = reverse('manageDatasets.view', urlconf='workspace.urls', kwargs={'revision_id': resource['id']})
 
-    data = {'total_entries': total_entries, 'total_resources': total_resources, 'resources': resources}
+    data = {'total_entries': total_entries, 'total_resources': total_resources, 'resources': resources,
+    'total_categories':total_categories, 'total_authors': total_authors, 'total_statuses': total_statuses}
     if settings.DEBUG: logger.info('filter dataset: %d, %s' % (total_entries, str(total_resources)))
 
     response = DatasetList().render(data)

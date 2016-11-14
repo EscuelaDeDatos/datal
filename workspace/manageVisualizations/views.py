@@ -103,13 +103,23 @@ def filter(request, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE):
         filter_name=filter_name
     )
 
+    total_categories, total_authors, total_statuses = VisualizationDBDAO().query_total_filters(
+        account_id=request.account.id,
+        language=request.user.language,
+        page=page,
+        itemsxpage=itemsxpage,
+        filters_dict = filters_dict,
+        sort_by=sort_by,
+        filter_name=filter_name,
+    )
+
     for resource in resources:
         resource['url'] = reverse('manageVisualizations.view', kwargs=dict(revision_id=resource['id']))
         resource['datastream_url'] = reverse('manageDataviews.view', kwargs={
             'revision_id': resource['visualization__datastream__last_revision__id']})
 
     data = render_to_string('manageVisualizations/visualization_list.json', dict(
-        items=resources, total_entries=total_entries, total_resources=total_resources))
+        items=resources, total_entries=total_entries, total_resources=total_resources, total_categories=total_categories, total_authors=total_authors, total_statuses=total_statuses))
     return HttpResponse(data, content_type="application/json")
 
 

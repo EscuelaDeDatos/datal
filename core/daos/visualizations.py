@@ -23,6 +23,7 @@ from core.lib.elastic import ElasticsearchIndex
 from core.choices import STATUS_CHOICES, StatusChoices
 from core.builders.visualizations import VisualizationImplBuilder
 from core import helpers
+from core.templatetags.dataset_tags import status_str
 from core.primitives import PrimitiveComputer
 
 
@@ -236,7 +237,7 @@ class VisualizationDBDAO(AbstractVisualizationDBDAO):
 
         return visualization_revision
 
-    def query(self, account_id=None, language=None, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE,
+    def query_base(self, account_id=None, language=None, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE,
           sort_by='-id', filters_dict=None, filter_name=None, exclude=None, filter_status=None,
           filter_category=None, filter_text=None, filter_user=None, full=False):
         """ Consulta y filtra las visualizaciones por diversos campos
@@ -288,6 +289,24 @@ class VisualizationDBDAO(AbstractVisualizationDBDAO):
 
         if filter_user is not None:
             query = query.filter(visualization__user__nick=filter_user)
+
+        return query
+
+    def query_total_filters(self, account_id=None, language=None, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE,
+          sort_by='-id', filters_dict=None, filter_name=None, exclude=None, filter_status=None,
+          filter_category=None, filter_text=None, filter_user=None, full=False):
+        query = self.query_base(account_id, language, page, itemsxpage, sort_by, filters_dict, filter_name, exclude, filter_status, 
+            filter_category, filter_text, filter_user, full)
+        total_categories = list(set(query.values_list('visualization__datastream__last_revision__category__categoryi18n__name', flat=True).distinct()))
+        total_authors = list(set(query.values_list('visualization__user__name', flat=True).distinct()))
+        total_statuses = map(lambda x: status_str(x).capitalize(), list(set(query.values_list('status', flat=True).distinct())))
+        return total_categories, total_authors, total_statuses
+
+    def query(self, account_id=None, language=None, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE,
+          sort_by='-id', filters_dict=None, filter_name=None, exclude=None, filter_status=None,
+          filter_category=None, filter_text=None, filter_user=None, full=False):
+        query = self.query_base(account_id, language, page, itemsxpage, sort_by, filters_dict, filter_name, exclude, filter_status, 
+            filter_category, filter_text, filter_user, full)
 
         total_resources = query.count()
         query = query.values(

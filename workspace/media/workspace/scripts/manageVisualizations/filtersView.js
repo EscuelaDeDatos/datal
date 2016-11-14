@@ -15,15 +15,9 @@ var FiltersView = Backbone.View.extend({
         this.render();
     },
     updateTotalResources: function(models, response) {
-        this.available_categories = _.uniq(_.map(response.items, function(item) {
-            return item.category
-        }))
-        this.available_authors = _.uniq(_.map(response.items, function(item){
-            return item.user
-        }))
-        this.available_statuses = _.uniq(_.map(response.items, function(item){
-            return item.status_name
-        }))
+        this.available_categories = response.total_categories
+        this.available_authors = response.total_authors
+        this.available_statuses = response.total_statuses
         this.render()
     },
     render: function () {

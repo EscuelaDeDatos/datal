@@ -120,6 +120,16 @@ def filter(request, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE):
         filter_name=filter_name
     )
 
+    total_categories, total_authors, total_statuses = DataStreamDBDAO().query_total_filters(
+        account_id=request.account.id,
+        language=request.user.language,
+        page=page,
+        itemsxpage=itemsxpage,
+        filters_dict = filters_dict,
+        sort_by=sort_by,
+        filter_name=filter_name
+    )
+
     for resource in resources:
         resource['url'] = reverse('manageDataviews.view', urlconf='workspace.urls',
                                   kwargs={'revision_id': resource['id']})
@@ -127,7 +137,7 @@ def filter(request, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE):
                                           kwargs={'revision_id': resource['dataset__last_revision__id']})
 
     data = {'total_entries': total_entries, 'total_resources': total_resources, 'resources': resources,
-            'total_entries': total_entries}
+            'total_categories':total_categories, 'total_authors': total_authors, 'total_statuses': total_statuses}
     response = DatastreamList().render(data)
 
     return JSONHttpResponse(response)
