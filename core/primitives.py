@@ -11,6 +11,9 @@ class PrimitiveComputer:
 
         primitive_label = match.group('primitive')
         primitive = PRIMITIVES.get(primitive_label)
+        if not primitive:
+            return key
+            
         expression = key.replace(primitive_label, primitive)
 
         return eval(expression)
