@@ -21,7 +21,7 @@ class DefaultForm(forms.Form):
 
 class ArgumentForm(forms.Form):
     name = forms.CharField(max_length=16, widget=forms.TextInput(), required=True)
-    value = forms.CharField(max_length=100, widget=forms.TextInput(), required=True)
+    value = forms.CharField(widget=forms.TextInput(), required=True)
 
 
 class RequestForm(DefaultForm):
