@@ -71,7 +71,7 @@ def create(request):
             ('account.url', str(new_account_id)), # TODO is for testing accounts
             ('account.domain', '%s.opendata.junar.com' % slug_title), # TODO is for testing accounts
             ('account.link', 'http://%s.opendata.junar.com' % slug_title), # TODO is for testing accounts
-            ('account.api.domain', 'api.%s.opendata.junar.com' % slug_title), # TODO is for testing accounts
+            ('account.api.domain', '%s.cloudapi.junar.com' % slug_title), # TODO is for testing accounts
             ('account.name', account.name),
             ('account.language', language),
             ('enable.junar.footer', 'on'),
