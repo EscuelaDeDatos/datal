@@ -60,6 +60,10 @@ class CommandFactory(object):
                 new.append((item[0].replace('order', 'pOrder'), item[1]))
             elif item[0].startswith('uniqueBy'):
                 new.append((item[0].replace('unique', 'pUnique'), item[1]))
+            elif item[0].startswith('groupBy'):
+                new.append((item[0].replace('groupBy', 'pGroupBy'), item[1]))
+            elif item[0].startswith('function'):
+                new.append((item[0].replace('function', 'pFunction'), item[1]))
             else:
                 new.append(item)
 
