@@ -407,16 +407,13 @@ class VisualizationDBDAO(AbstractVisualizationDBDAO):
 
         cursor = connection.cursor()
         cursor.execute(sql, (lang,))
-
-        rows    = cursor.fetchall().__iter__()
-        row     = helpers.next(rows, None)
-
+        row    = cursor.fetchone()
         visualizations = []
         while row != None:
             datastream_id = row[2]
             visualization_id = row[3]
             title = row[5]
-            permalink = reverse('chart_manager.view', kwargs={'id': visualization_id, 'slug': slugify(title)})
+            permalink = reverse('chart_manager.view', kwargs={'id': visualization_id, 'slug': slugify(title)}, urlconf='microsites.urls')
             visualizations.append({'id'           : row[0],
                                    'sov_id'       : row[1],
                                    'impl_details' : row[4],
@@ -428,7 +425,7 @@ class VisualizationDBDAO(AbstractVisualizationDBDAO):
                                 })
 
             while row != None and datastream_id == row[2] and visualization_id == row[3]:
-                row = helpers.next(rows, None)
+                row = cursor.fetchone()
 
         return visualizations
 
