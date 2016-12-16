@@ -1,6 +1,11 @@
 /* Theme 7 - Mesa */
 
 .theme7{font-family:'Open Sans',sans-serif;}
+
+/*clearfix*/
+.theme7:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.theme7{display:block;}
+
 .theme7 .top,
 .theme7 .priorities,
 .theme7 .buttons,
