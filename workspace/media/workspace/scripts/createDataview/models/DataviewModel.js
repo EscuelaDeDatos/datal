@@ -581,7 +581,7 @@ var DataviewModel = Backbone.Model.extend({
                     } else if (obj.type == 'DATE') {
                         obj.dateDisplayLocale = column.getElementsByTagName('DisplayFormat')[0].getElementsByTagName('locale')[0].textContent
                     }
-                    obj.excelCol = DataTableUtils.intToExcelCol(obj.column)
+                    obj.excelCol = DataTableUtils.intToExcelCol(parseInt(obj.column)+1)
                     this.formats.add(obj)
                 }
 
