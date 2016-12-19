@@ -118,7 +118,7 @@ class GridEngineRenderer(EngineRenderer):
                 strformat = strformat.replace("M", "MMM")
             else:
                 strformat = strformat.replace("m", "L")
-            res = dates.format_datetime(myutc, format=strformat, locale="%s_%s" %(strlocale[0], strlocale[1].upper()))
+            res = dates.format_datetime(myutc, tzinfo=pytz.utc, format=strformat, locale="%s_%s" %(strlocale[0], strlocale[1].upper()))
         except:
             res = "%s (seconds)" % str(seconds)
             err = str(sys.exc_info())
