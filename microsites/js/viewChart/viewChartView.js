@@ -516,6 +516,7 @@ _.extend(viewVisualizationView.prototype, Backbone.View.prototype, {
 
 			var template = _.template( $("#id_timestampTemplate").html() );
 
+			this.$el.find('#id_lastUpdate').remove()
 			this.$el.find('#id_lastModified').after( template( {'timestamp': timestamp} ) );
 
 		}
