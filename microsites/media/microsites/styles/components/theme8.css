@@ -87,7 +87,8 @@ body,
 .columns{position:inherit !important;}
 .columns .CL{width:20%;}
 .columns .CR{width:75%;padding-top:2px;}
-.columns .sidebar .sidebarPadding{padding:0 30px 130px 0;}
+.resourcesTable .columns .sidebar .sidebarPadding{padding:0 30px 130px 0 !important;}
+#home_filter .optionFilter dt span{padding-top:0;}
 .columns .sidebar .references{display:none;}
 .columns .sidebar .filters dd span,
 .columns .sidebar .filters dt span{padding-left:0;}
