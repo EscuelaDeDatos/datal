@@ -88,7 +88,8 @@ body,
   .workspaceGrid table{width:100%;}
   .workspaceGrid table th,
   .workspaceGrid table td{line-height:17px;padding:5px;border-bottom:1px solid #e0e0e0;background-color:#fff;color:#333;word-break:break-word;vertical-align:top;}
-    .workspaceGrid table td{padding:10px 5px;}
+  .workspaceGrid table td{padding:10px 5px;}
+  .workspaceGrid table td.date{width: 180px !important;}
   .workspaceGrid table th{text-align:left;background:#f6f5f5;color:#aaa;text-shadow:0 1px 0 #fff;font-weight:bold;}
   .workspaceGrid table tr:nth-child(even) > td{background-color:#fcfcfc;}
   .workspaceGrid .viewInfo .sep{color:#e0e0e0;padding:0 2px;}
@@ -297,22 +298,25 @@ body .theme2 #id_dataservices_container{margin-left:0 !important;}
   .theme5 .linksSection li a{color:#909090;display:inline-block;}
 
   /* Social buttons */
-  .socialButtons{padding-top:26px;padding-left:18px;}
-  .socialButtons > *{float:left !important;}
+  .theme5 .socialButtons{padding-top:26px;padding-left:18px;}
+  .theme5 .socialButtons > *{float:left !important;}
 
   /* Welcome Popup*/
-  #id_welcomePopup{width:600px;border:0;
+  .theme5 #id_welcomePopup{width:600px;border:0;
     -webkit-border-radius:0;
        -moz-border-radius:0;
             border-radius:0;
   }
-  #id_welcomePopup .In{padding:20px 0 !important;
+  .theme5 #id_welcomePopup .In{padding:20px 0 !important;
     -webkit-border-radius:0;
        -moz-border-radius:0;
             border-radius:0;
   }
-  #id_welcomePopup .In h4{background:transparent;border:0;height:auto;line-height:normal;}
-  #id_welcomePopup .In p{font-size:11px;line-height:18px;padding:0 18px;}
+  .theme5 #id_welcomePopup .In h4{background:transparent;border:0;height:auto;line-height:normal;}
+  .theme5 #id_welcomePopup .In p{font-size:11px;line-height:18px;padding:0 18px;}
+
+  /* Resources Table */
+  .theme5 .resourcesTable{margin-left:20px;margin-right:20px;}
 
 /* Theme 6 - Jackson */
 .theme6.w960{padding:0;width:960px;background:#f5f5f5;
@@ -385,3 +389,54 @@ body .theme2 #id_dataservices_container{margin-left:0 !important;}
        -moz-border-radius:0 0 5px 5px;
             border-radius:0 0 5px 5px;
   }
+
+  /* Resources Table */
+  .theme6 .resourcesTable{margin-left:20px;margin-right:20px;}
+
+
+
+
+
+/* Ajustes 2016-12-27 */
+
+
+/* Resource Table */
+.resourcesTable .columns{background:none !important;}
+.resourcesTable .sectionInfo{border:0;}
+.resourcesTable .workspaceGrid .viewInfo .sep {display: block;color: #fff;height: 10px;overflow: hidden;}
+.resourcesTable .CR .category{background-color:#ddd;color:#333;padding:2px 15px;display:inline-block;text-transform:uppercase;font-size:11px;}
+.resourcesTable .viewInfo{padding-left:10px !important;}
+.resourcesTable .viewInfo a{font-size:16px;color:#1b1b1b;}
+.resourcesTable .viewInfo strong{font-weight:normal !important;}
+.workspaceGrid table td{padding:14px 0;}
+.workspaceGrid table th{padding:10px 0 10px 22px;background-color:transparent !important;background-position:10px 7px;}
+
+.resourcesTable .workspaceGrid table tr:nth-child(even) > td{background-color:#efefef !important;}
+.resourcesTable .workspaceGrid table tr > td{background-color:transparent !important;}
+
+.resourcesTable .resourcesTableInner,
+.resourcesTable .columns{border:0 !important;}
+.resourcesTable .columns .CR{padding:0 !important;}
+.resourcesTable .workspaceGrid .viewInfo .sep {text-indent: -1000px;}
+.resourcesTable .sidebar .filters dt span{color:#aaa !important;}
+.resourcesTable .sectionInfoInner{position:absolute;left:0;}
+
+/* Sidebar */
+.resourcesTable .columns .sidebar .sidebarPadding{padding:50px 0 0 0 !important;}
+.resourcesTable .columns .sidebar{}
+.resourcesTable .sidebar .filters dd span, 
+.resourcesTable .sidebar .filters dt span{border:0;padding-left:0;padding-right:0;}
+.resourcesTable .sidebar .filters dt span{padding-bottom:10px;}
+.resourcesTable .sidebar .filters dd{padding:7px 0;}
+.resourcesTable .columns .sidebar dl{padding-bottom:40px;}
+.resourcesTable .sidebar .filters dd span:hover{background-color:transparent;}
+.resourcesTable .sidebar .filters .filter-active, .sidebar .filters dd.filter-active span, .sidebar .filters dd.filter-active span:hover{font-weight:normal;text-decoration:underline;}
+.resourcesTable .sidebar .filters dd, .sidebar .filters dt{border-color:#e0e0e0;}
+
+/* Pagination */
+.resourcesTable .pagination{padding:40px 0;}
+.resourcesTable .pagButtons .Btn{background-image:url(/static/microsites/images/homeManager/bt_PagFav.png) !important;width:74px !important;text-indent:-10000px;overflow:hidden;}
+.resourcesTable .pagination .number{background:none;border:0;color:#acacac;font-size:16px;text-shadow:0 0 0 transparent !important;}
+.resourcesTable .pagination .number:hover{color:#1b1b1b;}
+.resourcesTable .pagination .act{background:none;color:#1b1b1b;}
+.resourcesTable .pagination-pages{padding: 0 30px;}
