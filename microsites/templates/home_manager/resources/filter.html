@@ -1,69 +1,66 @@
 {% load i18n extra_tags plugins_tags %}
-<div class="CL sidebar">
-    <div class="sidebarInner">
-        <div id="{{table_prefix}}_filter" class="sidebarPadding">
 
-            <!-- OPEN ENTITY MICROSITE -->
-            <dl class="filters optionFilter">
-                <dt><span>{% trans "HOME-ENTITY-TITLE" %}</span></dt>
-                <dd class="row clearfix">
-                    <select id="entities" name="" class="shorter FL">
-                        <option value="" selected="selected">{% trans "HOME-ENTITY-OPTION" %}</option>
-                        {% for account in federated_accounts %}
-                        <option value="{{account.id}}" id="id_account_{{account.id}}" data-url="{{account.link}}">{{account.name}}</option>
-                        {%endfor%}
-                    </select>
-                    <a id="goto_entity" href="#" class="FR button small shorter">{% trans "HOME-ENTITY-BUTTON" %}</a>
-                </dd>
-            </dl>
+<div id="{{table_prefix}}_filter" class="sidebarPadding">
 
-            <!-- RESOURCES FILTER -->
-            <dl class="filters optionFilter">
-                <dt><span>{% trans "FILTER-RESOURCES-TITLE" %}</span></dt>
-                <dd>
+    <!-- OPEN ENTITY MICROSITE -->
+    <dl class="filters optionFilter">
+        <dt><span>{% trans "HOME-ENTITY-TITLE" %}</span></dt>
+        <dd class="row clearfix">
+            <select id="entities" name="" class="shorter FL">
+                <option value="" selected="selected">{% trans "HOME-ENTITY-OPTION" %}</option>
+                {% for account in federated_accounts %}
+                <option value="{{account.id}}" id="id_account_{{account.id}}" data-url="{{account.link}}">{{account.name}}</option>
+                {%endfor%}
+            </select>
+            <a id="goto_entity" href="#" class="FR button small shorter">{% trans "HOME-ENTITY-BUTTON" %}</a>
+        </dd>
+    </dl>
 
-                    <!-- FILTER BY: ENTITY -->
-                    <label for="id_filter_entity">{% trans "FILTER-ENTITY-LABEL" %}</label>
-                    <select id="id_filter_entity" name="id_filter_entity">
-                        <option value="" selected="selected">{% trans "FILTER-ENTITY-OPTION" %}</option>
-                        {% for account in federated_accounts %}
-                        <option value="{{account.id}}" id="id_filterAccount_{{account.id}}">{{account.name}}</option>
-                        <script type="text/javascript">
-                            $('#id_filterAccount_{{account.id}}').data("category", "{{account.id}}");
-                        </script>
-                        {%endfor%}
-                    </select>
+    <!-- RESOURCES FILTER -->
+    <dl class="filters optionFilter">
+        <dt><span>{% trans "FILTER-RESOURCES-TITLE" %}</span></dt>
+        <dd>
 
-                    <!-- FILTER BY: TYPE -->
-                    <label for="id_filter_type">{% trans "FILTER-TYPE-LABEL" %}</label>
-                    <select id="id_filter_type" name="id_filter_type">
-                        <option value="" selected="selected">{% trans "FILTER-TYPE-OPTION" %}</option>
-                        {% if account_show_dataset %}
-                        <option value="dt">{% trans 'APP-DATASETS-TEXT' %}</option>
-                        {% endif %}
-                        <option value="ds">{% trans 'APP-DATAVIEWS-TEXT' %}</option>
-                        <option value="vz">{% trans 'APP-CHARTS-TEXT' %}</option>+
-                        <!-- filter from plugins -->
-                        {% plugins_call 'microsites_home_manager_filter' %}
-                    </select>
+            <!-- FILTER BY: ENTITY -->
+            <label for="id_filter_entity">{% trans "FILTER-ENTITY-LABEL" %}</label>
+            <select id="id_filter_entity" name="id_filter_entity">
+                <option value="" selected="selected">{% trans "FILTER-ENTITY-OPTION" %}</option>
+                {% for account in federated_accounts %}
+                <option value="{{account.id}}" id="id_filterAccount_{{account.id}}">{{account.name}}</option>
+                <script type="text/javascript">
+                    $('#id_filterAccount_{{account.id}}').data("category", "{{account.id}}");
+                </script>
+                {%endfor%}
+            </select>
 
-                    <!-- FILTER BY: CATEGORY -->
-                    <label for="id_filter_category">{% trans "FILTER-CATEGORY-LABEL" %}</label>
-                    <select id="id_filter_category" name="id_filter_category">
-                        <option value="" selected="selected">{% trans "FILTER-CATEGORY-OPTION" %}</option>
-                        {% for category in categories %}
-                        <option value="{{category.name}}" id="id_category_{{category.id}}">{{category.name}}</option>
-                        <script type="text/javascript">
-                            $('#id_category_{{category.id}}').data("category", "{{category.name}}");
-                        </script>
-                        {%endfor%}
-                    </select>
+            <!-- FILTER BY: TYPE -->
+            <label for="id_filter_type">{% trans "FILTER-TYPE-LABEL" %}</label>
+            <select id="id_filter_type" name="id_filter_type">
+                <option value="" selected="selected">{% trans "FILTER-TYPE-OPTION" %}</option>
+                {% if account_show_dataset %}
+                <option value="dt">{% trans 'APP-DATASETS-TEXT' %}</option>
+                {% endif %}
+                <option value="ds">{% trans 'APP-DATAVIEWS-TEXT' %}</option>
+                <option value="vz">{% trans 'APP-CHARTS-TEXT' %}</option>+
+                <!-- filter from plugins -->
+                {% plugins_call 'microsites_home_manager_filter' %}
+            </select>
 
-                    <a href="#" id="apply_filters" class="button small">{% trans "FILTER-RESOURCES-BUTTON" %}</a>
+            <!-- FILTER BY: CATEGORY -->
+            <label for="id_filter_category">{% trans "FILTER-CATEGORY-LABEL" %}</label>
+            <select id="id_filter_category" name="id_filter_category">
+                <option value="" selected="selected">{% trans "FILTER-CATEGORY-OPTION" %}</option>
+                {% for category in categories %}
+                <option value="{{category.name}}" id="id_category_{{category.id}}">{{category.name}}</option>
+                <script type="text/javascript">
+                    $('#id_category_{{category.id}}').data("category", "{{category.name}}");
+                </script>
+                {%endfor%}
+            </select>
 
-                </dd>
-            </dl>
+            <a href="#" id="apply_filters" class="button small">{% trans "FILTER-RESOURCES-BUTTON" %}</a>
 
-        </div>
-    </div>
+        </dd>
+    </dl>
+
 </div>
