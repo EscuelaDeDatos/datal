@@ -150,6 +150,7 @@ def filter(request, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE):
     """
     bb_request = request.GET
     filters_param = bb_request.get('filters')
+    filter_text = bb_request.get('filter_text', None)
     filters_dict = dict()
     filter_name = ''
     sort_by = bb_request.get("sort_by",None)
@@ -207,6 +208,7 @@ def filter(request, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE):
         filters_dict = filters_dict,
         sort_by=sort_by,
         filter_name=filter_name,
+        filter_text=filter_text,
         exclude=exclude
     )
 

@@ -6,7 +6,8 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
 
   # Maquina Virtual Ubuntu Trusty
-  config.vm.box = "ubuntu/trusty64"
+  #config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/xenial64"
 
   # Maquina Virtual Debian 8.2
   # config.vm.box = "boxcutter/debian82"
