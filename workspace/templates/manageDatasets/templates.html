@@ -30,8 +30,11 @@
 
    <% if (search.length !== 0) {%>
    <div class="filters">
-              <h3 class="">{% trans 'APP-SEARCH-TEXT' %}</h3>
-                        <input type="text" class='filter-add' name="filter_text" placeholder="{% trans 'APP-SEARCH-TEXT' %}..." data-cid="1"/>
+        <h3 class="">{% trans 'APP-SEARCH-TEXT' %}</h3>
+        <% _(search).each(function( item ){ %>
+            <input type="text" class='searchFilter' name="filter_text" placeholder="{% trans 'APP-SEARCH-TEXT' %}..." data-cid="<%= item.cid %>"/>
+        <% }); %>
+
    </div>
    <% }%>
 

@@ -163,6 +163,9 @@ def filter(request, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE):
         filters_dict['category__categoryi18n__name'] = filters.get('category')
         filters_dict['dataset__user__nick'] = filters.get('author')
         filters_dict['status'] = filters.get('status')
+        filter_text = filters.get('search')
+        if filter_text:
+            filter_text = filter_text[0]
 
     if bb_request.get('page') is not None and bb_request.get('page') != '':
         page = int(bb_request.get('page'))

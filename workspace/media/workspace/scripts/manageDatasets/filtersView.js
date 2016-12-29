@@ -3,6 +3,7 @@ var FiltersView = Backbone.View.extend({
     events: {
         'click a.remove': 'onClickRemove',
         'click a.filter-add': 'onClickAdd',
+        'keyup input.searchFilter': 'checkKeyUp',
     },
 
     initialize: function(options){
@@ -48,10 +49,18 @@ var FiltersView = Backbone.View.extend({
             return _.extend(model.toJSON(), {cid: model.cid});
         });
 
+        var search = _.filter(this.collection.models, function (model) {
+            return model.get('type') === 'search';
+        }).map(function (model) {
+            return _.extend(model.toJSON(), {cid: model.cid});
+        });
+
+
         this.$el.html(this.template({
             active: active,
             category: category,
             author: author,
+            search: search,
             status: status
         }));
     },
@@ -91,5 +100,19 @@ var FiltersView = Backbone.View.extend({
             this.trigger('clear');
         }
     }
+    checkKeyUp: function(e){
+           // If "Enter" key
+           if(e.keyCode == 13){
+                   
+               var $target = $(e.currentTarget),
+               cid = $target.data('cid');
+    
+                var model = this.collection.get(cid);
+                model.set('active', true);
+                model.set('value', $target.val());
+                model.set('title', $target.val());
+            }
+    }
+
 
 });

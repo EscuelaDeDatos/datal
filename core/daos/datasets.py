@@ -385,7 +385,7 @@ class DatasetDBDAO(AbstractDatasetDBDAO):
                                                category__categoryi18n__language=language)
 
         query = query.values('dataset__user__nick', 'dataset__user__name', 'status', 'impl_type',
-                             'category__categoryi18n__name')
+                             'dataseti18n__title', 'category__categoryi18n__name')
 
         filters = set([])
 
@@ -395,6 +395,7 @@ class DatasetDBDAO(AbstractDatasetDBDAO):
             impl_type = res.get('impl_type')
 
             filters.add(('status', status, unicode(DatasetRevision.STATUS_CHOICES[status])))
+            filters.add(('search', "", ""))
 
             filters.add(('type', impl_type,
                 unicode(
