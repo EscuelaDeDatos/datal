@@ -28,15 +28,15 @@
    </div>
    <% }%>
 
-   <% if (search.length !== 0) {%>
+   <% _(search).each(function( item ){ %>
+   <% if (!item.active) {%>
    <div class="filters">
-        <h3 class="">{% trans 'APP-SEARCH-TEXT' %}</h3>
-        <% _(search).each(function( item ){ %>
+        <h3 class="">{% trans 'APP-SEARCH-TEXT' %} <%= item.active %></h3>
             <input type="text" class='searchFilter' name="filter_text" placeholder="{% trans 'APP-SEARCH-TEXT' %}..." data-cid="<%= item.cid %>"/>
-        <% }); %>
-
+            <div style='padding: 3px 0 0 6px;' ><span id='searchTip' style='color: transparent' class='date'>{% trans 'APP-SEARCH-TYPE-AND-PRESS-ENTER' %}</span></div>
    </div>
    <% }%>
+   <% });%>
 
    <% if (category.length !== 0) {%>
    <div class="filters">

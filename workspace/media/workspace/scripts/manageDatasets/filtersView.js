@@ -4,6 +4,8 @@ var FiltersView = Backbone.View.extend({
         'click a.remove': 'onClickRemove',
         'click a.filter-add': 'onClickAdd',
         'keyup input.searchFilter': 'checkKeyUp',
+        'focus input.searchFilter': 'searchOnFocus',
+        'focusout input.searchFilter': 'searchOffFocus',
     },
 
     initialize: function(options){
@@ -102,17 +104,26 @@ var FiltersView = Backbone.View.extend({
     },
     
     checkKeyUp: function(e){
-       // If "Enter" key
-       if(e.keyCode == 13){
-               
-           var $target = $(e.currentTarget),
-           cid = $target.data('cid');
+        var $target = $(e.currentTarget);
+        var value = $target.val();
 
-            var model = this.collection.get(cid);
-            model.set('active', true);
-            model.set('value', $target.val());
-            model.set('title', $target.val());
+       // If "Enter" key
+       if(e.keyCode == 13 && value.length > 0 ){
+               
+           var cid = $target.data('cid');
+
+           var model = this.collection.get(cid);
+           model.set('active', true);
+           model.set('value', value);
+           model.set('title', value);
         }
+    },
+    
+    searchOnFocus: function(){
+        $('#searchTip').css('color', '#999');
+    },
+    searchOffFocus: function(){
+        $('#searchTip').css('color', 'transparent');
     }
 
 

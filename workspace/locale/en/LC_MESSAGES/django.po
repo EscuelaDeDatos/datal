@@ -273,6 +273,9 @@ msgstr "Page"
 msgid "APP-SEARCH-TEXT"
 msgstr "Search"
 
+msgid "APP-SEARCH-TYPE-AND-PRESS-ENTER"
+msgstr "Type and press Enter"
+
 msgid "APP-FIRSTSEARCH-TEXT"
 msgstr "First Search"
 
