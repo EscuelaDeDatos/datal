@@ -99,19 +99,20 @@ var FiltersView = Backbone.View.extend({
         } else {
             this.trigger('clear');
         }
-    }
-    checkKeyUp: function(e){
-           // If "Enter" key
-           if(e.keyCode == 13){
-                   
-               var $target = $(e.currentTarget),
-               cid = $target.data('cid');
+    },
     
-                var model = this.collection.get(cid);
-                model.set('active', true);
-                model.set('value', $target.val());
-                model.set('title', $target.val());
-            }
+    checkKeyUp: function(e){
+       // If "Enter" key
+       if(e.keyCode == 13){
+               
+           var $target = $(e.currentTarget),
+           cid = $target.data('cid');
+
+            var model = this.collection.get(cid);
+            model.set('active', true);
+            model.set('value', $target.val());
+            model.set('title', $target.val());
+        }
     }
 
 
