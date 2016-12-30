@@ -12,16 +12,16 @@ var FiltersView = Backbone.View.extend({
         this.template = _.template($('#filters-template').html());
         this.itemCollection = options.itemCollection;
 
-        this.listenTo(this.itemCollection, 'sync', this.updateTotalResources); 
+        this.listenTo(this.itemCollection, 'sync', this.updateTotalEntries); 
         this.listenTo(this.collection, 'change', this.onFilterChange, this);
         this.listenTo(this.collection, 'change sync', this.render);
         this.render();
     },
-    updateTotalResources: function(models, response) {
+    updateTotalEntries: function(models, response) {
         this.available_categories = response.total_categories;
         this.available_authors = response.total_authors;
         this.available_statuses = response.total_statuses;
-        this.render()
+        this.render();
     },
     render: function () {
 

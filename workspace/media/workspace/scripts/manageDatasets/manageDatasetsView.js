@@ -34,8 +34,8 @@ var ManageDatasetsView = Backbone.View.extend({
 		this.listenTo(this.listResources, 'request', this.showLoading);
 		this.listenTo(this.listResources, 'sync', this.hideLoading);
 		this.listenTo(this.listResources, 'error', this.hideLoading);
-		this.listenTo(this.listResources, 'sync', this.updateTotalResources); 
-		this.listenTo(this.model, 'change:total_entries', this.onTotalResourcesChange);
+		this.listenTo(this.listResources, 'sync', this.updateTotals); 
+		this.listenTo(this.model, 'change:total_entries', this.onTotalEntriesChange);
 
 		this.setHeights();
 
@@ -51,12 +51,12 @@ var ManageDatasetsView = Backbone.View.extend({
 		this.$el.find(".backgrid-paginator").addClass("pager center");
 	},
 
-	updateTotalResources: function(models, response){
+	updateTotals: function(models, response){
 		this.model.set('total_entries',response.total_entries);
 		this.model.set('total_resources',response.total_resources);
 	},
 
-	onTotalResourcesChange: function(){
+	onTotalEntriesChange: function(){
 
 		var totalResources = this.model.get('total_resources');
 

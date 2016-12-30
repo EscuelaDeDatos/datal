@@ -59,7 +59,7 @@
   <!-- Column Left -->
   <div class="col-xs-7">    
     
-    <h1>{% trans "APP-DATAVIEWS-TEXT" %} <span class="total-resources"></span></h1>
+    <h1>{% trans "APP-DATAVIEWS-TEXT" %} <span class="total-entries"></span></h1>
   </div>
 
   <!-- Column Right -->
@@ -116,7 +116,8 @@
   $(document).ready(function(){
 
     var manageDataViewsModel =  new ManageDataViewsModel({
-      total_resources: {{ stats.account_total_datastreams }}
+      total_resources: {{ stats.account_total_datastreams }},
+      total_entries: {{ stats.account_total_datastreams }}
     });
 
     var manageDataviewsView =  new ManageDataviewsView({
