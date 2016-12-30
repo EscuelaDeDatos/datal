@@ -42,7 +42,7 @@
   <!-- Column Left -->
   <div class="col-xs-7">    
     
-    <h1>{% trans "APP-VISUALIZATIONS-TEXT" %} <span class="total-resources"></span></h1>
+    <h1>{% trans "APP-VISUALIZATIONS-TEXT" %} <span class="total-entries"></span></h1>
 
   </div>
 
@@ -100,7 +100,8 @@
   $(document).ready(function(){
 
     var manageVisualizationsModel =  new ManageVisualizationsModel({
-      total_resources: {{ stats.account_total_visualizations }}
+      total_resources: {{ stats.account_total_visualizations }},
+      total_entries: {{ stats.account_total_visualizations }},
     });
 
     var manageVisualizationsView =  new ManageVisualizationsView({
