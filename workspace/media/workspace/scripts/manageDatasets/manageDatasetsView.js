@@ -2,7 +2,6 @@ var ManageDatasetsView = Backbone.View.extend({
 
 	el: ".main-section",
 
-	filters: null,
 	activeFiltersView: null,
 	inactiveFiltersView: null,
 	listResources: null,
@@ -23,7 +22,7 @@ var ManageDatasetsView = Backbone.View.extend({
 		this.datastreamImplValidChoices = options.datastreamImplValidChoices;
 
 		// Init template
-		this.template = _.template($("#total-resources-template").html());
+		this.template = _.template($("#total-entries-template").html());
 
 		// Init Filters
 		this.initFilters(options.filters);
@@ -36,8 +35,7 @@ var ManageDatasetsView = Backbone.View.extend({
 		this.listenTo(this.listResources, 'sync', this.hideLoading);
 		this.listenTo(this.listResources, 'error', this.hideLoading);
 		this.listenTo(this.listResources, 'sync', this.updateTotalResources); 
-		this.listenTo(this.listResources, 'sync', this.selectTemplate);
-		this.listenTo(this.model, 'change:total_resources', this.onTotalResourcesChange);
+		this.listenTo(this.model, 'change:total_entries', this.onTotalResourcesChange);
 
 		this.setHeights();
 
@@ -47,22 +45,22 @@ var ManageDatasetsView = Backbone.View.extend({
 	},
 
 	render: function(){
-
-		this.$el.find(".total-resources").html(this.template(this.model.toJSON()));
+		this.$el.find(".total-entries").html(this.template(this.model.toJSON()));
 		this.$el.find("#grid").html(this.grid.render().$el);
 		this.$el.find("#paginator").html(this.paginator.render().$el);
 		this.$el.find(".backgrid-paginator").addClass("pager center");
 	},
 
 	updateTotalResources: function(models, response){
-		this.model.set('total_resources',response.total_entries);
+		this.model.set('total_entries',response.total_entries);
+		this.model.set('total_resources',response.total_resources);
 	},
 
 	onTotalResourcesChange: function(){
 
 		var totalResources = this.model.get('total_resources');
 
-		// Show / Hide correct template
+		// If total resources > 0 -> show grid
 		if( parseInt(totalResources) > 0 ){
 			this.$el.find('.manager').show();
 			this.$el.find('.no-results-view').hide();
@@ -72,7 +70,7 @@ var ManageDatasetsView = Backbone.View.extend({
 		}
 
 		// Update number on template
-		this.$el.find(".total-resources").html(this.template(this.model.toJSON()));
+		this.$el.find(".total-entries").html(this.template(this.model.toJSON()));
 	},
 
 	showLoading: function(){
@@ -187,7 +185,8 @@ var ManageDatasetsView = Backbone.View.extend({
 		this.filtersView = new FiltersView({
 			el: this.$('.filters-view'),
 			collection: this.filtersCollection,
-			itemCollection: this.listResources
+			itemCollection: this.listResources,
+			parentModel: this.model,
 		});
 
 		this.listenTo(this.filtersView, 'change', function (queryDict) {

@@ -3,9 +3,9 @@ var FiltersView = Backbone.View.extend({
     events: {
         'click a.remove': 'onClickRemove',
         'click a.filter-add': 'onClickAdd',
-        'keyup input.searchFilter': 'checkKeyUp',
-        'focus input.searchFilter': 'searchOnFocus',
-        'focusout input.searchFilter': 'searchOffFocus',
+        'keyup input.search-field': 'checkKeyUp',
+        'focus input.search-field': 'searchOnFocus',
+        'focusout input.search-field': 'searchOffFocus',
     },
 
     initialize: function(options){
@@ -18,9 +18,9 @@ var FiltersView = Backbone.View.extend({
         this.render();
     },
     updateTotalResources: function(models, response) {
-        this.available_categories = response.total_categories
-        this.available_authors = response.total_authors
-        this.available_statuses = response.total_statuses
+        this.available_categories = response.total_categories;
+        this.available_authors = response.total_authors;
+        this.available_statuses = response.total_statuses;
         this.render()
     },
     render: function () {
@@ -110,20 +110,25 @@ var FiltersView = Backbone.View.extend({
        // If "Enter" key
        if(e.keyCode == 13 && value.length > 0 ){
                
-           var cid = $target.data('cid');
+            var cid = $target.data('cid');
 
-           var model = this.collection.get(cid);
-           model.set('active', true);
-           model.set('value', value);
-           model.set('title', value);
+            var model = this.collection.get(cid);
+            
+            model.set({
+                'active': true,
+                'value': value,
+                'title': value
+            });
+
         }
     },
     
     searchOnFocus: function(){
-        $('#searchTip').css('color', '#999');
+        this.$el.find('#id_searchTip').css('visibility', 'visible');
     },
+
     searchOffFocus: function(){
-        $('#searchTip').css('color', 'transparent');
+        this.$el.find('#id_searchTip').css('visibility', 'hidden');
     }
 
 
