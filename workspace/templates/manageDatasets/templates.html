@@ -20,7 +20,7 @@
       <ul id="active-filters-list">
        	<% _(active).each(function( item ){ %>
 				<li>
-					<span><%= item.title %></span> 
+					<span><% if(item.type == 'search' ){ %>{% trans 'APP-TITLE-TEXT' %}<% }else if(item.type == 'category' ){ %>{% trans 'APP-CATEGORY-TEXT' %}<% }else if(item.type == 'status' ){ %>{% trans 'APP-STATUS-TEXT' %}<% }else if(item.type == 'author' ){ %>{% trans 'APP-AUTHOR-TEXT' %}<% } %>: <strong><%= item.title %></strong></span> 
 					<a class="remove" data-cid="<%= item.cid %>" title="{% trans 'FILTERS-REMOVE-TEXT' %}">x</a>
 				</li>
        	<% }); %>

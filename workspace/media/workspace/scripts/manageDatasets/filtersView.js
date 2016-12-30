@@ -57,7 +57,6 @@ var FiltersView = Backbone.View.extend({
             return _.extend(model.toJSON(), {cid: model.cid});
         });
 
-
         this.$el.html(this.template({
             active: active,
             category: category,

@@ -1,5 +1,6 @@
 /* Import SASS variables */
 @import 'variables';
+@import 'mixins';
 @import 'functions';
 
 /* Structure */
@@ -43,7 +44,7 @@
   /* Active filters */
   .activeFilters li{position:relative;padding:5px 23px 5px 8px;background:#e8e8e8;margin:8px 8px 0;
     span{font-size:12px;word-break:break-word;}
-    a{position:absolute;right:0;top:0;width:23px;height:25px;line-height:25px;color:#6a6969;text-align:center;font-weight:bold;
+    a{position:absolute;right:0;top:0;width:23px;height:29px;line-height:29px;color:#6a6969;text-align:center;font-weight:bold;
       &:hover{color:#c00202;text-decoration:none;}
     }
     &:first-child{margin-top:0;}
@@ -56,10 +57,13 @@
 
   /* Search filter */
   .search-filter{
-    input.search-field{width:100%;
-      -webkitbox-sizing:border-box;
-        -moz-box-sizing:border-box;
-             box-sizing:border-box;
+    input.search-field{width:80%;@include box-sizing(border-box);
+      @include media-query(max-width, 1440px) {
+        &{width:90%;}
+      }
+      @include media-query(max-width, 1250px) {
+        &{width:100%;}
+      }
     }
     p.tip{color:#c3c2c2;font-size:11px;visibility:hidden;padding-top:5px;padding-left:11px;}
   }
