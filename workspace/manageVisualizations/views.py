@@ -60,6 +60,7 @@ def filter(request, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE):
     filters_param = bb_request.get('filters')
     filters_dict = dict()
     filter_name = ''
+    filter_text = bb_request.get("search", None)
     sort_by = bb_request.get("sort_by", None)
     order = bb_request.get("order", "asc")
 
@@ -70,6 +71,9 @@ def filter(request, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE):
         filters_dict['datastream__last_revision__category__categoryi18n__name'] = filters.get('category')
         filters_dict['visualization__user__nick'] = filters.get('author')
         filters_dict['status'] = filters.get('status')
+        filter_text = filters.get('search')
+        if filter_text:
+            filter_text = filter_text[0]
 
     if bb_request.get('page') is not None and bb_request.get('page') != '':
         page = int(bb_request.get('page'))
@@ -99,6 +103,7 @@ def filter(request, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE):
         page=page,
         itemsxpage=itemsxpage,
         filters_dict=filters_dict,
+        filter_text=filter_text,
         sort_by=sort_by,
         filter_name=filter_name
     )

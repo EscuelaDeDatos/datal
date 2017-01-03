@@ -444,7 +444,8 @@ class VisualizationDBDAO(AbstractVisualizationDBDAO):
         )
 
         query = query.values('visualization__user__nick', 'visualization__user__name', 'status',
-                             'visualization__datastream__last_revision__category__categoryi18n__name')
+                             'visualizationi18n__title','visualization__datastream__last_revision__category__categoryi18n__name')
+
 
         filters = set([])
 
@@ -454,6 +455,8 @@ class VisualizationDBDAO(AbstractVisualizationDBDAO):
             filters.add(('status', status,
                 unicode(STATUS_CHOICES[status])
                 ))
+            filters.add(('search', "", ""))
+
             if 'visualization__datastream__last_revision__category__categoryi18n__name' in res:
                 filters.add(('category', res.get('visualization__datastream__last_revision__category__categoryi18n__name'),
                     res.get('visualization__datastream__last_revision__category__categoryi18n__name')))
