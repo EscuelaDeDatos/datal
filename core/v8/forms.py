@@ -47,6 +47,8 @@ class DatastreamRequestForm(RequestForm):
     # pTableFormat: Objeto en notacion json con el formato a aplicar sobre cada columna del datastream. ver http://wiki.junar.com/index.php/API#Formateo_de_Datos
     format = forms.CharField(required=False)
 
+    maxBytes = forms.CharField(required=False)
+
 
 class UpdateGridRequestForm(RequestForm):
     # pLimit

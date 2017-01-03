@@ -31,6 +31,7 @@ class CommandFactory(object):
         'where': 'pWhereExpr',
         'ifModified': 'pIfModified',
         'format': 'pTableFormat',
+        'maxBytes': 'pMaxBytes',
 
         'end_point': 'pEndPoint',
         'datasource': 'pDataSource',
