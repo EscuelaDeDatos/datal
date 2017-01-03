@@ -273,6 +273,12 @@ msgstr "Page"
 msgid "APP-SEARCH-TEXT"
 msgstr "Search"
 
+msgid "APP-SEARCH-TYPE-AND-PRESS-ENTER"
+msgstr "Type and press enter."
+
+msgid "APP-SEARCH-FILTER-TEXT"
+msgstr "Filter by title..."
+
 msgid "APP-FIRSTSEARCH-TEXT"
 msgstr "First Search"
 

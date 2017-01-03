@@ -1,8 +1,8 @@
 {% load i18n extra_tags core_components components %}
 
-{# Total Resources #}
-<script type="text/template" id="total-resources-template">
-<% if(total_resources > 0){ %>(<%= total_resources %>)<% } %>
+{# Total entries #}
+<script type="text/template" id="total-entries-template">
+<% if(total_entries > 0){ %>(<%= total_entries %>)<% } %>
 </script>
 
 {# Active Filter #}
@@ -16,11 +16,11 @@
 
    <% if (active.length !== 0) {%>
    <div class="activeFilters">
-      <h3 class="">{% trans 'APP-ACTIVEFILTERS-TEXT' %}</h3>
+      <h3>{% trans 'APP-ACTIVEFILTERS-TEXT' %}</h3>
       <ul id="active-filters-list">
        	<% _(active).each(function( item ){ %>
 				<li>
-					<span><%= item.title %></span> 
+					<span><% if(item.type == 'search' ){ %>{% trans 'APP-TITLE-TEXT' %}<% }else if(item.type == 'category' ){ %>{% trans 'APP-CATEGORY-TEXT' %}<% }else if(item.type == 'status' ){ %>{% trans 'APP-STATUS-TEXT' %}<% }else if(item.type == 'author' ){ %>{% trans 'APP-AUTHOR-TEXT' %}<% } %>: <strong><%= item.title %></strong></span> 
 					<a class="remove" data-cid="<%= item.cid %>" title="{% trans 'FILTERS-REMOVE-TEXT' %}">x</a>
 				</li>
        	<% }); %>
@@ -28,9 +28,19 @@
    </div>
    <% }%>
 
+   <% _(search).each(function( item ){ %>
+   <% if (!item.active) {%>
+   <div class="filters search-filter">
+      <h3>{% trans 'APP-SEARCH-TEXT' %}</h3>
+      <input type="text" class='search-field' placeholder="{% trans 'APP-SEARCH-FILTER-TEXT' %}" data-cid="<%= item.cid %>"/>
+      <p id='id_searchTip' class='tip'>{% trans 'APP-SEARCH-TYPE-AND-PRESS-ENTER' %}</p>
+   </div>
+   <% }%>
+   <% });%>
+
    <% if (category.length !== 0) {%>
    <div class="filters">
-      <h3 class="">{% trans 'APP-CATEGORY-TEXT' %}</h3>
+      <h3>{% trans 'APP-CATEGORY-TEXT' %}</h3>
       <ul>
        	<% _(category).each(function( item ){ %>
 				<li>
@@ -45,7 +55,7 @@
 
    <% if (status.length !== 0) {%>
    <div class="filters">
-      <h3 class="">{% trans 'APP-STATUS-TEXT' %}</h3>
+      <h3>{% trans 'APP-STATUS-TEXT' %}</h3>
       <ul>
        	<% _(status).each(function( item ){ %>
 				<li>
@@ -60,7 +70,7 @@
 
    <% if (author.length !== 0) {%>
    <div class="filters">
-      <h3 class="">{% trans 'APP-AUTHOR-TEXT' %}</h3>
+      <h3>{% trans 'APP-AUTHOR-TEXT' %}</h3>
       <ul>
        	<% _(author).each(function( item ){ %>
 				<li>

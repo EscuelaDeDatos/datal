@@ -150,6 +150,7 @@ def filter(request, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE):
     """
     bb_request = request.GET
     filters_param = bb_request.get('filters')
+    filter_text = bb_request.get('filter_text', None)
     filters_dict = dict()
     filter_name = ''
     sort_by = bb_request.get("sort_by",None)
@@ -162,6 +163,9 @@ def filter(request, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE):
         filters_dict['category__categoryi18n__name'] = filters.get('category')
         filters_dict['dataset__user__nick'] = filters.get('author')
         filters_dict['status'] = filters.get('status')
+        filter_text = filters.get('search')
+        if filter_text:
+            filter_text = filter_text[0]
 
     if bb_request.get('page') is not None and bb_request.get('page') != '':
         page = int(bb_request.get('page'))
@@ -207,6 +211,7 @@ def filter(request, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE):
         filters_dict = filters_dict,
         sort_by=sort_by,
         filter_name=filter_name,
+        filter_text=filter_text,
         exclude=exclude
     )
 

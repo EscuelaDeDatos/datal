@@ -71,11 +71,16 @@ class EngineViewSetMixin(object):
             format = 'json' if format == 'jsonp' else format
             mutable_get['output'] = format 
 
+        limit_key = 'limit'
         if limit:
             max_rows = int(self.get_max_rows(request))
             param_rows = mutable_get.get('limit', None)
+            if not param_rows:
+                param_rows = mutable_get.get('rp', None)
+                if param_rows:
+                    limit_key = 'rp'
             if max_rows > 0 and (not param_rows or int(param_rows) <= 0 or int(param_rows) > max_rows):
-                mutable_get['limit'] = max_rows
+                mutable_get[limit_key] = max_rows
              
         resource = {}
         if is_detail:

@@ -3,22 +3,25 @@ var FiltersView = Backbone.View.extend({
     events: {
         'click a.remove': 'onClickRemove',
         'click a.filter-add': 'onClickAdd',
+        'keyup input.search-field': 'checkKeyUp',
+        'focus input.search-field': 'searchOnFocus',
+        'focusout input.search-field': 'searchOffFocus',
     },
 
     initialize: function(options){
         this.template = _.template($('#filters-template').html());
         this.itemCollection = options.itemCollection;
 
-        this.listenTo(this.itemCollection, 'sync', this.updateTotalResources); 
+        this.listenTo(this.itemCollection, 'sync', this.updateTotals); 
         this.listenTo(this.collection, 'change', this.onFilterChange, this);
         this.listenTo(this.collection, 'change sync', this.render);
         this.render();
     },
-    updateTotalResources: function(models, response) {
-        this.available_categories = response.total_categories
-        this.available_authors = response.total_authors
-        this.available_statuses = response.total_statuses
-        this.render()
+    updateTotals: function(models, response) {
+        this.available_categories = response.total_categories;
+        this.available_authors = response.total_authors;
+        this.available_statuses = response.total_statuses;
+        this.render();
     },
     render: function () {
 
@@ -48,10 +51,17 @@ var FiltersView = Backbone.View.extend({
             return _.extend(model.toJSON(), {cid: model.cid});
         });
 
+        var search = _.filter(this.collection.models, function (model) {
+            return model.get('type') === 'search';
+        }).map(function (model) {
+            return _.extend(model.toJSON(), {cid: model.cid});
+        });
+
         this.$el.html(this.template({
             active: active,
             category: category,
             author: author,
+            search: search,
             status: status
         }));
     },
@@ -90,6 +100,35 @@ var FiltersView = Backbone.View.extend({
         } else {
             this.trigger('clear');
         }
+    },
+    
+    checkKeyUp: function(e){
+        var $target = $(e.currentTarget);
+        var value = $target.val();
+
+       // If "Enter" key
+       if(e.keyCode == 13 && value.length > 0 ){
+               
+            var cid = $target.data('cid');
+
+            var model = this.collection.get(cid);
+            
+            model.set({
+                'active': true,
+                'value': value,
+                'title': value
+            });
+
+        }
+    },
+    
+    searchOnFocus: function(){
+        this.$el.find('#id_searchTip').css('visibility', 'visible');
+    },
+
+    searchOffFocus: function(){
+        this.$el.find('#id_searchTip').css('visibility', 'hidden');
     }
+
 
 });
