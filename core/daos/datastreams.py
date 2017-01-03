@@ -374,7 +374,7 @@ class DataStreamDBDAO(AbstractDataStreamDBDAO):
                                                 category__categoryi18n__language=language)
 
         query = query.values('datastream__user__nick', 'datastream__user__name', 'status',
-                             'category__categoryi18n__name')
+                             'datastreami18n__title', 'category__categoryi18n__name')
 
         filters = set([])
 
@@ -384,6 +384,7 @@ class DataStreamDBDAO(AbstractDataStreamDBDAO):
             filters.add(('status', status,
                 unicode(STATUS_CHOICES[status])
                 ))
+            filters.add(('search', "", ""))
             if 'category__categoryi18n__name' in res:
                 filters.add(('category', res.get('category__categoryi18n__name'),
                     res.get('category__categoryi18n__name')))
