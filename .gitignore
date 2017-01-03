@@ -1,4 +1,6 @@
 /salt/roots/pillar/local.sls
+workspace/media/*
+core/media/*
 src/
 *.swp
 *.swo
