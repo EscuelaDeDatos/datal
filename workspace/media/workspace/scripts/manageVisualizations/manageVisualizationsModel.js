@@ -1,1 +1,0 @@
-var ManageVisualizationsModel = Backbone.Model.extend({});

@@ -25,8 +25,8 @@
 <script src="{% static 'workspace/scripts/manageDatasets/affectedResourcesCollection.js' %}"></script>
 <script src="{% static 'workspace/scripts/manageDatasets/affectedResourcesCollectionView.js' %}"></script>
 <script src="{% static 'workspace/scripts/manageDatasets/filtersView.js' %}"></script>
-<script src="{% static 'workspace/scripts/manageDatasets/manageDatasetsModel.js' %}"></script>
-<script src="{% static 'workspace/scripts/manageResources/manageResourcesView.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/models/manageResourcesModel.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/views/manageResourcesView.js' %}"></script>
 <script src="{% static 'workspace/scripts/manageDatasets/manageDatasetsView.js' %}"></script>
 
 {# Left Navigation Selected Option #}
@@ -99,7 +99,7 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
-		var manageDatasetsModel =  new ManageDatasetsModel({
+		var manageDatasetsModel =  new ManageResourcesModel({
 			total_entries: {{ stats.account_total_datasets }},
 			total_resources: {{ stats.account_total_datasets }}
 		});

@@ -1,1 +1,0 @@
-var ManageDataViewsModel = Backbone.Model.extend({});

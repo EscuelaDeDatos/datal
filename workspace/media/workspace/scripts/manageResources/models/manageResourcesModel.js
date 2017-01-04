@@ -1,0 +1,1 @@
+var ManageResourcesModel = Backbone.Model.extend({});

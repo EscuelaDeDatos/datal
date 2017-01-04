@@ -28,8 +28,8 @@
 <script src="{% static 'workspace/scripts/manageVisualizations/affectedResourcesCollectionView.js' %}"></script>
 <script src="{% static 'workspace/scripts/manageVisualizations/affectedResourcesCollection.js' %}"></script>
 <script src="{% static 'workspace/scripts/manageVisualizations/affectedResourcesView.js' %}"></script>
-<script src="{% static 'workspace/scripts/manageVisualizations/manageVisualizationsModel.js' %}"></script>
-<script src="{% static 'workspace/scripts/manageResources/manageResourcesView.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/models/manageResourcesModel.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/views/manageResourcesView.js' %}"></script>
 <script src="{% static 'workspace/scripts/manageVisualizations/manageVisualizationsView.js' %}"></script>
 
 {# Left Navigation Selected Option #}
@@ -100,7 +100,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
 
-    var manageVisualizationsModel =  new ManageVisualizationsModel({
+    var manageVisualizationsModel =  new ManageResourcesModel({
       total_resources: {{ stats.account_total_visualizations }},
       total_entries: {{ stats.account_total_visualizations }},
     });
