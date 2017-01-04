@@ -221,6 +221,7 @@ def filter(request, page=0, itemsxpage=settings.PAGINATION_RESULTS_PER_PAGE):
         page=page,
         itemsxpage=itemsxpage,
         filters_dict = filters_dict,
+        filter_text=filter_text,
         sort_by=sort_by,
         filter_name=filter_name,
         exclude=exclude
