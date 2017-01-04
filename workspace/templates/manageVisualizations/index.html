@@ -18,8 +18,6 @@
 
 {# JS for this screen #}
 <script src="{% static 'workspace/scripts/manageVisualizations/resourceItemModel.js' %}"></script>
-<script src="{% static 'workspace/scripts/manageVisualizations/manageVisualizationsModel.js' %}"></script>
-<script src="{% static 'workspace/scripts/manageVisualizations/manageVisualizationsView.js' %}"></script>
 <script src="{% static 'workspace/scripts/manageVisualizations/datastreamCellView.js' %}"></script>
 <script src="{% static 'workspace/scripts/manageVisualizations/titleCellView.js' %}"></script>
 <script src="{% static 'workspace/scripts/manageVisualizations/visualizationCellView.js' %}"></script>
@@ -30,6 +28,9 @@
 <script src="{% static 'workspace/scripts/manageVisualizations/affectedResourcesCollectionView.js' %}"></script>
 <script src="{% static 'workspace/scripts/manageVisualizations/affectedResourcesCollection.js' %}"></script>
 <script src="{% static 'workspace/scripts/manageVisualizations/affectedResourcesView.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageVisualizations/manageVisualizationsModel.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/manageResourcesView.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageVisualizations/manageVisualizationsView.js' %}"></script>
 
 {# Left Navigation Selected Option #}
 <meta name="main-option" content="id_visualizations_option"/>
@@ -104,10 +105,8 @@
       total_entries: {{ stats.account_total_visualizations }},
     });
 
-    var manageVisualizationsView =  new ManageVisualizationsView({
+    var manageVisualizationsView =  new ManageResourcesView({
       model: manageVisualizationsModel,
-      sourceUrl: '/rest/sources.json/',
-      tagUrl: '/rest/tags.json/',
       filters: {{filters|jsonify}}
     });
   });

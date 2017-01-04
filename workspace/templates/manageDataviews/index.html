@@ -45,6 +45,7 @@
 <script src="/js_core/plugins/taggingSources.js?id={{settings.VERSION_JS_CSS}}"></script>
 <script src="{% static 'workspace/scripts/manageDataviews/filtersView.js' %}"></script>
 <script src="{% static 'workspace/scripts/manageDataviews/manageDataviewsModel.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/manageResourcesView.js' %}"></script>
 <script src="{% static 'workspace/scripts/manageDataviews/manageDataviewsView.js' %}"></script>
 
 {# Left Navigation Selected Option #}
@@ -120,10 +121,8 @@
       total_entries: {{ stats.account_total_datastreams }}
     });
 
-    var manageDataviewsView =  new ManageDataviewsView({
+    var manageDataviewsView =  new ManageResourcesView({
       model: manageDataViewsModel,
-      sourceUrl: '/rest/sources.json/',
-      tagUrl: '/rest/tags.json/',
       filters: {{filters|jsonify}}
     });
 
