@@ -27,10 +27,12 @@ class RestDataStreamViewSet(ResourceViewSet):
         if format == 'grid':
             return self.engine_call( request, 'invoke',
                 form_class=UpdateGridRequestForm,
+                download=False,
                 serialize=False, limit=True)    
         return self.engine_call( request, 'invoke', 
             form_class=DatastreamRequestForm,
             serialize=False,
+            download=format in ['xls'],
             limit=format in ['json', 'pjson', 'ajson', 'jsonp'] or not format)
 
     @list_route(methods=['get', 'post'])
@@ -38,4 +40,5 @@ class RestDataStreamViewSet(ResourceViewSet):
         return self.engine_call( request, 'preview', 
             form_class=DatastreamPreviewForm,
             serialize=False,
+            download=False,
             is_detail=False)

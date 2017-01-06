@@ -19,4 +19,5 @@ class RestMapViewSet(ResourceViewSet):
     def data(self, request, format=None, *args, **kwargs):
         return self.engine_call( request, 'invoke', format,
             form_class=VisualizationRequestForm,
+            download=False,
             serialize=False)

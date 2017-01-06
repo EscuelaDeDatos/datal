@@ -18,6 +18,7 @@ class RestChartViewSet(ResourceViewSet):
     @detail_route(methods=['get'])
     def data(self, request, format=None, *args, **kwargs):
         return self.engine_call( request, 'invoke', format,
+            download=False,
             form_class=VisualizationRequestForm,
             serialize=False)
 
@@ -25,5 +26,6 @@ class RestChartViewSet(ResourceViewSet):
     def sample(self, request, format=None, *args, **kwargs):
         return self.engine_call( request, 'preview', format,
             form_class=VisualizationPreviewForm,
+            download=False,
             serialize=False,
             is_detail=False)

@@ -13,6 +13,8 @@ import urllib
 import logging
 import time
 
+logger = logging.getLogger(__name__)
+
 class EngineCommand(object):
     endpoint = 'defalt_endpoint'
     method = 'GET'
@@ -97,8 +99,34 @@ class EngineCommand(object):
 class EngineInvokeCommand(EngineCommand):
     endpoint = settings.END_POINT_SERVLET
 
+    def _build_query(self, query):
+        answer = super(EngineInvokeCommand, self)._build_query(query)
+        has_max_bytes = False
+        for item in answer:
+            # si alguno de estos 3 items tienen "true" lo transforma en "checked"
+            if item[0] == 'pMaxBytes':
+                has_max_bytes = True
+                break
+
+        if not has_max_bytes:
+            answer.append(('pMaxBytes', settings.MAX_ENGINE_BYTES))
+        return answer
+
 class EngineChartCommand(EngineCommand):
     endpoint = settings.END_POINT_CHART_SERVLET
+
+    def _build_query(self, query):
+        answer = super(EngineChartCommand, self)._build_query(query)
+        has_max_bytes = False
+        for item in answer:
+            # si alguno de estos 3 items tienen "true" lo transforma en "checked"
+            if item[0] == 'pMaxBytes':
+                has_max_bytes = True
+                break
+
+        if not has_max_bytes:
+            answer.append(('pMaxBytes', settings.MAX_ENGINE_BYTES))
+        return answer
 
 class EnginePreviewChartCommand(EngineCommand):
     endpoint = settings.END_POINT_CHART_PREVIEWER_SERVLET

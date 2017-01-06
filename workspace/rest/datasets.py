@@ -21,4 +21,5 @@ class RestDataSetViewSet(ResourceViewSet):
     def tables(self, request, pk=None, *args, **kwargs):
         return self.engine_call( request, 'load', 
             form_class=DatasetLoadForm,
+            download=False,
             serialize=False)

@@ -20,6 +20,7 @@ class RestMapViewSet(ResourceViewSet):
     def data(self, request, format=None, *args, **kwargs):
         return self.engine_call( request, 'invoke', format,
             form_class=VisualizationRequestForm,
+            download=False,
             serialize=False)
 
     @list_route(methods=['get'])
@@ -27,4 +28,5 @@ class RestMapViewSet(ResourceViewSet):
         return self.engine_call( request, 'preview', format,
             form_class=VisualizationPreviewMapForm,
             serialize=False,
+            download=False,
             is_detail=False)
