@@ -538,21 +538,6 @@ msgstr "La cuenta no tiene un dominio configurado. "
 msgid "APP-INEXISTENT-DOMAIN-ADMIN-2"
 msgstr "Configurelo aquí"
 
-msgid "APP-OVERLAY-DELETE-DATASET-CONFIRM-TITLE"
-msgstr "Eliminar conjunto de datos "
-
-msgid "APP-DELETE-DATASET-ACTION-TEXT"
-msgstr "El conjunto de datos y los recursos asociados fueron eliminados."
-
-msgid "APP-DELETE-DATASET-ACTION-ERROR-TEXT"
-msgstr "Error al eliminar el conjunto de datos y sus recursos relacionados."
-
-msgid "APP-DELETE-DATASET-REV-ACTION-TEXT"
-msgstr "La revision del conjunto de datos fue eliminada."
-
-msgid "APP-DELETE-DATASET-REV-ACTION-ERROR-TEXT"
-msgstr "Error al borrar la revision del conjunto de datos."
-
 msgid "APP-GRID-CELL-TITLE"
 msgstr "TITULO"
 
@@ -573,18 +558,6 @@ msgstr "TIPO"
 
 msgid "APP-GRID-CELL-AUTHOR"
 msgstr "AUTOR"
-
-msgid "APP-OVERLAY-DELETE-DATASTREAM-CONFIRM-TITLE"
-msgstr "Eliminar Vista de Datos"
-
-msgid "APP-OVERLAY-DELETE-VISUALIZATION-CONFIRM-TITLE"
-msgstr "Eliminar Visualización de Datos"
-
-msgid "APP-DELETE-DATASTREAM-ACTION-TEXT"
-msgstr "La vista y sus recusros asociados, han sido eliminados."
-
-msgid "APP-DELETE-DATASTREAM-REV-ACTION-TEXT"
-msgstr "La revisión ha sido eliminada."
 
 msgid "APP-ERROR-TEXT"
 msgstr "Error"
@@ -808,12 +781,6 @@ msgstr "Mostrar catálogo de recursos."
 msgid "APP-REDIRECTING-TEXT"
 msgstr "Redireccionando..."
 
-msgid "APP-OVERLAY-DELETE-DATASTREAM-TITLE"
-msgstr "Eliminar vistas"
-
-msgid "APP-DELETE-DATASTREAM-REV-ACTION-ERROR-TEXT"
-msgstr "Error al eliminar la revisión de la vista."
-
 msgid "APP-DATASTREAM-SAVESUCCESS-TEXT"
 msgstr "Vista guardada exitosamente."
 
@@ -829,9 +796,6 @@ msgstr "Revisión"
 msgid "APP-VALID-PHONE-TEXT"
 msgstr "Ingrese un número de teléfono válido"
 
-msgid "APP-DELETE-VISUALIZATION-ACTION-TEXT"
-msgstr "La visualización ha sido eliminada."
-
 msgid "APP-CHART-TEXT"
 msgstr "Gráfico"
 
@@ -843,18 +807,6 @@ msgstr "Seleccione los datos que desea representar"
 
 msgid "APP-CUSTOMIZE-VISUALIZATION-VALIDATE-HEADLINES"
 msgstr "La cantidad de columnas deben coincidir con la cantidad de encabezados seleccionados"
-
-msgid "APP-DELETE-DATAVIEW-TEXT"
-msgstr "Eliminar Vista de Datos"
-
-msgid "APP-DELETE-VISUALIZATION-TEXT"
-msgstr "Eliminar Visualización"
-
-msgid "APP-DELETE-DATASTREAM-ACTION-ERROR-TEXT"
-msgstr "Error al eliminar la vista y sus recursos asociados."
-
-msgid "APP-DELETE-VISUALIZATION-ACTION-ERROR-TEXT"
-msgstr "Error al eliminar la visualización y sus recursos asociados."
 
 msgid "APP-GRID-CELL-MODIFIED"
 msgstr "Modificación"
@@ -963,3 +915,57 @@ msgstr "Embeber código de video (opcional)"
 
 msgid "APP-ACCOUNT-NAME-NOT-VALID"
 msgstr "Nombre de la Organización no válido"
+
+msgid "APP-DELETE-DATASET-ACTION-TITLE"
+msgstr "Eliminación realizada"
+
+msgid "APP-DELETE-DATASTREAM-ACTION-TITLE"
+msgstr "Eliminación realizada"
+
+msgid "APP-DELETE-VISUALIZATION-ACTION-TITLE"
+msgstr "Eliminación realizada"
+
+msgid "APP-DELETE-DATASET-ACTION-TEXT"
+msgstr "El conjunto de datos y sus recursos asociados han sido eliminados."
+
+msgid "APP-DELETE-DATASTREAM-ACTION-TEXT"
+msgstr "La vista y sus recursos asociados han sido eliminados."
+
+msgid "APP-DELETE-VISUALIZATION-ACTION-TEXT"
+msgstr "La visualización ha sido eliminada."
+
+msgid "APP-DELETE-DATASET-REV-ACTION-TEXT"
+msgstr "La revisión del conjunto de datos fue eliminada."
+
+msgid "APP-DELETE-DATASTREAM-REV-ACTION-TEXT"
+msgstr "La revisión de la vista ha sido eliminada."
+
+msgid "APP-DELETE-VISUALIZATION-REV-ACTION-TEXT"
+msgstr "La revisión de la visualización ha sido eliminada."
+
+msgid "APP-DELETE-REDIRECT-TEXT"
+msgstr "Aguarde un momento mientras se recarga la página."
+
+msgid "APP-DELETE-ACTION-ERROR-TITLE"
+msgstr "No se pudo eliminar"
+
+msgid "APP-DELETE-DATASET-ACTION-ERROR-TEXT"
+msgstr "Ocurrió un error al intentar eliminar el conjunto de datos. Intente nuevamente en unos minutos y si el problema continua, por favor repórtelo."
+
+msgid "APP-DELETE-DATASTREAM-ACTION-ERROR-TEXT"
+msgstr "Ocurrió un error al intentar eliminar la vista. Intente nuevamente en unos minutos y si el problema continua, por favor repórtelo."
+
+msgid "APP-DELETE-VISUALIZATION-ACTION-ERROR-TEXT"
+msgstr "Ocurrió un error al intentar eliminar la visualización. Intente nuevamente en unos minutos y si el problema continua, por favor repórtelo."
+
+msgid "APP-DELETE-DATASET-REV-ACTION-ERROR-TEXT"
+msgstr "Ocurrió un error al intentar eliminar la revisión del conjunto de datos. Intente nuevamente en unos minutos y si el problema continua, por favor repórtelo."
+
+msgid "APP-DELETE-DATASTREAM-REV-ACTION-ERROR-TEXT"
+msgstr "Ocurrió un error al intentar eliminar la revisión de la vista. Intente nuevamente en unos minutos y si el problema continua, por favor repórtelo."
+
+msgid "APP-DELETE-VISUALIZATION-REV-ACTION-ERROR-TEXT"
+msgstr "Ocurrió un error al intentar eliminar la revisión de la visualización. Intente nuevamente en unos minutos y si el problema continua, por favor repórtelo."
+
+msgid "APP-OVERLAY-DELETE"
+msgstr "Eliminar"

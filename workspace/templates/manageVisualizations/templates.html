@@ -1,91 +1,5 @@
 {% load i18n extra_tags core_components components %}
 
-{# Total Entries #}
-<script type="text/template" id="total-entries-template">
-<% if(total_entries > 0){ %>(<%= total_entries %>)<% } %>
-</script>
-
-{# Active Filter #}
-<script type="text/template" id="active-filters-template">
-	<li><span><%= filter_name %></span> <a class="remove" title="{% trans 'FILTERS-REMOVE-TEXT' %}" id="<%= filter_id %>">x</a></li>
-</script>
-
-{# Filters view #}
-<script type="text/template" id="filters-template">
-  <section class="filters-container">
-
-   <% if (active.length !== 0) {%>
-   <div class="activeFilters">
-      <h3>{% trans 'APP-ACTIVEFILTERS-TEXT' %}</h3>
-      <ul id="active-filters-list">
-        <% _(active).each(function( item ){ %>
-        <li>
-          <span><% if(item.type == 'search' ){ %>{% trans 'APP-TITLE-TEXT' %}<% }else if(item.type == 'category' ){ %>{% trans 'APP-CATEGORY-TEXT' %}<% }else if(item.type == 'status' ){ %>{% trans 'APP-STATUS-TEXT' %}<% }else if(item.type == 'author' ){ %>{% trans 'APP-AUTHOR-TEXT' %}<% } %>: <strong><%= item.title %></strong></span> 
-          <a class="remove" data-cid="<%= item.cid %>" title="{% trans 'FILTERS-REMOVE-TEXT' %}">x</a>
-        </li>
-        <% }); %>
-      </ul>
-   </div>
-   <% }%>
-
-   <% _(search).each(function( item ){ %>
-   <% if (!item.active) {%>
-   <div class="filters search-filter">
-      <h3>{% trans 'APP-SEARCH-TEXT' %}</h3>
-      <input type="text" class='search-field' placeholder="{% trans 'APP-SEARCH-FILTER-TEXT' %}" data-cid="<%= item.cid %>"/>
-      <p id='id_searchTip' class='tip'>{% trans 'APP-SEARCH-TYPE-AND-PRESS-ENTER' %}</p>
-   </div>
-   <% }%>
-   <% });%>
-
-   <% if (category.length !== 0) {%>
-   <div class="filters">
-      <h3 class="">{% trans 'APP-CATEGORY-TEXT' %}</h3>
-      <ul>
-        <% _(category).each(function( item ){ %>
-        <li>
-          <a class="filter-add link black" data-cid="<%= item.cid %>">
-            <%= item.title %>
-          </a>
-        </li>
-        <% }); %>
-      </ul>
-   </div>
-   <% }%>
-
-   <% if (author.length !== 0) {%>
-   <div class="filters">
-      <h3 class="">{% trans 'APP-AUTHOR-TEXT' %}</h3>
-      <ul>
-        <% _(author).each(function( item ){ %>
-        <li>
-          <a class="filter-add link black" data-cid="<%= item.cid %>">
-            <%= item.title %>
-          </a>
-        </li>
-        <% }); %>
-      </ul>
-   </div>
-   <% }%>
-
-   <% if (status.length !== 0) {%>
-   <div class="filters">
-      <h3 class="">{% trans 'APP-STATUS-TEXT' %}</h3>
-      <ul>
-        <% _(status).each(function( item ){ %>
-        <li>
-          <a class="filter-add link black" data-cid="<%= item.cid %>">
-            <%= item.title %>
-          </a>
-        </li>
-        <% }); %>
-      </ul>
-   </div>
-   <% }%>
-
-  </section>
-</script>
-
 {# Grid - Title Cell #}
 <script type="text/template" id="grid-titlecell-template">
 
@@ -129,9 +43,4 @@
     <li><a title="<%= datastream_title %>" href="<%= datastream_url %>"><%= gettext('APP-VIEW-DATASTREAM-TEXT') %></a></li>
 
   </ul>
-</script>
-
-{# Grid - visualization Cell #}
-<script type="text/template" id="grid-datastreamcell-template">
-  <a href="<%= datastream_url %>"><%= datastream_title%></a>
 </script>

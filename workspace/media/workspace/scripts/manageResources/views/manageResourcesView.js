@@ -191,8 +191,7 @@ _.extend(ManageResourcesView.prototype, Backbone.View.prototype, {
 				render: function() {
 					var titleCellView = new TitleCellView({
 						model: this.model,
-						itemCollection: self.listResources,
-						parentView: self
+						itemCollection: self.listResources
 					});
 					this.$el.html(titleCellView.render().el);
 					return this;
@@ -207,13 +206,13 @@ _.extend(ManageResourcesView.prototype, Backbone.View.prototype, {
 			sortable: true,
 			editable: false
 		}, {
-			name: "author",
+			name: "user",
 			label: gettext('APP-GRID-CELL-AUTHOR'),
 			cell: "text",
 			sortable: true,
 			editable: false
 		}, {
-			name: "status_nice",
+			name: "status_name",
 			label:  gettext('APP-GRID-CELL-STATUS'),
 			cell: "text",
 			sortable: false,

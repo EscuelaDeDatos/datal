@@ -436,6 +436,7 @@ body{background:$color-base;height:100%;min-width:998px;}
         & > span{float:left;}
         & > span:before{content:"|";padding:0 5px;color:#333;float:left;}
         & > span:first-child:before{content:"";padding:0;display:none;}
+        .revision{color:#999;text-transform:lowercase;}
       }
 
     }
@@ -669,7 +670,7 @@ i.icon.TNCLIMA{}
 }
 
 /* Overlays */
-.ao-popup-overlay .ov-content{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box; width: 590px; display: inline-block; padding: 15px 25px;}
+.ao-popup-overlay .ov-content{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box; width:650px; display: inline-block; padding: 15px 25px;}
 .ao-popup-overlay .ov-content .left, .ao-popup-overlay .ov-content .right{float: left; display: inline;}
 .ao-popup-overlay .ov-content .left{width: 70%;}
 .ao-popup-overlay .ov-content .right{width: 30%; padding-left: 15px;}
@@ -682,7 +683,7 @@ i.icon.TNCLIMA{}
 .ao-popup-overlay .ov-content p{padding:0 0 15px 0;}
 .ao-popup-overlay .ov-content p.text{font-size:14px;line-height:18px;}
 .ao-popup-overlay .ov-content p:last-child{padding:0;}
-.ao-popup-overlay .ov-content p.more-padding{padding:15px 0 !important;}
+.ao-popup-overlay .ov-content p.more-padding{padding:15px 0 40px !important;}
 .ao-popup-overlay .ov-content select{font-size: 12px; width: 100%;}
 .ao-popup-overlay .ov-bottom{background-color:$accent-color-05; border-top: 1px solid #d7d7d7; padding: 15px; min-height: 57px;}
 .ao-popup-overlay .ov-bottom form.form-search{width:240px;margin:0;}

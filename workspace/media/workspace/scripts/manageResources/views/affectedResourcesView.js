@@ -1,4 +1,5 @@
 var affectedResourcesView = Backbone.View.extend({
+    
     tagName: "li",
 
     initialize: function() {
@@ -7,8 +8,9 @@ var affectedResourcesView = Backbone.View.extend({
     },
 
     render: function() {
-        this.$el.html(this.model.get('visualizationi18n__title'));
+        this.$el.html(this.model.get('title'));
         this.$el.prepend('<span class=icon-' + this.model.get('type') + '></span>');
         return this;
     }
+
 });

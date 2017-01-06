@@ -82,6 +82,8 @@ msgstr "Country"
 msgid "ACCOUNT-TIMEZONE-LABEL"
 msgstr "Timezone"
 
+
+
 msgid "ACCOUNT-HTML-TITLE-LABEL"
 msgstr "HTML <title>"
 
@@ -224,16 +226,16 @@ msgid "APP-CHART-SAVESUCCESSFULLY-TEXT"
 msgstr "Visualization successfully saved"
 
 msgid "APP-CHART-CANNOTSAVE-TEXT"
-msgstr "We can't save that visualization"
+msgstr "We can't save that Visualization"
 
 msgid "APP-CHART-DOESNOTEXIST-TEXT"
-msgstr "That visualization does not exist"
+msgstr "That Visualization does not exist"
 
 msgid "APP-DATASET-DOESNOTEXIST-TEXT"
 msgstr "Dataset revision doesn't exist."
 
 msgid "APP-CHART-NOTLASTREVISION-TEXT"
-msgstr "That is not the last revision of the visualization"
+msgstr "That is not the last revision of the Visualization"
 
 msgid "APP-CHART-UNDERREVIEW-TEXT"
 msgstr "Visualization under review"
@@ -745,6 +747,7 @@ msgstr "Create source"
 msgid "WORKSPACE-CREATE-TRANSP-CATEGORIES"
 msgstr "Create transparency's categories"
 
+
 msgid "APP-ACTIONS-TEXT"
 msgstr "Actions"
 
@@ -1215,6 +1218,9 @@ msgstr "Send us an e-mail"
 
 msgid "DSCRE-UPLOAD-TIP"
 msgstr "The following file types are allowed and must be encoded in UTF-8:"
+
+msgid "HOME-SEARCH-TIP"
+msgstr "- For a URL to be a dataset, it must be a webpage that contains HTML &lt;table&gt; tags.<br/> - CSV, KML, KMZ, TSV, TXT, XLS, XLSX, XML files can also be used as datasets."
 
 msgid "APP-LOADING-TEXT"
 msgstr "loading"
@@ -1940,7 +1946,6 @@ msgid "ADMIN-HOME-DELETE-MESSAGE"
 msgstr "The image could not be deleted. Try later or contact us: support@junar.com"
 
 msgid "ACCOUNT-HOME-HELPTIP-2"
-
 msgstr "You can use <strong>%s</strong> as a variable in any of the placeholders, this will be replaced with the number of your available Open Data resources."
 
 msgid "APP-PLANS-TEXT"
@@ -1983,6 +1988,7 @@ msgstr "Privacy Policy"
 
 
 # /------------------ New Workspace keys / 2014-06-17 -----------------/
+
 
 
 
@@ -2151,47 +2157,8 @@ msgstr "Your Data View has been approved."
 msgid "APP-OVERLAY-ALERT-OK-TEXT"
 msgstr "Now you need to review the associated Dataset, in order to automatically set as publish this Data View:"
 
-msgid "APP-OVERLAY-DELETE-DATASET-CONFIRM-TITLE"
-msgstr "Delete Dataset "
-
-msgid "APP-OVERLAY-DELETE-DATASET-CONFIRM-TEXT"
-msgstr "The following resources are associated to this Dataset, and they will also delete."
-
-msgid "APP-OVERLAY-DELETE"
-msgstr "Delete"
-
 msgid "APP-VISUALIZATIONS-CREATE-TEXT"
 msgstr "Create Visualization"
-
-msgid "APP-DELETE-DATASET-ACTION-TEXT"
-msgstr "The dataset and the associated resources have been deleted."
-
-msgid "APP-DELETE-DATASET-ACTION-ERROR-TEXT"
-msgstr "Error on deleting the dataset and the associated resources."
-
-msgid "APP-DELETE-DATASET-REV-ACTION-TEXT"
-msgstr "The dataset revision have been deleted."
-
-msgid "APP-DELETE-DATASET-REV-ACTION-ERROR-TEXT"
-msgstr "Error on deleting the dataset revision."
-
-msgid "APP-DELETE-DATASTREAM-ACTION-TEXT"
-msgstr "The datastream and the associated resources have been deleted."
-
-msgid "APP-DELETE-DATASTREAM-REV-ACTION-TEXT"
-msgstr "The datastream revision have been deleted."
-
-msgid "APP-DELETE-DATASTREAM-REV-ACTION-ERROR-TEXT"
-msgstr "Error on deleteing the datastream revision."
-
-msgid "APP-DELETE-VISUALIZATION-ACTION-TEXT"
-msgstr "The visualization has been deleted."
-
-msgid "APP-DELETE-VISUALIZATION-REV-ACTION-TEXT"
-msgstr "The visualization revision has been deleted."
-
-msgid "APP-DELETE-VISUALIZATION-REV-ACTION-ERROR-TEXT"
-msgstr "Error on deleteing the visualization revision."
 
 msgid "APP-TYPES-TEXT"
 msgstr "Types"
@@ -2273,9 +2240,6 @@ msgstr "Select the desired range of cells. Do not include text or extra informat
 
 msgid "APP-DATA-VIEW-TITLE-TEXT"
 msgstr "Data view title"
-
-msgid "APP-VISUALIZATIONS-CREATE-START-TRACE-MAP-DESC"
-msgstr "Draw geometries, lines or polygons using GIS datasets."
 
 msgid "APP-CUSTOMIZE-TRACE-MAP-SUBTITLE"
 msgstr "Select the coordinates and information for each multigeometry element. Fields marked with <span class='ast'>(<span>*</span>)</span> are mandatory."
@@ -2386,7 +2350,7 @@ msgid "APP-OTHER-TEXT"
 msgstr "Other"
 
 msgid "APP-OTHER-FREQUENCY-TEXT"
-msgstr "Please input the custom update frequency using the <a target='_blank' href='http://en.wikipedia.org/wiki/Cron#Format'>cron</a> format."
+msgstr "Please input the custom update frequency using the <a href='http://en.wikipedia.org/wiki/Cron#Format'>cron</a> format."
 
 msgid "APP-CREATE-DATASET-FINISH-SUBTITLE"
 msgstr "Let us know what is your dataset about. Fields with (<span class='required'>*</span>) are mandatory."
@@ -2400,29 +2364,11 @@ msgstr "Delete category"
 msgid "APP-DELETE-SOURCE-TITLE"
 msgstr "Delete source"
 
-msgid "APP-OVERLAY-DELETE-DATASET-TITLE"
-msgstr "Delete Dataset"
+msgid "APP-DELETE-CATEGORY-TEXT"
+msgstr "By deleting this category, all its resources will be moved to the default category. Are you sure?"
 
-msgid "APP-OVERLAY-DELETE-DATASET-TEXT"
-msgstr "This action cannot be undone. Please, confirm how to proceed:"
-
-msgid "APP-OVERLAY-DELETE-VISUALIZATION-TITLE"
-msgstr "Delete Visualization"
-
-msgid "APP-OVERLAY-DELETE-VISUALIZATION-TEXT"
-msgstr "This action cannot be undone. Please, confirm how to proceed:"
-
-msgid "APP-DELETE-REVISION-TEXT"
-msgstr "Delete current revision"
-
-msgid "APP-DELETE-RESOURCE-TEXT"
-msgstr "Delete all revisions"
-
-msgid "APP-REVISION-DELETED-TITLE"
-msgstr "The revision was deleted"
-
-msgid "APP-REVISION-DELETED-TEXT"
-msgstr "The following resources will be reviewed:"
+msgid "APP-DELETE-SOURCE-TEXT"
+msgstr "By deleting this source, all its resources will remove this source. Are you sure?"
 
 msgid "APP-OTHER-LICENSE-TEXT"
 msgstr "Please, input the custom license of this dataset."
@@ -2554,7 +2500,7 @@ msgid "SOCIAL-DOWNLOADS-TIP"
 msgstr "Allow users to download your Datasets."
 
 msgid "SOCIAL-DATASET-SHOW-TIP"
-msgstr "Permitir aos utilizadores visualizar o seu conjuntos de dados no portal."
+msgstr "Allow users to view your Datasets in the portal."
 
 msgid "APP-DATASETCANTBEUSEDTOCREATECHILD-TEXT"
 msgstr "This Dataset cannot be used to create a Data View."
@@ -2598,11 +2544,14 @@ msgstr "New Dataset"
 msgid "APP-ADDNEWDATAVIEW-TEXT"
 msgstr "New Data View"
 
+msgid "APP-STATUS-UNDERREVIEW"
+msgstr "In review"
+
 msgid "APP-LASTPUBLISHDATE-TEXT"
 msgstr "Last published version:"
 
 msgid "APP-VIEWONSITE-TEXT"
-msgstr "View on open data portal"
+msgstr "View on open data portal "
 
 msgid "APP-SENDREJECTEDNOTE-TEXT"
 msgstr "Rejection reason?"
@@ -2732,18 +2681,6 @@ msgstr "The following resources, that are associated to this Dataset, will also 
 
 msgid "APP-OVERLAY-UNPUBLISH"
 msgstr "Unpublish all"
-
-msgid "APP-OVERLAY-DELETE-DATASTREAM-TITLE"
-msgstr "Delete Dataview "
-
-msgid "APP-OVERLAY-DELETE-DATASTREAM-TEXT"
-msgstr "This action cannot be undone. Please, confirm how to proceed:"
-
-msgid "APP-OVERLAY-DELETE-DATASTREAM-CONFIRM-TITLE"
-msgstr "Delete Dataview "
-
-msgid "APP-OVERLAY-DELETE-DATASTREAM-CONFIRM-TEXT"
-msgstr "The following Visualizations, that are associated to this Data View, will also delete."
 
 msgid "APP-OVERLAY-UNPUBLISH-DATASTREAM-TITLE"
 msgstr "Unpublish Dataview "
@@ -2956,7 +2893,7 @@ msgid "APP-GRAPH-TEXT"
 msgstr "Graph"
 
 msgid "APP-CUSTOMIZE-VISUALIZATION-SELECT-RANGE-TEXT"
-msgstr "Data intervals?"
+msgstr "Data intervals"
 
 msgid "APP-CUSTOMIZE-VISUALIZATION-SELECT-LABEL-TEXT"
 msgstr "Labels"
@@ -2988,12 +2925,6 @@ msgstr "It's what you will see in the marker's tooltip"
 msgid "APP-ADDNEWVISUALIZATION-TEXT"
 msgstr "New Visualization"
 
-msgid "APP-VIZ-METADATA-TEXT"
-msgstr "Descripción"
-
-msgid "APP-VIZ-FINISH-TEXT"
-msgstr "Revisión"
-
 msgid "APP-LABELS-TIP-TEXT"
 msgstr "Keywords to help identify Visualization content."
 
@@ -3004,7 +2935,7 @@ msgid "VALIDATE-REQUIREDFIELD-TEXT"
 msgstr "This field is required"
 
 msgid "VALIDATE-MAXLENGTH-TEXT-1"
-msgstr "This field supports up to "
+msgstr "This field supports up to  "
 
 msgid "VALIDATE-MAXLENGTH-TEXT-2"
 msgstr " characters."
@@ -3243,6 +3174,21 @@ msgstr "Date"
 msgid "APP-LINK-TEXT"
 msgstr "Link"
 
+msgid "APP-DATASET-PARAMETERS"
+msgstr "Dataset Parameters"
+
+msgid "APP-SELECT-DATASET-TABLE"
+msgstr "Tables"
+
+msgid "APP-COLS-TEXT"
+msgstr "Columns"
+
+msgid "APP-FULL-TABLE-TEXT"
+msgstr "Full Table"
+
+msgid "APP-COL-FORMAT-TEXT"
+msgstr "Formats"
+
 msgid "APP-NAME-TEXT"
 msgstr "Name"
 
@@ -3251,6 +3197,42 @@ msgstr "Responsive"
 
 msgid "ADMIN-HOME-THEMES-THEME8-TEXT"
 msgstr "Catalog"
+
+msgid "APP-THOUSAND-INDICATOR"
+msgstr "Thousand indicator"
+
+msgid "APP-DECIMAL-INDICATOR"
+msgstr "Decimal indicator"
+
+msgid "APP-SYMBOLS"
+msgstr "Symbols"
+
+msgid "APP-LOCALE"
+msgstr "Locale"
+
+msgid "APP-CUSTOM-PATTERN"
+msgstr "Custom pattern"
+
+msgid "APP-CONFIGURE-ORIGIN-FORMAT"
+msgstr "Configure origin format"
+
+msgid "APP-CONFIGURE-OUTPUT-FORMAT"
+msgstr "Configure output format"
+
+msgid "APP-THOUSANDS-DECIMALS-INDICATORS"
+msgstr "Decimals / Thousands indicators"
+
+msgid "APP-WHAT-IS-THE-ORIGINAL-PATTERN"
+msgstr "What is the original pattern?"
+
+msgid "APP-WHAT-IS-THE-OUTPUT-PATTERN"
+msgstr "What is the output pattern?"
+
+msgid "APP-DOT"
+msgstr "dot"
+
+msgid "APP-COMMA"
+msgstr "comma"
 
 msgid "APP-SELECTED-DATA-TEXT"
 msgstr "Data selected"
@@ -3329,3 +3311,60 @@ msgstr "Loading data. Please wait."
 
 msgid "CREATEVIZ-NULLRESULTS-TEXT"
 msgstr "<section class='box error-container'><div class='box-content clearfix'><h2>No data available to select. Try the following:</h2><ul><li>If you changed a parameter, it is quite possible that the value entered returned no data. Try another value.</li><li>Review Data View to verify that it is returning data.</li></ul></div></section>"
+
+msgid "APP-OVERLAY-DELETE-DATASET-TITLE"
+msgstr "Delete Dataset"
+
+msgid "APP-OVERLAY-DELETE-DATASTREAM-TITLE"
+msgstr "Delete Dataview"
+
+msgid "APP-OVERLAY-DELETE-VISUALIZATION-TITLE"
+msgstr "Delete Visualization"
+
+msgid "APP-OVERLAY-DELETE-DATASET-CONFIRM-TITLE"
+msgstr "Delete associated resources"
+
+msgid "APP-OVERLAY-DELETE-DATASTREAM-CONFIRM-TITLE"
+msgstr "Delete associated visualizations"
+
+msgid "APP-OVERLAY-DELETE-DATASET-TEXT"
+msgstr "You are about to delete a Dataset. This action can not be undone."
+
+msgid "APP-OVERLAY-DELETE-DATASTREAM-TEXT"
+msgstr "You are about to delete a Data View. This action can not be undone."
+
+msgid "APP-OVERLAY-DELETE-VISUALIZATION-TEXT"
+msgstr "You are about to delete a Visualization. This action can not be undone."
+
+msgid "APP-DELETE-REVISION-TEXT"
+msgstr "Delete current revision"
+
+msgid "APP-DELETE-RESOURCE-TEXT"
+msgstr "Delete all"
+
+msgid "APP-OVERLAY-DELETE"
+msgstr "Delete"
+
+msgid "APP-OVERLAY-DELETE-DATASET-CONFIRM-TEXT"
+msgstr "The following resources are associated to this Dataset, and they will also delete:"
+
+msgid "APP-OVERLAY-DELETE-DATASTREAM-CONFIRM-TEXT"
+msgstr "The following Visualizations, that are associated to this Data View, will also delete:"
+
+msgid "APP-DELETE-DATASET-ACTION-TEXT"
+msgstr "The Dataset and the associated resources have been deleted."
+
+msgid "APP-DELETE-DATASTREAM-ACTION-TEXT"
+msgstr "The Data View and the associated resources have been deleted."
+
+msgid "APP-DELETE-VISUALIZATION-ACTION-TEXT"
+msgstr "The Visualization has been deleted."
+
+msgid "APP-DELETE-DATASET-REV-ACTION-TEXT"
+msgstr "The Dataset revision has been deleted."
+
+msgid "APP-DELETE-DATASTREAM-REV-ACTION-TEXT"
+msgstr "The Data View revision has been deleted."
+
+msgid "APP-DELETE-VISUALIZATION-REV-ACTION-TEXT"
+msgstr "The Visualization revision has been has been deleted."

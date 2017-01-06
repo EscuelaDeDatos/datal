@@ -3,17 +3,12 @@ var ViewDataStreamView = Backbone.Epoxy.View.extend({
 	el: '.main-section',
 
 	theDataTable: null,
-	listResources: null,
-	sourceUrl: null,
-	tagUrl: null,
-	datastreamEditItemModel: null,
 
 	events: {
 		'click #id_delete': 'onDeleteButtonClicked',
 		'click #id_unpublish': 'onUnpublishButtonClicked',
 		'click #id_approve, #id_reject, #id_publish, #id_sendToReview': 'changeStatus',
 		'click #id_publish_all': 'onPublishAllClicked',
-		"click #id_edit": "onEditButtonClicked",
 	},
 
 	initialize: function(options){
@@ -21,13 +16,6 @@ var ViewDataStreamView = Backbone.Epoxy.View.extend({
 		this.listenTo(this.model, "change", this.render);
 		this.theDataTable = new dataTableView({model: new dataTable(), dataStream: this.model, parentView: this});
 		this.render();
-
-		this.sourceUrl = options.sourceUrl;
-		this.tagUrl = options.tagUrl;
-		this.datastreamEditItemModel = options.datastreamEditItemModel;
-
-		// Init Filters
-		this.initFilters();
 	},
 
 	render: function(){
@@ -74,6 +62,8 @@ var ViewDataStreamView = Backbone.Epoxy.View.extend({
        	this.publishChildResources = new Array();
        	this.publishChildResources.push(this.model);
        	var affectedResourcesCollection = new AffectedResourcesCollection();
+       	affectedResourcesCollection.url = '/dataviews/retrieve_childs/';
+
         var affectedResourcesCollectionPublishView = new AffectedResourcesCollectionPublishItemView({
             collection: affectedResourcesCollection,
             models: this.publishChildResources,
@@ -126,10 +116,6 @@ var ViewDataStreamView = Backbone.Epoxy.View.extend({
 						'modifiedAt': response.result.modified_at,
 					});
 
-                    self.datastreamEditItemModel.set({
-                        'status': response.result.status,
-                    });
-
 					// Set OK Message
 					$.gritter.add({
 						title: response.messages.title,
@@ -154,6 +140,8 @@ var ViewDataStreamView = Backbone.Epoxy.View.extend({
 				datalEvents.trigger('datal:application-error', response);
 				$("#ajax_loading_overlay").hide();
 			}
+		}).fail(function () {
+			$("#ajax_loading_overlay").hide();
 		});
 
 	},
@@ -182,15 +170,6 @@ var ViewDataStreamView = Backbone.Epoxy.View.extend({
 
 	},
 
-	initFilters: function(){
-
-		// Init Backbone PageableCollection
-		this.listResources = new ListResources({
-			filters: this.filters
-		});
-
-	},
-
 	onDeleteButtonClicked: function(){
 		self = this;
 		this.deleteListResources = new Array();
@@ -208,13 +187,6 @@ var ViewDataStreamView = Backbone.Epoxy.View.extend({
 				models: this.unpublishListResources,
 				type: "visualizations",
 				parentView: this
-		});
-	},
-
-	onEditButtonClicked: function(event){
-		new DatastreamEditItemView({
-			model: this.datastreamEditItemModel,
-			parentView: this
 		});
 	},
 

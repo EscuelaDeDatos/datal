@@ -2150,47 +2150,8 @@ msgstr "Tu vista de datos ha sido aprobada."
 msgid "APP-OVERLAY-ALERT-OK-TEXT"
 msgstr "Ahora necesita revisar el conjunto de datos asociados, con el fin de establecer de forma automática como publicar esta vista de datos:"
 
-msgid "APP-OVERLAY-DELETE-DATASET-CONFIRM-TITLE"
-msgstr "Eliminar conjunto de datos "
-
-msgid "APP-OVERLAY-DELETE-DATASET-CONFIRM-TEXT"
-msgstr "Los siguientes recursos están asociados a este conjunto de datos y también serán eliminados."
-
-msgid "APP-DELETE-DATASTREAM-ACTION-TEXT"
-msgstr "La vista y sus recusros asociados, han sido eliminados."
-
-msgid "APP-DELETE-DATASTREAM-REV-ACTION-TEXT"
-msgstr "La revisión de la vista ha sido eliminada."
-
-msgid "APP-DELETE-DATASTREAM-REV-ACTION-ERROR-TEXT"
-msgstr "Error al eliminar la revisión de la vista."
-
-msgid "APP-DELETE-VISUALIZATION-ACTION-TEXT"
-msgstr "La visualización ha sido eliminada."
-
-msgid "APP-DELETE-VISUALIZATION-REV-ACTION-TEXT"
-msgstr "La revisión de la visualización ha sido eliminada."
-
-msgid "APP-DELETE-VISUALIZATION-REV-ACTION-ERROR-TEXT"
-msgstr "Error al eliminar la revisión de la visualización."
-
-msgid "APP-OVERLAY-DELETE"
-msgstr "Eliminar"
-
 msgid "APP-VISUALIZATIONS-CREATE-TEXT"
 msgstr "Crear Visualización"
-
-msgid "APP-DELETE-DATASET-ACTION-TEXT"
-msgstr "El conjunto de datos y los recursos asociados fueron eliminados."
-
-msgid "APP-DELETE-DATASET-ACTION-ERROR-TEXT"
-msgstr "Error al eliminar el conjunto de datos y sus recursos relacionados."
-
-msgid "APP-DELETE-DATASET-REV-ACTION-TEXT"
-msgstr "La revision del conjunto de datos fue eliminada."
-
-msgid "APP-DELETE-DATASET-REV-ACTION-ERROR-TEXT"
-msgstr "Error al borrar la revision del conjunto de datos."
 
 msgid "APP-TYPES-TEXT"
 msgstr "Tipo"
@@ -2401,30 +2362,6 @@ msgstr "Al eliminar esta categoría, todos estos recursos serán movidos a la ca
 
 msgid "APP-DELETE-SOURCE-TEXT"
 msgstr "Al eliminar esta fuente, todos estos recursos borraran esta fuente. ¿Está seguro?"
-
-msgid "APP-OVERLAY-DELETE-DATASET-TITLE"
-msgstr "Eliminar conjunto de datos"
-
-msgid "APP-OVERLAY-DELETE-DATASET-TEXT"
-msgstr "Esta acción no se puede deshacer. Por favor, confirme que desea hacer:"
-
-msgid "APP-OVERLAY-DELETE-VISUALIZATION-TEXT"
-msgstr "Esta acción no se puede deshacer. Por favor, confirme que desea hacer:"
-
-msgid "APP-OVERLAY-DELETE-VISUALIZATION-TITLE"
-msgstr "Eliminar visualización"
-
-msgid "APP-DELETE-REVISION-TEXT"
-msgstr "Eliminar revisión actual"
-
-msgid "APP-DELETE-RESOURCE-TEXT"
-msgstr "Eliminar todas las revisiones"
-
-msgid "APP-REVISION-DELETED-TITLE"
-msgstr "La revisión se ha eliminado."
-
-msgid "APP-REVISION-DELETED-TEXT"
-msgstr "Los siguientes recursos van a ser revisados:"
 
 msgid "APP-OTHER-LICENSE-TEXT"
 msgstr "Por favor, introduzca la licencia personalizada de este conjunto de datos."
@@ -2734,18 +2671,6 @@ msgstr "Los siguientes recursos están asociados a este conjunto de datos y tamb
 
 msgid "APP-OVERLAY-UNPUBLISH"
 msgstr "Despublicar todo"
-
-msgid "APP-OVERLAY-DELETE-DATASTREAM-TITLE"
-msgstr "Eliminar vista"
-
-msgid "APP-OVERLAY-DELETE-DATASTREAM-TEXT"
-msgstr "Esta acción no se puede deshacer. Por favor, confirme que desea hacer:"
-
-msgid "APP-OVERLAY-DELETE-DATASTREAM-CONFIRM-TITLE"
-msgstr "Eliminar vista"
-
-msgid "APP-OVERLAY-DELETE-DATASTREAM-CONFIRM-TEXT"
-msgstr "Las siguientes visualizaciones están asociadas a esta vista y también serán eliminadas."
 
 msgid "APP-OVERLAY-UNPUBLISH-DATASTREAM-TITLE"
 msgstr "Despublicar vista"
@@ -3376,3 +3301,60 @@ msgstr "Cargando datos. Por favor espere."
 
 msgid "CREATEVIZ-NULLRESULTS-TEXT"
 msgstr "<section class='box error-container'><div class='box-content clearfix'><h2>No hay datos disponibles para seleccionar. Intente lo siguiente:</h2><ul><li>Si cambió un parámetro, es muy posible que el valor ingresado no devuelva datos. Intente con otro valor.</li><li>Revise la vista para corroborar que ésta devuelva datos.</li></ul></div></section>"
+
+msgid "APP-OVERLAY-DELETE-DATASET-TITLE"
+msgstr "Eliminar conjunto de datos"
+
+msgid "APP-OVERLAY-DELETE-DATASTREAM-TITLE"
+msgstr "Eliminar vista"
+
+msgid "APP-OVERLAY-DELETE-VISUALIZATION-TITLE"
+msgstr "Eliminar visualización"
+
+msgid "APP-OVERLAY-DELETE-DATASET-CONFIRM-TITLE"
+msgstr "Eliminar recursos asociados"
+
+msgid "APP-OVERLAY-DELETE-DATASTREAM-CONFIRM-TITLE"
+msgstr "Eliminar visualizaciones asociadas"
+
+msgid "APP-OVERLAY-DELETE-DATASET-TEXT"
+msgstr "Usted esta a punto de eliminar un conjunto de datos. Esta acción no se puede deshacer."
+
+msgid "APP-OVERLAY-DELETE-DATASTREAM-TEXT"
+msgstr "Usted esta a punto de eliminar una vista. Esta acción no se puede deshacer."
+
+msgid "APP-OVERLAY-DELETE-VISUALIZATION-TEXT"
+msgstr "Usted esta a punto de eliminar una visualización. Esta acción no se puede deshacer."
+
+msgid "APP-DELETE-REVISION-TEXT"
+msgstr "Eliminar revisión actual"
+
+msgid "APP-DELETE-RESOURCE-TEXT"
+msgstr "Eliminar todo"
+
+msgid "APP-OVERLAY-DELETE"
+msgstr "Eliminar"
+
+msgid "APP-OVERLAY-DELETE-DATASET-CONFIRM-TEXT"
+msgstr "Los siguientes recursos están asociados a este conjunto de datos y también serán eliminados:"
+
+msgid "APP-OVERLAY-DELETE-DATASTREAM-CONFIRM-TEXT"
+msgstr "Las siguientes visualizaciones están asociadas a esta vista y también serán eliminadas:"
+
+msgid "APP-DELETE-DATASET-ACTION-TEXT"
+msgstr "El conjunto de datos y sus recursos asociados han sido eliminados."
+
+msgid "APP-DELETE-DATASTREAM-ACTION-TEXT"
+msgstr "La vista y sus recursos asociados han sido eliminados."
+
+msgid "APP-DELETE-VISUALIZATION-ACTION-TEXT"
+msgstr "La visualización ha sido eliminada."
+
+msgid "APP-DELETE-DATASET-REV-ACTION-TEXT"
+msgstr "La revisión del conjunto de datos fue eliminada."
+
+msgid "APP-DELETE-DATASTREAM-REV-ACTION-TEXT"
+msgstr "La revisión de la vista ha sido eliminada."
+
+msgid "APP-DELETE-VISUALIZATION-REV-ACTION-TEXT"
+msgstr "La revisión de la visualización ha sido eliminada."

@@ -1,11 +1,11 @@
 {% load i18n extra_tags core_components components %}
 
 <!-- Delete Dataview Overlay -->
-{% overlay id_deleteVisualization %}
+{% overlay id_deleteOverlay %}
 <div class="In clearfix">
 	<h4>{% trans 'APP-OVERLAY-DELETE-VISUALIZATION-TITLE' %}</h4>
 	<div class="ov-content">
-		<p class="text center">{% trans 'APP-OVERLAY-DELETE-VISUALIZATION-TEXT' %}</p>
+		<p class="text center more-padding">{% trans 'APP-OVERLAY-DELETE-VISUALIZATION-TEXT' %}</p>
 	</div>
 	<div class="ov-bottom">
 		<div class="ov-buttons">
@@ -15,137 +15,3 @@
 	</div>
 </div>
 {% endoverlay %}
-
-
-
-
-
-
-{# NOT IMPLEMENTED YET #}
-{% comment %}
-
-<!-- Bulk Actions Delete Dataview Overlay -->
-{% overlay id_bulkDeleteDataview %}
-<div class="In clearfix">
-	<h4>{% trans 'APP-OVERLAY-BULK-DELETE-VISUALIZATION-TITLE' %}</h4>
-	<div class="ov-content">
-		<p class="text center">{% trans 'APP-OVERLAY-BULK-DELETE-VISUALIZATION-TEXT' %}</p>
-	</div>
-	<div class="ov-bottom">
-		<div class="ov-buttons">
-			<a id="id_deleteResource" class="button red" title="{% trans 'APP-DELETE-BULK-RESOURCES-TEXT' %}">{% trans 'APP-DELETE-BULK-RESOURCES-TEXT' %}</a>
-			<a id="id_deleteRevision" class="button delete" title="{% trans 'APP-DELETE-BULK-REVISIONS-TEXT' %}">{% trans 'APP-DELETE-BULK-REVISIONS-TEXT' %}</a>
-		</div>
-	</div>
-</div>
-{% endoverlay %}
-
-
-<!-- Bulk Actions Overlay -->
-{% overlay id_bulkActions %}
-<div class="In clearfix">
-	<h4>{% trans 'APP-OVERLAY-BULKACTIONS-TITLE' %}</h4>
-	<div class="ov-content">
-		<div class="left">
-			<ul>
-				<li><span class="icon-visualization"></span>Anual staff figures</li>
-				<li><span class="icon-visualization"></span>LATAM Scorecard Countries</li>
-				<li><span class="icon-visualization"></span>Europe Scorecard Countries</li>
-			</ul>
-		</div>
-		<div class="right">
-			<div class="selectTitle font-mb">{% trans 'APP-OVERLAY-BULKACTIONS-CATEGORY' %}</div>
-			<select>
-				<option value="">Category name</option>
-			</select>
-			<div class="selectTitle font-mb">{% trans 'APP-OVERLAY-BULKACTIONS-STATUS' %}</div>
-			<select>
-				<option value="">{% trans 'MODEL_STATUS_DRAFT' %}</option>
-				<option value="">{% trans 'MODEL_STATUS_PENDING_REVIEW' %}</option>
-				<option value="">{% trans 'MODEL_STATUS_PUBLISHED' %}</option>
-			</select>
-		</div>
-	</div>
-	<div class="ov-bottom">
-		<div class="ov-buttons">
-			<a href="#" class="button primary small" title="{% trans 'APP-OVERLAY-SAVE' %}">{% trans 'APP-OVERLAY-SAVE' %}</a>
-			<a href="#" class="cancel" title="{% trans 'APP-OVERLAY-CANCEL' %}">{% trans 'APP-OVERLAY-CANCEL' %}</a>
-		</div>
-	</div>
-</div>
-{% endoverlay %}
-
-<!-- Pending Actions Not Published Overlay -->
-{% overlay id_pendingNotPublished %}
-<div class="In clearfix">
-	<h4>{% trans 'APP-OVERLAY-PENDING-TITLE' %}</h4>
-	<div class="ov-content">
-		<div class="ov-alert">
-			<span class="icon-warning"></span>{% trans 'APP-OVERLAY-ALERT-WARNING' %}
-		</div>
-		<p></p>
-		<p>{% trans 'APP-OVERLAY-ALERT-WARNING-TEXT' %}</p>
-		<ul>
-			<li><span class="icon-visualization"></span><a href="">Anual staff figures</a></li>
-			<li><span class="icon-visualization"></span><a href="">LATAM Scorecard Countries</a></li>
-			<li><span class="icon-dashboard"></span><a href="">Europe Scorecard Countries</a></li>
-		</ul>
-	</div>
-</div>
-{% endoverlay %}
-
-<!-- Pending Actions Published Overlay -->
-{% overlay id_pendingPublished %}
-<div class="In clearfix">
-	<h4>{% trans 'APP-OVERLAY-PENDING-TITLE' %}</h4>
-	<div class="ov-content">
-		<div class="ov-alert">
-			<span class="icon-check"></span>{% trans 'APP-OVERLAY-ALERT-OK' %}
-		</div>
-		<p></p>
-		<p>{% trans 'APP-OVERLAY-ALERT-OK-TEXT' %}</p>
-		<ul>
-			<li><span class="icon-visualization"></span><a href="">Anual staff figures</a></li>
-		</ul>
-	</div>
-</div>
-{% endoverlay %}
-
-<!-- Unpublish Dataview Overlay -->
-{% overlay id_unpublishDataview %}
-<div class="In clearfix">
-	<h4>{% trans 'APP-OVERLAY-UNPUBLISH-DATASET-TITLE' %}</h4>
-	<div class="ov-content">
-		<p>{% trans 'APP-OVERLAY-UNPUBLISH-DATASET-TEXT' %}</p>
-		<ul>
-			<li><span class="icon-visualization"></span>Anual staff figures</li>
-			<li><span class="icon-visualization"></span>LATAM Scorecard Countries</li>
-			<li><span class="icon-visualization"></span>Europe Scorecard Countries</li>
-		</ul>
-	</div>
-	<div class="ov-bottom">
-		<div class="ov-buttons">
-			<a href="#" class="button primary small" title="{% trans 'APP-OVERLAY-UNPUBLISH' %}">{% trans 'APP-OVERLAY-UNPUBLISH' %}</a>
-			<a href="#" class="cancel" title="{% trans 'APP-OVERLAY-CANCEL' %}">{% trans 'APP-OVERLAY-CANCEL' %}</a>
-		</div>
-	</div>
-</div>
-{% endoverlay %}
-
-<!-- Revision Deleted Overlay -->
-{% overlay id_revisionDeleted %}
-<div class="In clearfix">
-	<h4>{% trans 'APP-REVISION-DELETED-TITLE' %}</h4>
-	<div class="ov-content">
-		<p>{% trans 'APP-REVISION-DELETED-TEXT' %}</p>
-		<ul>
-			<li><span class="icon-visualization"></span><a href="">Anual staff figures</a></li>
-			<li><span class="icon-visualization"></span><a href="">LATAM Scorecard Countries</a></li>
-			<li><span class="icon-dashboard"></span><a href="">Europe Scorecard Countries</a></li>
-		</ul>
-	</div>
-</div>
-{% endoverlay %}
-
-
-{% endcomment %}

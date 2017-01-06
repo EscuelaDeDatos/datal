@@ -895,3 +895,6 @@ msgstr "Resource can't be published"
 
 msgid "EXCEPTION-DESCRIPTION-PARENT-NOT-PUBLISHED"
 msgstr "You need to publish the resource parent."
+
+msgid "APP-REVISIONS-TEXT"
+msgstr "Revisions"

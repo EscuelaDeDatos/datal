@@ -75,10 +75,18 @@
 {% endblock %}
 
 {% block bottom_js %}
+
+{# Common JS for this screen #}
+<script src="{% static 'workspace/scripts/manageResources/views/deleteItemView.js' %}"></script>
+
+{# JS for this screen #}
 <script src="{% static 'workspace/scripts/viewVisualization/deleteItemView.js' %}"></script>
 <script src="{% static 'workspace/scripts/viewVisualization/unpublishView.js' %}"></script>
 <script src="{% static 'workspace/scripts/viewVisualization/ChartView.js' %}"></script>
+
+{# Main View for this screen #}
 <script src="{% static 'workspace/scripts/viewVisualization/MainView.js' %}"></script>
+
 <script type="text/javascript">
 var params = [];
   {% for param in visualization_revision.parameters %}
@@ -107,6 +115,7 @@ var chartModel = new charts.models.Chart({
     lastPublishRevisionId: "{{ visualization_revision.last_published_revision_id }}",
     editUrl: "{% url 'manageVisualizations.edit' visualization_revision.last_revision_id %}",
     parameters: params,
+    cant: "{{ visualization_revision.cant }}",
 
     // Validar si es necesario
     guid: "{{visualization_revision.guid}}",

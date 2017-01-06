@@ -47,12 +47,14 @@ var datasetView = Backbone.Epoxy.View.extend({
 		this.publishChildResources = new Array();
 		this.publishChildResources.push(this.model);
 		var affectedResourcesCollection = new AffectedResourcesCollection();
-        var affectedResourcesCollectionPublishView = new AffectedResourcesCollectionPublishItemView({
-            collection: affectedResourcesCollection,
-            models: this.publishChildResources,
-            type: "datastreams",
-            parentView: this
-        });
+		affectedResourcesCollection.url = '/datasets/retrieve_childs/';
+		
+    var affectedResourcesCollectionPublishView = new AffectedResourcesCollectionPublishItemView({
+        collection: affectedResourcesCollection,
+        models: this.publishChildResources,
+        type: "datastreams",
+        parentView: this
+    });
 	},
 
 	onUnpublishButtonClicked: function(){
@@ -131,6 +133,8 @@ var datasetView = Backbone.Epoxy.View.extend({
 				$("#ajax_loading_overlay").hide();
 				datalEvents.trigger('datal:application-error', response);
 			}
+		}).fail(function () {
+			$("#ajax_loading_overlay").hide();
 		});
 
 	},

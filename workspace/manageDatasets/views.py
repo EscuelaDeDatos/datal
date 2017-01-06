@@ -111,8 +111,6 @@ def index(request):
     account_domain = request.preferences['account.domain']
     ds_dao = DatasetDBDAO()
     filters = ds_dao.query_filters(account_id=request.user.account.id, language=request.user.language)
-    datastream_impl_valid_choices = DATASTREAM_IMPL_VALID_CHOICES
-
     return render_to_response('manageDatasets/index.html', locals())
 
 
@@ -440,10 +438,12 @@ def retrieve_childs(request):
     list_result = []
     for associated_resource in associated_resources['datastreams']:
         associated_resource['type'] = 'dataview'
+        associated_resource['title'] = associated_resource['datastreami18n__title']
         list_result.append(associated_resource)
 
     for associated_resource in associated_resources['visualizations']:
         associated_resource['type'] = 'visualization'
+        associated_resource['title'] = associated_resource['visualizationi18n__title']
         list_result.append(associated_resource)
 
     dump = json.dumps(list_result, cls=DjangoJSONEncoder)

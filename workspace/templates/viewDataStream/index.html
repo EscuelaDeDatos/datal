@@ -10,7 +10,6 @@
 <link href="{% static 'core/styles/dataStreamForm.css' %}" type="text/css" rel="stylesheet" media="screen"/>
 <link href="{% sass_src 'workspace/styles/detailCommon.scss' %}" type="text/css" rel="stylesheet" media="screen"/>
 <link href="{% sass_src 'workspace/styles/viewDataStream.scss' %}" type="text/css" rel="stylesheet" media="screen"/>
-<link href="{% sass_src 'workspace/styles/overlayEditDataView.scss' %}" type="text/css" rel="stylesheet" media="screen"/>
 {% endcompress %}
 
 {# JS Libs and Plugins #}
@@ -21,43 +20,27 @@
 <script type="text/javascript" src="/js_core/plugins/jquery.numberformatter-1.2.3.min.js?id={{settings.VERSION_JS_CSS}}"></script>
 <script type="text/javascript" src="/js_core/plugins/nicEdit/nicEdit-2014.js?id={{settings.VERSION_JS_CSS}}"></script>
 
-{# JS for this screen #}
+{# Common JS for this screen #}
 <script language="javascript" src="/js_core/models.js?id={{settings.VERSION_JS_CSS}}"></script>
+<script src="{% static 'workspace/scripts/manageResources/models/affectedResourcesModel.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/views/affectedResourcesView.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/collections/affectedResourcesCollection.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/views/affectedResourcesCollectionView.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/views/deleteItemView.js' %}"></script>
+
+{# JS for this screen #}
+<script src="{% static 'workspace/scripts/viewDataStream/deleteItemView.js' %}"></script>
+<script src="{% static 'workspace/scripts/viewDataStream/unpublishView.js' %}"></script>
+<script src="{% static 'workspace/scripts/viewDataStream/affectedResourcesCollectionDeleteView.js' %}"></script>
+<script src="{% static 'workspace/scripts/viewDataStream/affectedResourcesCollectionPublishItemView.js' %}"></script>
+<script src="{% static 'workspace/scripts/viewDataStream/affectedResourcesCollectionUnpublishView.js' %}"></script>
 <script src="{% static 'workspace/scripts/viewDataStream/changeDataStreamParametersModel.js' %}"></script>
 <script src="{% static 'workspace/scripts/viewDataStream/changeDataStreamParametersView.js' %}"></script>
 <script src="{% static 'workspace/scripts/viewDataStream/dataTableModel.js' %}"></script>
 <script src="{% static 'workspace/scripts/viewDataStream/dataTableView.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/resourceItemModel.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/listResources.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/datasetItemModel.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/listDatasets.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/datasetItemView.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/manageDatasetsOverlayView.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/deleteItemView.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/unpublishView.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/affectedResourcesModel.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/affectedResourcesView.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/affectedResourcesCollection.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/affectedResourcesCollectionDeleteView.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/affectedResourcesCollectionPublishItemView.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/affectedResourcesCollectionUnpublishView.js' %}"></script>
-
-{# JS for Edit #}
-<script src="{% static 'workspace/scripts/viewDataStream/datastreamEditItemView.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/datastreamEditItemModel.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/datastreamEditItemSourceModel.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/datastreamEditItemSourceView.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/datastreamEditItemSourcesCollection.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/datastreamEditItemSourcesView.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/datastreamEditItemAddSourceModel.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/datastreamEditItemAddSourceView.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/datastreamEditItemTagModel.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/datastreamEditItemTagView.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/datastreamEditItemTagsCollection.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataStream/datastreamEditItemTagsView.js' %}"></script>
-<script language="javascript" src="/js_core/plugins/tagging.js?id={{settings.VERSION_JS_CSS}}"></script>
-<script language="javascript" src="/js_core/plugins/taggingSources.js?id={{settings.VERSION_JS_CSS}}"></script>
 <script src="{% static 'workspace/scripts/viewDataStream/viewDataStreamModel.js' %}"></script>
+
+{# Main View for this screen #}
 <script src="{% static 'workspace/scripts/viewDataStream/viewDataStreamView.js' %}"></script>
 
 <meta name="main-option" content="id_dataviews_option"/>
@@ -115,29 +98,12 @@ $(document).ready(function(){
     publicUrl: "{{settings.MSPROTOCOL}}://{{preference.account_domain}}{% permalink 'datastream' datastream.datastream_id datastream.slug %}",
     createdAt: "{{ datastream.created_at|date:'F d, Y, h:i A'|capfirst  }}",
     modifiedAt: "{{ datastream.modified_at|date:'F d, Y, h:i A'|capfirst  }}",
-    can_publish_bof_children: "{{ dataset.can_publish_bof_children|default:'null' }}"
-  });
-  
-  var datastreamEditItemModel = new DatastreamEditItemModel({
-    datastream_revision_id: "{{datastream.datastream_revision_id}}",
-    title: "{{datastream.title|capfirst}}",
-    category: "{{datastream.category_id}}",
-    allCategories: [{% for category in categories %}{"label":"{{category.name}}", "value":"{{category.category__id}}"},{% endfor %}],
-    status: "{{datastream.status}}",
-    description: "{{datastream.description|escapejs}}",
-    sources: [{% for source in datastream.sources %}{"name":"{{ source.source__name }}"},{% endfor %}],
-    tags: [{% for tag in datastream.tags %}{"name":"{{ tag.tag__name }}"},{% endfor %}],
-    notes: "{{datastream.notes|escapejs}}",
-    sourceUrl: '/rest/sources.json/',
-    tagUrl: '/rest/tags.json/',
-    editUrl: "{% url 'manageDataviews.edit' %}{{datastream.datastream_revision_id}}/",
+    can_publish_bof_children: "{{ dataset.can_publish_bof_children|default:'null' }}",
+    cant: "{{ datastream.cant }}"
   });
 
   var viewDataStreamView = new ViewDataStreamView({
-    model: viewDataStreamModel,
-    sourceUrl: '/rest/sources.json/',
-    tagUrl: '/rest/tags.json/',
-    datastreamEditItemModel: datastreamEditItemModel
+    model: viewDataStreamModel
   });
 });
 </script>

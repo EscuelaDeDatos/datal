@@ -553,21 +553,6 @@ msgstr "The account doesn't have a domain configured. "
 msgid "APP-INEXISTENT-DOMAIN-ADMIN-2"
 msgstr "Configure it here"
 
-msgid "APP-OVERLAY-DELETE-DATASET-CONFIRM-TITLE"
-msgstr "Delete Dataset "
-
-msgid "APP-DELETE-DATASET-ACTION-TEXT"
-msgstr "The dataset and the associated resources have been deleted."
-
-msgid "APP-DELETE-DATASET-ACTION-ERROR-TEXT"
-msgstr "Error on deleting the dataset and the associated resources."
-
-msgid "APP-DELETE-DATASET-REV-ACTION-TEXT"
-msgstr "The dataset revision have been deleted."
-
-msgid "APP-DELETE-DATASET-REV-ACTION-ERROR-TEXT"
-msgstr "Error on deleteing the dataset revision."
-
 msgid "APP-GRID-CELL-TITLE"
 msgstr "TITLE"
 
@@ -588,18 +573,6 @@ msgstr "TYPE"
 
 msgid "APP-GRID-CELL-AUTHOR"
 msgstr "AUTHOR"
-
-msgid "APP-OVERLAY-DELETE-DATASTREAM-CONFIRM-TITLE"
-msgstr "Delete Data View"
-
-msgid "APP-OVERLAY-DELETE-VISUALIZATION-CONFIRM-TITLE"
-msgstr "Delete Visualization"
-
-msgid "APP-DELETE-DATASTREAM-ACTION-TEXT"
-msgstr "The datastream and the associated resources have been deleted."
-
-msgid "APP-DELETE-DATASTREAM-REV-ACTION-TEXT"
-msgstr "The datastream revision have been deleted."
 
 msgid "APP-ERROR-TEXT"
 msgstr "Error"
@@ -823,12 +796,6 @@ msgstr "Show resources catalog."
 msgid "APP-REDIRECTING-TEXT"
 msgstr "Redirecting..."
 
-msgid "APP-OVERLAY-DELETE-DATASTREAM-TITLE"
-msgstr "Delete Datastream"
-
-msgid "APP-DELETE-DATASTREAM-REV-ACTION-ERROR-TEXT"
-msgstr "Error on deleteing the datastream revision."
-
 msgid "APP-DATASTREAM-SAVESUCCESS-TEXT"
 msgstr "Data View saved successfully"
 
@@ -844,9 +811,6 @@ msgstr "Review"
 msgid "APP-VALID-PHONE-TEXT"
 msgstr "Specify a valid phone number"
 
-msgid "APP-DELETE-VISUALIZATION-ACTION-TEXT"
-msgstr "The visualization has been deleted."
-
 msgid "APP-CHART-TEXT"
 msgstr "Chart"
 
@@ -858,18 +822,6 @@ msgstr "Select the data you want to represent"
 
 msgid "APP-CUSTOMIZE-VISUALIZATION-VALIDATE-HEADLINES"
 msgstr "Headlines and columns length must be the equal"
-
-msgid "APP-DELETE-DATAVIEW-TEXT"
-msgstr "Delete Dataview"
-
-msgid "APP-DELETE-VISUALIZATION-TEXT"
-msgstr "Delete Visualization"
-
-msgid "APP-DELETE-DATASTREAM-ACTION-ERROR-TEXT"
-msgstr "Error on deleting the datastream and the associated resources."
-
-msgid "APP-DELETE-VISUALIZATION-ACTION-ERROR-TEXT"
-msgstr "Error on deleting the visualization and the associated resources."
 
 msgid "APP-GRID-CELL-MODIFIED"
 msgstr "Modified"
@@ -978,3 +930,57 @@ msgstr "Embed video code (optional)"
 
 msgid "APP-ACCOUNT-NAME-NOT-VALID"
 msgstr "Invalid organizacion name"
+
+msgid "APP-DELETE-DATASET-ACTION-TITLE"
+msgstr "Deleted successfully"
+
+msgid "APP-DELETE-DATASTREAM-ACTION-TITLE"
+msgstr "Deleted successfully"
+
+msgid "APP-DELETE-VISUALIZATION-ACTION-TITLE"
+msgstr "Deleted successfully"
+
+msgid "APP-DELETE-DATASET-ACTION-TEXT"
+msgstr "The Dataset and the associated resources have been deleted."
+
+msgid "APP-DELETE-DATASTREAM-ACTION-TEXT"
+msgstr "The Data View and the associated resources have been deleted."
+
+msgid "APP-DELETE-VISUALIZATION-ACTION-TEXT"
+msgstr "The Visualization has been deleted."
+
+msgid "APP-DELETE-DATASET-REV-ACTION-TEXT"
+msgstr "The Dataset revision has been deleted."
+
+msgid "APP-DELETE-DATASTREAM-REV-ACTION-TEXT"
+msgstr "The Data View revision has been deleted."
+
+msgid "APP-DELETE-VISUALIZATION-REV-ACTION-TEXT"
+msgstr "The Visualization revision has been has been deleted."
+
+msgid "APP-DELETE-REDIRECT-TEXT"
+msgstr "Wait a moment while the page reloads."
+
+msgid "APP-DELETE-ACTION-ERROR-TITLE"
+msgstr "Could not delete."
+
+msgid "APP-DELETE-DATASET-ACTION-ERROR-TEXT"
+msgstr "There was an internal error when we tried to delete the Dataset. Try again in a few minutes and if the problem continues, please report it."
+
+msgid "APP-DELETE-DATASTREAM-ACTION-ERROR-TEXT"
+msgstr "There was an internal error when we tried to delete the Data View. Try again in a few minutes and if the problem continues, please report it."
+
+msgid "APP-DELETE-VISUALIZATION-ACTION-ERROR-TEXT"
+msgstr "There was an internal error when we try to delete the Visualization. Try again in a few minutes and if the problem continues, please report it."
+
+msgid "APP-DELETE-DATASET-REV-ACTION-ERROR-TEXT"
+msgstr "There was an internal error when we tried to delete the Dataset revision. Try again in a few minutes and if the problem continues, please report it."
+
+msgid "APP-DELETE-DATASTREAM-REV-ACTION-ERROR-TEXT"
+msgstr "There was an internal error when we tried to delete the Data View revision. Try again in a few minutes and if the problem continues, please report it."
+
+msgid "APP-DELETE-VISUALIZATION-REV-ACTION-ERROR-TEXT"
+msgstr "There was an internal error when we try to delete the Visualization revision. Try again in a few minutes and if the problem continues, please report it."
+
+msgid "APP-OVERLAY-DELETE"
+msgstr "Delete"

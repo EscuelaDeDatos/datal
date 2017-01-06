@@ -1,7 +1,7 @@
 {% load i18n extra_tags core_components components %}
 
-<!-- Delete Dataview Overlay -->
-{% overlay id_deleteDataview %}
+<!-- Delete Overlay Overlay -->
+{% overlay id_deleteOverlay %}
 <div class="In clearfix">
 	<h4>{% trans 'APP-OVERLAY-DELETE-DATASTREAM-TITLE' %}</h4>
 	<div class="ov-content">
@@ -16,10 +16,10 @@
 </div>
 {% endoverlay %}
 
-<!-- Delete Dataview Confirm Overlay -->
-{% overlay id_confirmDeleteDataview %}
+<!-- Delete Overlay Confirm Overlay -->
+{% overlay id_confirmDeleteOverlay %}
 <div class="In clearfix">
-	<h4>{% trans 'APP-OVERLAY-DELETE-DATASTREAM-TITLE' %}</h4>
+	<h4>{% trans 'APP-OVERLAY-DELETE-DATASTREAM-CONFIRM-TITLE' %}</h4>
 	<div class="ov-content">
 		<p class="text center">{% trans 'APP-OVERLAY-DELETE-DATASTREAM-CONFIRM-TEXT' %}</p>
 		<ul class="ul-overlay" id="id_affectedResourcesList"></ul>
@@ -32,115 +32,3 @@
 	</div>
 </div>
 {% endoverlay %}
-
-<!-- Edit Dataview -->
-{% overlay id_editDataview %}
-<div id="id_editDataview" class="In clearfix">
-	<h4>{% trans 'APP-EDIT-DATAVIEW-TEXT' %} <span>{% trans 'APP-MANDATORY-FIELDS-TEXT' %}</span></h4>
-	<div class="formContent">
-		
-	</div>
-</div>
-{% endoverlay %}
-
-
-
-
-
-
-
-
-
-
-{# NOT IMPLEMENTED YET #}
-{% comment %}
-
-<!-- Bulk Actions Delete Dataview Overlay -->
-{% overlay id_bulkDeleteDataview %}
-<div class="In clearfix">
-	<h4>{% trans 'APP-OVERLAY-BULK-DELETE-DATASTREAM-TITLE' %}</h4>
-	<div class="ov-content">
-		<p class="text center">{% trans 'APP-OVERLAY-BULK-DELETE-DATASTREAM-TEXT' %}</p>
-	</div>
-	<div class="ov-bottom">
-		<div class="ov-buttons">
-			<a id="id_deleteResource" class="button red" title="{% trans 'APP-DELETE-BULK-RESOURCES-TEXT' %}">{% trans 'APP-DELETE-BULK-RESOURCES-TEXT' %}</a>
-			<a id="id_deleteRevision" class="button delete" title="{% trans 'APP-DELETE-BULK-REVISIONS-TEXT' %}">{% trans 'APP-DELETE-BULK-REVISIONS-TEXT' %}</a>
-		</div>
-	</div>
-</div>
-{% endoverlay %}
-
-
-<!-- Bulk Actions Overlay -->
-{% overlay id_bulkActions %}
-<div class="In clearfix">
-	<h4>{% trans 'APP-OVERLAY-BULKACTIONS-TITLE' %}</h4>
-	<div class="ov-content">
-		<div class="left">
-			<ul class="ul-overlay">
-				<li><span class="icon-dataview"></span>Anual staff figures</li>
-				<li><span class="icon-dataview"></span>LATAM Scorecard Countries</li>
-				<li><span class="icon-dataview"></span>Europe Scorecard Countries</li>
-			</ul>
-		</div>
-		<div class="right">
-			<div class="selectTitle ">{% trans 'APP-OVERLAY-BULKACTIONS-CATEGORY' %}</div>
-			<select>
-				<option value="">Category name</option>
-			</select>
-			<div class="selectTitle ">{% trans 'APP-OVERLAY-BULKACTIONS-STATUS' %}</div>
-			<select>
-				<option value="">{% trans 'MODEL_STATUS_DRAFT' %}</option>
-				<option value="">{% trans 'MODEL_STATUS_PENDING_REVIEW' %}</option>
-				<option value="">{% trans 'MODEL_STATUS_PUBLISHED' %}</option>
-			</select>
-		</div>
-	</div>
-	<div class="ov-bottom">
-		<div class="ov-buttons">
-			<a href="#" class="button primary small" title="{% trans 'APP-OVERLAY-SAVE' %}">{% trans 'APP-OVERLAY-SAVE' %}</a>
-			<a href="#" class="cancel" title="{% trans 'APP-OVERLAY-CANCEL' %}">{% trans 'APP-OVERLAY-CANCEL' %}</a>
-		</div>
-	</div>
-</div>
-{% endoverlay %}
-
-<!-- Pending Actions Not Published Overlay -->
-{% overlay id_pendingNotPublished %}
-<div class="In clearfix">
-	<h4>{% trans 'APP-OVERLAY-PENDING-TITLE' %}</h4>
-	<div class="ov-content">
-		<div class="ov-alert">
-			<span class="icon-warning"></span>{% trans 'APP-OVERLAY-ALERT-WARNING' %}
-		</div>
-		<p></p>
-		<p>{% trans 'APP-OVERLAY-ALERT-WARNING-TEXT' %}</p>
-		<ul class="ul-overlay">
-			<li><span class="icon-dataview"></span><a href="">Anual staff figures</a></li>
-			<li><span class="icon-visualization"></span><a href="">LATAM Scorecard Countries</a></li>
-			<li><span class="icon-dashboard"></span><a href="">Europe Scorecard Countries</a></li>
-		</ul>
-	</div>
-</div>
-{% endoverlay %}
-
-<!-- Pending Actions Published Overlay -->
-{% overlay id_pendingPublished %}
-<div class="In clearfix">
-	<h4>{% trans 'APP-OVERLAY-PENDING-TITLE' %}</h4>
-	<div class="ov-content">
-		<div class="ov-alert">
-			<span class="icon-check"></span>{% trans 'APP-OVERLAY-ALERT-OK' %}
-		</div>
-		<p></p>
-		<p>{% trans 'APP-OVERLAY-ALERT-OK-TEXT' %}</p>
-		<ul class="ul-overlay">
-			<li><span class="icon-dataview"></span><a href="">Anual staff figures</a></li>
-		</ul>
-	</div>
-</div>
-{% endoverlay %}
-
-
-{% endcomment %}

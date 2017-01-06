@@ -1084,3 +1084,6 @@ msgstr "Resource"
 
 msgid "APP-ALL-S-TEXT"
 msgstr "All"
+
+msgid "APP-REVISIONS-TEXT"
+msgstr "Revisions"

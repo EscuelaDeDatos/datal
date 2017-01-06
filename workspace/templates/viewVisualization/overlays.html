@@ -1,7 +1,7 @@
 {% load i18n extra_tags core_components components %}
 
-<!-- Delete Visualization Overlay -->
-{% overlay id_deleteVisualization %}
+<!-- Delete Resource Overlay -->
+{% overlay id_deleteOverlay %}
 <div class="In clearfix">
    <h4>{% trans 'APP-OVERLAY-DELETE-VISUALIZATION-TITLE' %}</h4>
    <div class="ov-content">
@@ -10,9 +10,7 @@
    <div class="ov-bottom">
       <div class="ov-buttons">
          <a id="id_deleteResource" class="button red" title="{% trans 'APP-DELETE-RESOURCE-TEXT' %}">{% trans 'APP-DELETE-RESOURCE-TEXT' %}</a>
-         {% if visualization_revision.cant > 1 %}
          <a id="id_deleteRevision" class="button delete" title="{% trans 'APP-DELETE-REVISION-TEXT' %}">{% trans 'APP-DELETE-REVISION-TEXT' %}</a>
-         {% endif %}
       </div>
    </div>
 </div>
@@ -27,11 +25,12 @@
    </div>
    <div class="ov-bottom">
       <div class="ov-buttons">
-         <a id="id_unpublishResource" class="button" title="{% trans 'APP-UNPUBLISH-RESOURCE-TEXT' %}" data-action="unpublish">{% trans 'APP-UNPUBLISH-RESOURCE-TEXT' %}</a>
 
-{% if visualization_revision.last_revision_id == visualization_revision.last_published_revision_id and visualization_revision.cant > 1 %}
+         <a id="id_unpublishResource" class="button {% if visualization_revision.cant == 1 %}primary{% endif %}" title="{% trans 'APP-UNPUBLISH-RESOURCE-TEXT' %}" data-action="unpublish">{% trans 'APP-UNPUBLISH-RESOURCE-TEXT' %}</a>
+         {% if visualization_revision.last_revision_id == visualization_revision.last_published_revision_id and visualization_revision.cant != 1 %}
          <a id="id_unpublishRevision" class="button primary" title="{% trans 'APP-UNPUBLISH-REVISION-TEXT' %}" data-action="unpublish">{% trans 'APP-UNPUBLISH-REVISION-TEXT' %}</a>
-{% endif %}
+         {% endif %}
+
       </div>
    </div>
 </div>

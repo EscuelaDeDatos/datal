@@ -112,7 +112,15 @@
 					<span class="icon icon-inline icon-published"></span>
 				<% } %>
 
-				<em id="id_status" class="<% if(status == StatusChoices.REJECTED){ %> red <% }else if(status == StatusChoices.APPROVED){ %> green <% } %>"><%= status_str %></em>
+				<em id="id_status" class="<% if(status == StatusChoices.REJECTED){ %> red <% }else if(status == StatusChoices.APPROVED){ %> green <% } %>">
+
+					<%= status_str %>
+
+					{% comment %}
+					<span class="revision">({{ dataset.cant }} {% if dataset.cant > 1 %}{% trans 'APP-REVISIONS-TEXT' %}{% else %}{% trans 'APP-REVISION-TEXT' %}{% endif %})</span>
+					{% endcomment %}
+
+				</em>
 
 			</span>
 

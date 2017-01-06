@@ -281,20 +281,6 @@ def create(request):
         response = form.save(request, datastream_rev=datastream_rev)
 
         return JSONHttpResponse(json.dumps(response))
-    
-
-@login_required
-@require_GET
-def retrieve_childs(request):
-    visualization_revision_id = request.GET.get('revision_id', '')
-    visualization_id = request.GET.get('visualization_id', '')
-    visualizations = VisualizationDBDAO().query_childs(
-        visualization_id=visualization_id,
-        language=request.auth_manager.language
-    )
-
-    list_result = [associated_visualization for associated_visualization in visualizations]
-    return HttpResponse(json.dumps(list_result), content_type="application/json")
 
 
 @login_required

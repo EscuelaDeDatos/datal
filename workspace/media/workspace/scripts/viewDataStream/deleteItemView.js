@@ -1,116 +1,53 @@
-var DeleteItemView = Backbone.View.extend({
-	
-	el: '#id_deleteDataview',
+DeleteItemView = DeleteItemView.extend({
 
-	parentView: null,
-	
-	events: {
-		"click #id_deleteResource": "deleteDataview",
-		"click #id_deleteRevision": "deleteRevision"
-	},
+  initialize: function(options) {
 
-	initialize: function(options) {
+      // Super parent init
+      DeleteItemView.__super__.initialize.apply(this, arguments);
 
-		// this.parentView = this.options.parentView;
-    this.models = options.models;
-    this.type = options.type;
+      this.successTitle = gettext('APP-DELETE-DATASTREAM-ACTION-TITLE');
+      this.successText = gettext('APP-DELETE-DATASTREAM-REV-ACTION-TEXT') + ' ' + gettext('APP-DELETE-REDIRECT-TEXT');
+      this.errorTitle = gettext('APP-DELETE-ACTION-ERROR-TITLE');
+      this.errorText = gettext('APP-DELETE-DATASTREAM-REV-ACTION-ERROR-TEXT');
 
-		// init Overlay
-		this.$el.overlay({
-			top: 'center',
-			left: 'center',
-			mask: {
-				color: '#000',
-				loadSpeed: 200,
-				opacity: 0.5,
-				zIndex: 99999
-			}
-		});
-		
-		// Render
-		this.render();
+  },
 
-	},
-
-	render: function(){
-		this.$el.data('overlay').load();
-	},
-
-	deleteDataview: function() {
+  deleteResource: function() {
 		var affectedResourcesCollection = new AffectedResourcesCollection();
-		var affectedResourcesCollectionDeleteItemView = new AffectedResourcesCollectionDeleteItemView({
+		affectedResourcesCollection.url = '/dataviews/retrieve_childs/';
+
+		var affectedResourcesCollectionView = new AffectedResourcesCollectionView({
 			collection: affectedResourcesCollection,
 			models: this.models,
-			type: this.type
+			type: "visualizations"
 		});
 		this.closeOverlay();
 		this.undelegateEvents();
 	},
 
-	deleteRevision: function() {
-		self = this;
-		_.each(this.models, function(model) {
+	// Over-ride original function
+	afterSuccess: function(data){
 
-			var resource = model.get('title');
+		var deleteRevisionID = data['revision_id'],
+      location = window.location.href,
+      splitURL = location.split("/"),
+      cutURL = splitURL.slice(0, -2),
+      joinURL = cutURL.join("/");
 
-			model.remove_revision({
-				
-                beforeSend: function(xhr, settings){
-                    // Prevent override of global beforeSend
-                    $.ajaxSettings.beforeSend(xhr, settings);
-                    // Show Loading
-                    $("#ajax_loading_overlay").show();
-                },
+    if(deleteRevisionID == -1){
+      setURL = joinURL;
+    }else{
+      setURL = joinURL + "/" + deleteRevisionID;
+    }
 
-				success: function(response, a) {
-					$.gritter.add({
-						title: gettext('APP-OVERLAY-DELETE-DATASTREAM-CONFIRM-TITLE'),
-						text: resource + ": " + gettext('APP-DELETE-DATASTREAM-REV-ACTION-TEXT'),
-						image: '/static/workspace/images/common/ic_validationOk32.png',
-						sticky: false,
-						time: 3500
-					});
-					self.closeOverlay();
-					self.undelegateEvents();
+    setTimeout(function () {
+      window.location = setURL;
+    }, 2000);
 
-                    var deleteRevisionID = a['revision_id'],
-                        location = window.location.href,
-                        splitURL = location.split("/"),
-                        cutURL = splitURL.slice(0, -2),
-                        joinURL = cutURL.join("/");
+	},
 
-
-                    if(deleteRevisionID == -1){
-                        setURL = joinURL;
-                    }else{
-                        setURL = joinURL + "/" + deleteRevisionID;
-                    }
-
-                    setTimeout(function () {
-                           window.location = setURL;
-                    }, 2000);
-				},
-
-				error: function() {
-					$.gritter.add({
-						title: gettext('APP-OVERLAY-DELETE-DATASTREAM-TITLE'),
-						text: resource + ": " + gettext('APP-DELETE-DATASTREAM-REV-ACTION-ERROR-TEXT'),
-						image: '/static/workspace/images/common/ic_validationError32.png',
-						sticky: true,
-						time: 2500
-					});
-					self.closeOverlay();
-					self.undelegateEvents();
-				}
-
-			});
-
-		});
-
-	}, 
-
+	// Over-ride original function
 	closeOverlay: function() {
-		$("#ajax_loading_overlay").hide();
 		this.$el.data('overlay').close();
 	}
 

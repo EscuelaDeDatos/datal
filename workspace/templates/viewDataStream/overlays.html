@@ -1,7 +1,7 @@
 {% load i18n extra_tags core_components components %}
 
-<!-- Delete Dataview Overlay -->
-{% overlay id_deleteDataview %}
+<!-- Delete Resource Overlay -->
+{% overlay id_deleteOverlay %}
 <div class="In clearfix">
    <h4>{% trans 'APP-OVERLAY-DELETE-DATASTREAM-TITLE' %}</h4>
    <div class="ov-content">
@@ -10,16 +10,14 @@
    <div class="ov-bottom">
       <div class="ov-buttons">
          <a id="id_deleteResource" class="button red" title="{% trans 'APP-DELETE-RESOURCE-TEXT' %}">{% trans 'APP-DELETE-RESOURCE-TEXT' %}</a>
-        {% if datastream.cant > 1 %}
          <a id="id_deleteRevision" class="button delete" title="{% trans 'APP-DELETE-REVISION-TEXT' %}">{% trans 'APP-DELETE-REVISION-TEXT' %}</a>
-        {% endif %}
       </div>
    </div>
 </div>
 {% endoverlay %}
 
-<!-- Delete Dataview Confirm Overlay -->
-{% overlay id_confirmDeleteDataview %}
+<!-- Delete Resource Confirm Overlay -->
+{% overlay id_confirmDeleteOverlay %}
 <div class="In clearfix">
    <h4>{% trans 'APP-OVERLAY-DELETE-DATASTREAM-CONFIRM-TITLE' %}</h4>
    <div class="ov-content">
@@ -44,10 +42,12 @@
    </div>
    <div class="ov-bottom">
       <div class="ov-buttons">
-         <a id="id_unpublishResource" class="button" title="{% trans 'APP-UNPUBLISH-RESOURCE-TEXT' %}">{% trans 'APP-UNPUBLISH-RESOURCE-TEXT' %}</a>
-{% if datastream.last_revision_id == datastream.last_published_revision_id and datastream.cant > 1 %}
+
+         <a id="id_unpublishResource" class="button {% if datastream.cant == 1 %}primary{% endif %}" title="{% trans 'APP-UNPUBLISH-RESOURCE-TEXT' %}" data-action="unpublish">{% trans 'APP-UNPUBLISH-RESOURCE-TEXT' %}</a>
+         {% if datastream.last_revision_id == datastream.last_published_revision_id and datastream.cant != 1 %}
          <a id="id_unpublishRevision" class="button primary" title="{% trans 'APP-UNPUBLISH-REVISION-TEXT' %}" data-action="unpublish">{% trans 'APP-UNPUBLISH-REVISION-TEXT' %}</a>
-{% endif %}
+         {% endif %}
+
       </div>
    </div>
 </div>
@@ -70,25 +70,15 @@
 </div>
 {% endoverlay %}
 
-<!-- Edit Dataview -->
-{% overlay id_editDataview %}
-<div id="id_editDataview" class="In clearfix">
-   <h4>{% trans 'APP-EDIT-DATAVIEW-TEXT' %} <span>{% trans 'APP-MANDATORY-FIELDS-TEXT' %}</span></h4>
-   <div class="formContent">
-      
-   </div>
-</div>
-{% endoverlay %}
-
 <!-- Parameters overlay -->
 {% include "overlays/parameters.html" %}
 
-<!-- Accept and publis datastream Confirm Overlay -->
+<!-- Accept and publish datastream Confirm Overlay -->
 {% overlay id_confirmPublishDatastream %}
 <div class="In clearfix">
    <h4>{% trans 'APP-OVERLAY-PUBLISH-DATASTREAM-CONFIRM-TITLE' %}</h4>
    <div class="ov-content">
-      <p class="text">{% trans 'APP-OVERLAY-PUBLISH-DATASTREAM-CONFIRM-TEXT' %}</p>
+      <p class="text center more-padding">{% trans 'APP-OVERLAY-PUBLISH-DATASTREAM-CONFIRM-TEXT' %}</p>
       <ul class="ul-overlay" id="id_affectedResourcesList"></ul>
    </div>
    <div class="ov-bottom">

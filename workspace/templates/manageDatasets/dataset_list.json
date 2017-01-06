@@ -20,10 +20,10 @@
 	"items":[
 		{% for resource in data.resources %}
 		{
-			"author": "{{resource.dataset__user__name}}", 
 			"status": {{resource.status}}, 
-			"status_nice": "{{resource.status|status_str|capfirst}}", 
+			"status_name": "{{resource.status|status_str|capfirst}}", 
 			"user_id": "{{resource.dataset__user__id}}", 
+			"user": "{{resource.dataset__user__name}}", 
 			"guid":"{{resource.dataset__guid}}", 
 			"category_id":"{{resource.category__id}}", 
 			"dataset_id": {{resource.dataset__id}}, 

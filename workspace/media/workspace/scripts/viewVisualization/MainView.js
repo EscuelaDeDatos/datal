@@ -109,6 +109,7 @@ var MainView = Backbone.View.extend({
 				$.ajaxSettings.beforeSend(xhr, settings);
 				// Show Loading
 				self.$('.visualizationContainer .loading').removeClass('hidden');
+				$("#ajax_loading_overlay").show();
 			},
 			success: function(response){
 
@@ -130,7 +131,10 @@ var MainView = Backbone.View.extend({
 						text: response.messages.description,
 						image: '/static/workspace/images/common/ic_validationOk32.png',
 						sticky: false,
-						time: 2500
+						time: 2500,
+						after_close: function () {
+							window.location.reload();
+						}
 					});
 
 				}else{
@@ -142,13 +146,11 @@ var MainView = Backbone.View.extend({
 			error:function(response){
 				datalEvents.trigger('datal:application-error', response);
 				self.$('.visualizationContainer .loading').addClass('hidden');
-			},
-			complete:function(response){
-				// Hide Loading
-				self.$('.visualizationContainer .loading').addClass('hidden');
+				$("#ajax_loading_overlay").hide();
 			}
 		}).fail(function () {
 			self.$('.visualizationContainer .loading').addClass('hidden');
+			$("#ajax_loading_overlay").hide();
 		});
 
 	},

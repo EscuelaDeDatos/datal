@@ -7,16 +7,23 @@
 <link href="{% sass_src 'workspace/styles/viewDataset.scss' %}" type="text/css" rel="stylesheet" media="screen"/>
 {% endcompress %}
 
+{# Common JS for this screen #}
 <script type="text/javascript" src="/js_core/models.js?id={{settings.VERSION_JS_CSS}}"></script>
+<script src="{% static 'workspace/scripts/manageResources/models/affectedResourcesModel.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/views/affectedResourcesView.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/collections/affectedResourcesCollection.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/views/affectedResourcesCollectionView.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/views/deleteItemView.js' %}"></script>
+
+{# JS for this screen #}
 <script src="{% static 'workspace/scripts/viewDataset/deleteItemView.js' %}"></script>
 <script src="{% static 'workspace/scripts/viewDataset/unpublishView.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataset/affectedResourcesModel.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataset/affectedResourcesView.js' %}"></script>
-<script src="{% static 'workspace/scripts/viewDataset/affectedResourcesCollection.js' %}"></script>
 <script src="{% static 'workspace/scripts/viewDataset/affectedResourcesCollectionDeleteView.js' %}"></script>
 <script src="{% static 'workspace/scripts/viewDataset/affectedResourcesCollectionPublishItemView.js' %}"></script>
 <script src="{% static 'workspace/scripts/viewDataset/affectedResourcesCollectionUnpublishView.js' %}"></script>
 <script src="{% static 'workspace/scripts/viewDataset/datasetModel.js' %}"></script>
+
+{# Main View for this screen #}
 <script src="{% static 'workspace/scripts/viewDataset/datasetView.js' %}"></script>
 
 <meta name="main-option" content="id_datasets_option"/>
@@ -37,15 +44,11 @@
       <div class="col-xs-12">
         <nav class="tab-nav tab-nav-lg" role="tablist">
           <ul>
-          <li>
-                  <a href="#description" id="0" role="tab" aria-selected="true" aria-expanded="true" aria-controls="#description" tab-index="0">{% trans 'APP-DESCRIPTION-TEXT' %}</a>
-          </li>
-          {% if dataset.datastreams or dataset.visualizations %}
-          <li>
-                  <a href="#related-resources" id="1" role="tab" aria-selected="false" aria-expanded="false" aria-controls="#related-resources" tab-index="-1">{% trans 'APP-RELATED-RESOURCES-TEXT' %}</a>
-          </li>
+            <li><a href="#description" id="0" role="tab" aria-selected="true" aria-expanded="true" aria-controls="#description" tab-index="0">{% trans 'APP-DESCRIPTION-TEXT' %}</a></li>
+            {% if dataset.datastreams or dataset.visualizations %}
+            <li><a href="#related-resources" id="1" role="tab" aria-selected="false" aria-expanded="false" aria-controls="#related-resources" tab-index="-1">{% trans 'APP-RELATED-RESOURCES-TEXT' %}</a></li>
+            {% endif %}
           </ul>
-          {% endif %}
         </nav>
       </div>
       <div class="resource-detail">
@@ -84,7 +87,8 @@ $(document).ready(function(){
     publicUrl: "{{settings.MSPROTOCOL}}://{{preference.account_domain}}{% permalink 'dataset' dataset.dataset_id dataset.slug %}",
     createdAt: "{{ dataset.created_at|date:'F d, Y, h:i A'|capfirst }}",
     modifiedAt: "{{ dataset.modified_at|date:'F d, Y, h:i A'|capfirst }}",
-    can_publish_bof_children: "{{ dataset.can_publish_bof_children|default:'null' }}"
+    can_publish_bof_children: "{{ dataset.can_publish_bof_children|default:'null' }}",
+    cant: "{{ dataset.cant }}"
   });
   var DatasetView = new datasetView({model: Dataset});
 });

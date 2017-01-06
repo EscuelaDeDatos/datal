@@ -16,8 +16,8 @@ _.extend(BaseView.prototype, Backbone.View.prototype, {
 	baseEvents: {
 		"click .header .tab.pulldown > a": "onHeaderPulldownButtonClicked",
 		"click .button-pulldown .button": "toggleDropDownMenu",
-		"click #id_navNewDataview": "onNewDataviewButtonClicked",
-		"click #id_navNewVisualization": "onNewVisualizationButtonClicked",
+		"click #id_navNewDataview, #id_manageDataviewAddNewButton": "onNewDataviewButtonClicked",
+		"click #id_navNewVisualization, #id_manageVisualizationAddNewButton": "onNewVisualizationButtonClicked",
 	},
 
 	events: function() {

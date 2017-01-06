@@ -21,10 +21,10 @@
     [
     {% for resource in data.resources %}
     {
-        "author": "{{resource.datastream__user__name}}"
-        , "status": {{resource.status}}
-        , "status_nice": "{{resource.status|status_str|capfirst}}"
+        "status": {{resource.status}}
+        , "status_name": "{{resource.status|status_str|capfirst}}"
         , "user_id": "{{resource.datastream__user__id}}" 
+        , "user": "{{resource.datastream__user__name}}"
         , "category_id":"{{resource.category__id}}"
         , "datastream_id": {{resource.datastream__id}}
         , "category":"{{resource.category__categoryi18n__name}}"

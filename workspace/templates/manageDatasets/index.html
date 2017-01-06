@@ -1,5 +1,5 @@
 {% extends 'base_workspace.html' %}
-{% load i18n extra_tags core_components components compress staticfiles sass_tags dataset_tags plugins_tags%}
+{% load i18n extra_tags core_components components compress staticfiles sass_tags dataset_tags plugins_tags %}
 
 {% block meta %}
 
@@ -14,20 +14,24 @@
 <script type="text/javascript" src="/js_core/plugins/jshashtable-2.1.js?id={{settings.VERSION_JS_CSS}}"></script>
 <script type="text/javascript" src="/js_core/plugins/jquery.numberformatter-1.2.3.min.js?id={{settings.VERSION_JS_CSS}}"></script>
 
-{# JS for this screen #}
-<script src="{% static 'workspace/scripts/manageDatasets/resourceItemModel.js' %}"></script>
-<script src="{% static 'workspace/scripts/manageDatasets/listResources.js' %}"></script>
-<script src="{% static 'workspace/scripts/manageDatasets/titleCellView.js' %}"></script>
-<script src="{% static 'workspace/scripts/manageDatasets/typeCellView.js' %}"></script>
-<script src="{% static 'workspace/scripts/manageDatasets/deleteItemView.js' %}"></script>
-<script src="{% static 'workspace/scripts/manageDatasets/affectedResourcesModel.js' %}"></script>
-<script src="{% static 'workspace/scripts/manageDatasets/affectedResourcesView.js' %}"></script>
-<script src="{% static 'workspace/scripts/manageDatasets/affectedResourcesCollection.js' %}"></script>
-<script src="{% static 'workspace/scripts/manageDatasets/affectedResourcesCollectionView.js' %}"></script>
-<script src="{% static 'workspace/scripts/manageDatasets/filtersView.js' %}"></script>
+{# Common JS for this screen #}
+<script src="{% static 'workspace/scripts/manageResources/models/resourceItemModel.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/collections/listResources.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/views/titleCellView.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/views/filtersView.js' %}"></script>
 <script src="{% static 'workspace/scripts/manageResources/models/manageResourcesModel.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/models/affectedResourcesModel.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/views/affectedResourcesView.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/collections/affectedResourcesCollection.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/views/affectedResourcesCollectionView.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageResources/views/deleteItemView.js' %}"></script>
+
+{# JS for this screen #}
+<script src="{% static 'workspace/scripts/manageDatasets/affectedResourcesCollectionView.js' %}"></script>
+<script src="{% static 'workspace/scripts/manageDatasets/deleteItemView.js' %}"></script>
+
+{# Main view for this screen #}
 <script src="{% static 'workspace/scripts/manageResources/views/manageResourcesView.js' %}"></script>
-<script src="{% static 'workspace/scripts/manageDatasets/manageDatasetsView.js' %}"></script>
 
 {# Left Navigation Selected Option #}
 <meta name="main-option" content="id_datasets_option"/>
@@ -99,19 +103,20 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
+
 		var manageDatasetsModel =  new ManageResourcesModel({
 			total_entries: {{ stats.account_total_datasets }},
 			total_resources: {{ stats.account_total_datasets }}
 		});
 		var manageDatasetsView =  new ManageResourcesView({
 			model: manageDatasetsModel,
-			datastreamImplValidChoices: {% if datastream_impl_valid_choices %}{{ datastream_impl_valid_choices }}{% else %}[]{% endif %},
 			filters: {{filters|jsonify}}
 		});
 	});
 </script>
 
 {# templates backbone #}
+{% include "manageResources/templates.html" %}
 {% include "manageDatasets/templates.html" %}
 
 {% endblock %}

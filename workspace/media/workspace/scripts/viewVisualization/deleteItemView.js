@@ -1,158 +1,76 @@
-var DeleteItemView = Backbone.View.extend({
-	
-	el: '#id_deleteVisualization',
+DeleteItemView = DeleteItemView.extend({
 
-	parentView: null,
-	
-	events: {
-		"click #id_deleteResource": "deleteVisualization",
-		"click #id_deleteRevision": "deleteRevision"
-	},
+  initialize: function(options) {
 
-	initialize: function(options) {
+      // Super parent init
+      DeleteItemView.__super__.initialize.apply(this, arguments);
 
-    this.parentView = options.parentView;
-    this.itemCollection = options.itemCollection;
-    this.models = options.models;
-    this.type = options.type;
+      this.successTitle = gettext('APP-DELETE-VISUALIZATION-ACTION-TITLE');
+      this.successText = gettext('APP-DELETE-VISUALIZATION-REV-ACTION-TEXT') + ' ' + gettext('APP-DELETE-REDIRECT-TEXT');
+      this.errorTitle = gettext('APP-DELETE-ACTION-ERROR-TITLE');
+      this.errorText = gettext('APP-DELETE-VISUALIZATION-REV-ACTION-ERROR-TEXT');
 
-		// init Overlay
-		this.$el.overlay({
-			top: 'center',
-			left: 'center',
-			mask: {
-				color: '#000',
-				loadSpeed: 200,
-				opacity: 0.5,
-				zIndex: 99999
-			}
-		});
-		
-		// Render
-		this.render();
+  },
 
-	},
-
-	render: function(){
-		this.$el.data('overlay').load();
-	},
-
-	deleteVisualization: function() {
-		
-		var self = this;
+  deleteResource: function() {
+    var self = this;
     _.each(this.models, function(model) {
         resource = model.get('title');
         model.remove({
-            
-            beforeSend: function(xhr, settings){
-                // Prevent override of global beforeSend
-                $.ajaxSettings.beforeSend(xhr, settings);
-                // Show Loading
-                $("#ajax_loading_overlay").show();
-            },
 
-            success: function(response, a) {
-                $.gritter.add({
-                    title: gettext('APP-OVERLAY-DELETE-VISUALIZATION-CONFIRM-TITLE'),
-                    text:  resource + ": "+ gettext('APP-DELETE-VISUALIZATION-ACTION-TEXT'),
-                    image: '/static/workspace/images/common/ic_validationOk32.png',
-                    sticky: false,
-                    time: 3500
-                });
-                self.closeOverlay();
-                self.undelegateEvents();
+          success: function(response, data) {
+              $.gritter.add({
+                  title: gettext('APP-OVERLAY-DELETE-VISUALIZATION-CONFIRM-TITLE'),
+                  text:  resource + ": "+ gettext('APP-DELETE-VISUALIZATION-ACTION-TEXT') + ' ' + gettext('APP-DELETE-REDIRECT-TEXT'),
+                  image: '/static/workspace/images/common/ic_validationOk32.png',
+                  sticky: false,
+                  time: 3500
+              });
+              self.closeOverlay();
+              self.undelegateEvents();
+              self.afterSuccess(data);              
+          },
 
-                var location = window.location.href,
-                    splitURL = location.split("/"),
-                    cutURL = splitURL.slice(0, -2),
-                    joinURL = cutURL.join("/");
-
-                setTimeout(function () {
-                    window.location = joinURL;
-                }, 2000);
-                
-            },
-
-            error: function() {
-                $.gritter.add({
-                    title: gettext('APP-DELETE-VISUALIZATION-TEXT'),
-                    text: resource + ": "+  gettext('APP-DELETE-VISUALIZATION-ACTION-ERROR-TEXT'),
-                    image: '/static/workspace/images/common/ic_validationError32.png',
-                    sticky: true,
-                    time: 2500
-                });
-                self.closeOverlay();
-                self.undelegateEvents();
-            }
+          error: function() {
+              $.gritter.add({
+                  title: gettext('APP-DELETE-ACTION-ERROR-TITLE'),
+                  text: resource + ": "+  gettext('APP-DELETE-VISUALIZATION-ACTION-ERROR-TEXT'),
+                  image: '/static/workspace/images/common/ic_validationError32.png',
+                  sticky: true,
+                  time: 2500
+              });
+              self.closeOverlay();
+              self.undelegateEvents();
+          }
         });
 
     });
-	},
+  },
 
-	deleteRevision: function() {
-		self = this;
-		_.each(this.models, function(model) {
+  // Over-ride original function
+  afterSuccess: function(data){
 
-			var resource = model.get('title');
+    var deleteRevisionID = data['revision_id'],
+      location = window.location.href,
+      splitURL = location.split("/"),
+      cutURL = splitURL.slice(0, -2),
+      joinURL = cutURL.join("/");
 
-			model.remove_revision({
-				
-                beforeSend: function(xhr, settings){
-                    // Prevent override of global beforeSend
-                    $.ajaxSettings.beforeSend(xhr, settings);
-                    // Show Loading
-                    $("#ajax_loading_overlay").show();
-                },
+    if(deleteRevisionID == -1){
+      setURL = joinURL;
+    }else{
+      setURL = joinURL + "/" + deleteRevisionID;
+    }
 
-				success: function(response, a) {
-					$.gritter.add({
-						title: gettext('APP-OVERLAY-DELETE-VISUALIZATION-CONFIRM-TITLE'),
-						text: resource + ": " + gettext('APP-DELETE-VISUALIZATION-REV-ACTION-TEXT'),
-						image: '/static/workspace/images/common/ic_validationOk32.png',
-						sticky: false,
-						time: 3500
-					});
-					self.closeOverlay();
-					self.undelegateEvents();
+    setTimeout(function () {
+      window.location = setURL;
+    }, 2000);
 
-                    var deleteRevisionID = a['revision_id'],
-                        location = window.location.href,
-                        splitURL = location.split("/"),
-                        cutURL = splitURL.slice(0, -2),
-                        joinURL = cutURL.join("/");
+  },
 
-                    if(deleteRevisionID == -1){
-                        setURL = joinURL;
-                    }else{
-                        setURL = joinURL + "/" + deleteRevisionID;
-                    }
-
-                    setTimeout(function () {
-                           window.location = setURL;
-                    }, 2000);
-				},
-
-				error: function() {
-					$.gritter.add({
-						title: gettext('APP-OVERLAY-DELETE-VISUALIZATION-TITLE'),
-						text: resource + ": " + gettext('APP-DELETE-VISUALIZATION-REV-ACTION-ERROR-TEXT'),
-						image: '/static/workspace/images/common/ic_validationError32.png',
-						sticky: true,
-						time: 2500
-					});
-					self.closeOverlay();
-					self.undelegateEvents();
-				}
-
-			});
-
-		});
-
-	}, 
-
-	closeOverlay: function() {
-		$("#ajax_loading_overlay").hide();
-		this.$el.data('overlay').close();
-	}
+  // Over-ride original function
+  closeOverlay: function() {
+    this.$el.data('overlay').close();
+  }
 
 });

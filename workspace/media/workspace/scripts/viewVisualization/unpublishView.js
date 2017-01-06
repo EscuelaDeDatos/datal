@@ -53,7 +53,7 @@ var UnpublishView = Backbone.View.extend({
 	}, 
 
 	closeOverlay: function() {
-		$("#ajax_loading_overlay").hide();
+		//$("#ajax_loading_overlay").hide();
 		this.$el.data('overlay').close();
 	}
 

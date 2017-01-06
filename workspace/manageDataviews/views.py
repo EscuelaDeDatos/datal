@@ -171,6 +171,7 @@ def retrieve_childs(request):
     list_result = []
     for associated_visualization in associated_visualizations:
         associated_visualization['type'] = 'visualization'
+        associated_visualization['title'] = associated_visualization['visualizationi18n__title']
         list_result.append(associated_visualization)
 
     dump = json.dumps(list_result, cls=DjangoJSONEncoder)

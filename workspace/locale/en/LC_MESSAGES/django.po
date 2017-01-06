@@ -2157,45 +2157,6 @@ msgstr "Your Data View has been approved."
 msgid "APP-OVERLAY-ALERT-OK-TEXT"
 msgstr "Now you need to review the associated Dataset, in order to automatically set as publish this Data View:"
 
-msgid "APP-OVERLAY-DELETE-DATASET-CONFIRM-TITLE"
-msgstr "Delete Dataset "
-
-msgid "APP-OVERLAY-DELETE-DATASET-CONFIRM-TEXT"
-msgstr "The following resources are associated to this Dataset, and they will also delete."
-
-msgid "APP-DELETE-DATASET-ACTION-TEXT"
-msgstr "The dataset and the associated resources have been deleted."
-
-msgid "APP-DELETE-DATASET-ACTION-ERROR-TEXT"
-msgstr "Error on deleting the dataset and the associated resources."
-
-msgid "APP-DELETE-DATASET-REV-ACTION-TEXT"
-msgstr "The dataset revision has been deleted."
-
-msgid "APP-DELETE-DATASET-REV-ACTION-ERROR-TEXT"
-msgstr "Error on deleteing the dataset revision."
-
-msgid "APP-DELETE-DATASTREAM-ACTION-TEXT"
-msgstr "The datastream and the associated resources have been deleted."
-
-msgid "APP-DELETE-DATASTREAM-REV-ACTION-TEXT"
-msgstr "The datastream revision has been deleted."
-
-msgid "APP-DELETE-DATASTREAM-REV-ACTION-ERROR-TEXT"
-msgstr "Error on deleteing the datastream revision."
-
-msgid "APP-DELETE-VISUALIZATION-ACTION-TEXT"
-msgstr "The visualization has been deleted."
-
-msgid "APP-DELETE-VISUALIZATION-REV-ACTION-TEXT"
-msgstr "The visualization revision has been deleted."
-
-msgid "APP-DELETE-VISUALIZATION-REV-ACTION-ERROR-TEXT"
-msgstr "Error on deleteing the visualization revision."
-
-msgid "APP-OVERLAY-DELETE"
-msgstr "Delete"
-
 msgid "APP-VISUALIZATIONS-CREATE-TEXT"
 msgstr "Create Visualization"
 
@@ -2408,30 +2369,6 @@ msgstr "By deleting this category, all its resources will be moved to the defaul
 
 msgid "APP-DELETE-SOURCE-TEXT"
 msgstr "By deleting this source, all its resources will remove this source. Are you sure?"
-
-msgid "APP-OVERLAY-DELETE-DATASET-TITLE"
-msgstr "Delete Dataset"
-
-msgid "APP-OVERLAY-DELETE-DATASET-TEXT"
-msgstr "This action cannot be undone. Please, confirm how to proceed:"
-
-msgid "APP-OVERLAY-DELETE-VISUALIZATION-TITLE"
-msgstr "Delete Visualization"
-
-msgid "APP-OVERLAY-DELETE-VISUALIZATION-TEXT"
-msgstr "This action cannot be undone. Please, confirm how to proceed:"
-
-msgid "APP-DELETE-REVISION-TEXT"
-msgstr "Delete current revision"
-
-msgid "APP-DELETE-RESOURCE-TEXT"
-msgstr "Delete all revisions"
-
-msgid "APP-REVISION-DELETED-TITLE"
-msgstr "The revision was deleted"
-
-msgid "APP-REVISION-DELETED-TEXT"
-msgstr "The following resources will be reviewed:"
 
 msgid "APP-OTHER-LICENSE-TEXT"
 msgstr "Please, input the custom license of this dataset."
@@ -2744,18 +2681,6 @@ msgstr "The following resources, that are associated to this Dataset, will also 
 
 msgid "APP-OVERLAY-UNPUBLISH"
 msgstr "Unpublish all"
-
-msgid "APP-OVERLAY-DELETE-DATASTREAM-TITLE"
-msgstr "Delete Dataview "
-
-msgid "APP-OVERLAY-DELETE-DATASTREAM-TEXT"
-msgstr "This action cannot be undone. Please, confirm how to proceed:"
-
-msgid "APP-OVERLAY-DELETE-DATASTREAM-CONFIRM-TITLE"
-msgstr "Delete Dataview "
-
-msgid "APP-OVERLAY-DELETE-DATASTREAM-CONFIRM-TEXT"
-msgstr "The following Visualizations, that are associated to this Data View, will also delete."
 
 msgid "APP-OVERLAY-UNPUBLISH-DATASTREAM-TITLE"
 msgstr "Unpublish Dataview "
@@ -3386,3 +3311,60 @@ msgstr "Loading data. Please wait."
 
 msgid "CREATEVIZ-NULLRESULTS-TEXT"
 msgstr "<section class='box error-container'><div class='box-content clearfix'><h2>No data available to select. Try the following:</h2><ul><li>If you changed a parameter, it is quite possible that the value entered returned no data. Try another value.</li><li>Review Data View to verify that it is returning data.</li></ul></div></section>"
+
+msgid "APP-OVERLAY-DELETE-DATASET-TITLE"
+msgstr "Delete Dataset"
+
+msgid "APP-OVERLAY-DELETE-DATASTREAM-TITLE"
+msgstr "Delete Dataview"
+
+msgid "APP-OVERLAY-DELETE-VISUALIZATION-TITLE"
+msgstr "Delete Visualization"
+
+msgid "APP-OVERLAY-DELETE-DATASET-CONFIRM-TITLE"
+msgstr "Delete associated resources"
+
+msgid "APP-OVERLAY-DELETE-DATASTREAM-CONFIRM-TITLE"
+msgstr "Delete associated visualizations"
+
+msgid "APP-OVERLAY-DELETE-DATASET-TEXT"
+msgstr "You are about to delete a Dataset. This action can not be undone."
+
+msgid "APP-OVERLAY-DELETE-DATASTREAM-TEXT"
+msgstr "You are about to delete a Data View. This action can not be undone."
+
+msgid "APP-OVERLAY-DELETE-VISUALIZATION-TEXT"
+msgstr "You are about to delete a Visualization. This action can not be undone."
+
+msgid "APP-DELETE-REVISION-TEXT"
+msgstr "Delete current revision"
+
+msgid "APP-DELETE-RESOURCE-TEXT"
+msgstr "Delete all"
+
+msgid "APP-OVERLAY-DELETE"
+msgstr "Delete"
+
+msgid "APP-OVERLAY-DELETE-DATASET-CONFIRM-TEXT"
+msgstr "The following resources are associated to this Dataset, and they will also delete:"
+
+msgid "APP-OVERLAY-DELETE-DATASTREAM-CONFIRM-TEXT"
+msgstr "The following Visualizations, that are associated to this Data View, will also delete:"
+
+msgid "APP-DELETE-DATASET-ACTION-TEXT"
+msgstr "The Dataset and the associated resources have been deleted."
+
+msgid "APP-DELETE-DATASTREAM-ACTION-TEXT"
+msgstr "The Data View and the associated resources have been deleted."
+
+msgid "APP-DELETE-VISUALIZATION-ACTION-TEXT"
+msgstr "The Visualization has been deleted."
+
+msgid "APP-DELETE-DATASET-REV-ACTION-TEXT"
+msgstr "The Dataset revision has been deleted."
+
+msgid "APP-DELETE-DATASTREAM-REV-ACTION-TEXT"
+msgstr "The Data View revision has been deleted."
+
+msgid "APP-DELETE-VISUALIZATION-REV-ACTION-TEXT"
+msgstr "The Visualization revision has been has been deleted."

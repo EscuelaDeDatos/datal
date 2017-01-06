@@ -1,7 +1,7 @@
 {% load i18n extra_tags core_components components %}
 
-<!-- Delete Dataset Overlay -->
-{% overlay id_deleteDataset %}
+<!-- Delete Resource Overlay -->
+{% overlay id_deleteOverlay %}
 <div class="In clearfix">
    <h4>{% trans 'APP-OVERLAY-DELETE-DATASET-TITLE' %}</h4>
    <div class="ov-content">
@@ -10,16 +10,14 @@
    <div class="ov-bottom">
       <div class="ov-buttons">
          <a id="id_deleteResource" class="button red" title="{% trans 'APP-DELETE-RESOURCE-TEXT' %}">{% trans 'APP-DELETE-RESOURCE-TEXT' %}</a>
-        {% if dataset.cant  > 1 %}
          <a id="id_deleteRevision" class="button delete" title="{% trans 'APP-DELETE-REVISION-TEXT' %}">{% trans 'APP-DELETE-REVISION-TEXT' %}</a>
-        {% endif %}
       </div>
    </div>
 </div>
 {% endoverlay %}
 
-<!-- Delete Dataset Confirm Overlay -->
-{% overlay id_confirmDeleteDataset %}
+<!-- Delete Resource Confirm Overlay -->
+{% overlay id_confirmDeleteOverlay %}
 <div class="In clearfix">
    <h4>{% trans 'APP-OVERLAY-DELETE-DATASET-CONFIRM-TITLE' %}</h4>
    <div class="ov-content">
@@ -44,10 +42,10 @@
    </div>
    <div class="ov-bottom">
       <div class="ov-buttons">
-         <a id="id_unpublishResource" class="button" title="{% trans 'APP-UNPUBLISH-RESOURCE-TEXT' %}">{% trans 'APP-UNPUBLISH-RESOURCE-TEXT' %}</a>
-{% if dataset.last_published_revision_id == dataset.last_revision_id  and dataset.cant != 1 %}
+         <a id="id_unpublishResource" class="button {% if dataset.cant == 1 %}primary{% endif %}" title="{% trans 'APP-UNPUBLISH-RESOURCE-TEXT' %}" data-action="unpublish">{% trans 'APP-UNPUBLISH-RESOURCE-TEXT' %}</a>
+         {% if dataset.last_revision_id == dataset.last_published_revision_id and dataset.cant != 1 %}
          <a id="id_unpublishRevision" class="button primary" title="{% trans 'APP-UNPUBLISH-REVISION-TEXT' %}" data-action="unpublish">{% trans 'APP-UNPUBLISH-REVISION-TEXT' %}</a>
-{% endif %}
+         {% endif %}
       </div>
    </div>
 </div>
@@ -75,7 +73,7 @@
 <div class="In clearfix">
    <h4>{% trans 'APP-OVERLAY-PUBLISH-DATASET-CONFIRM-TITLE' %}</h4>
    <div class="ov-content">
-      <p class="text">{% trans 'APP-OVERLAY-PUBLISH-DATASET-CONFIRM-TEXT' %}</p>
+      <p class="text center more-padding">{% trans 'APP-OVERLAY-PUBLISH-DATASET-CONFIRM-TEXT' %}</p>
       <ul class="ul-overlay" id="id_affectedResourcesList"></ul>
    </div>
    <div class="ov-bottom">
