@@ -32,7 +32,7 @@ class RestDataStreamViewSet(ResourceViewSet):
         return self.engine_call( request, 'invoke', 
             form_class=DatastreamRequestForm,
             serialize=False,
-            download=format in ['xls'],
+            download=format in ['xls', 'csv'],
             limit=format in ['json', 'pjson', 'ajson', 'jsonp'] or not format)
 
     @list_route(methods=['get', 'post'])

@@ -37,5 +37,5 @@ class RestDataStreamViewSet(ResourceHitsMixin, ResourceViewSet):
         return self.engine_call( request, 'invoke', format,
             form_class=DatastreamRequestForm,
             serialize=False,
-            download=format in ['xls'],
+            download=format in ['xls', 'csv'],
             limit=format in ['json', 'pjson', 'ajson', 'jsonp'] or not format)
