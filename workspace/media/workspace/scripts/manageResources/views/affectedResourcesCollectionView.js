@@ -48,6 +48,7 @@ _.extend(AffectedResourcesCollectionView.prototype, Backbone.View.prototype, {
         this.models = options.models;
         this.type = options.type;
         this.itemCollection = options.itemCollection;
+        this.parentModel = options.parentModel;
 
         // init Overlay
         this.$el.overlay({
@@ -139,12 +140,6 @@ _.extend(AffectedResourcesCollectionView.prototype, Backbone.View.prototype, {
 
         });
 
-    },
-
-    afterSuccess: function(){
-        this.itemCollection.fetch({
-            reset: true
-        });
     },
 
     closeOverlay: function() {

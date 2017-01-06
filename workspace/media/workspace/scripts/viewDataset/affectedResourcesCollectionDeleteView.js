@@ -34,7 +34,6 @@ AffectedResourcesCollectionView = AffectedResourcesCollectionView.extend({
         
     },
 
-    // Over-ride original function
     afterSuccess: function(data){
 
         var location = window.location.href,

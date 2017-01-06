@@ -28,6 +28,7 @@
    </div>
    <% }%>
 
+   <% if ( category.length !== 0 && author.length !== 0 && status.length !== 0 ){ %>
    <% _(search).each(function( item ){ %>
    <% if (!item.active) {%>
    <div class="filters search-filter">
@@ -37,6 +38,7 @@
    </div>
    <% }%>
    <% });%>
+   <% }%>
 
    <% if (category.length !== 0) {%>
    <div class="filters">

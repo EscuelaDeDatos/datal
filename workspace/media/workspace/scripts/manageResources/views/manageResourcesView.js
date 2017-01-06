@@ -191,7 +191,8 @@ _.extend(ManageResourcesView.prototype, Backbone.View.prototype, {
 				render: function() {
 					var titleCellView = new TitleCellView({
 						model: this.model,
-						itemCollection: self.listResources
+						itemCollection: self.listResources,
+						parentModel: self.model
 					});
 					this.$el.html(titleCellView.render().el);
 					return this;

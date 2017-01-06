@@ -47,7 +47,6 @@ DeleteItemView = DeleteItemView.extend({
     });
   },
 
-  // Over-ride original function
   afterSuccess: function(data){
 
     var deleteRevisionID = data['revision_id'],

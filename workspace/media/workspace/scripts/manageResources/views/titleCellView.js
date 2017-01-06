@@ -6,8 +6,8 @@ var TitleCellView = Backbone.View.extend({
     },
 
     initialize: function(options) {
+        this.parentModel = options.parentModel;
         this.itemCollection = options.itemCollection;
-        this.parentView = options.parentView;
         this.template = _.template($("#grid-titlecell-template").html());
     },
 
@@ -17,12 +17,12 @@ var TitleCellView = Backbone.View.extend({
     },
     
     deleteResource: function() {
-        self = this;
         this.deleteListResources = new Array();
         this.deleteListResources.push(this.model);
         var deleteItemView = new DeleteItemView({
-            itemCollection: self.itemCollection,
-            models: this.deleteListResources
+            itemCollection: this.itemCollection,
+            models: this.deleteListResources,
+            parentModel: this.parentModel
         });
     },
 });

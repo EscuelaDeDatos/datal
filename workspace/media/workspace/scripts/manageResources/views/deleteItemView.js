@@ -43,6 +43,7 @@ _.extend(DeleteItemView.prototype, Backbone.View.prototype, {
 
 	initialize: function(options) {
 
+		this.parentModel = options.parentModel;
 		this.itemCollection = options.itemCollection;
 		this.models = options.models;
 
@@ -116,12 +117,6 @@ _.extend(DeleteItemView.prototype, Backbone.View.prototype, {
 
 		});
 
-	},
-
-	afterSuccess: function(data){
-    this.itemCollection.fetch({
-       reset: true
-    });
 	},
 
 	closeOverlay: function() {

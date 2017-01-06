@@ -25,7 +25,6 @@ DeleteItemView = DeleteItemView.extend({
 		this.undelegateEvents();
 	},
 
-	// Over-ride original function
 	afterSuccess: function(data){
 
 		var deleteRevisionID = data['revision_id'],

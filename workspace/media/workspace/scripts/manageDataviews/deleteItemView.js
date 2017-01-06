@@ -18,10 +18,27 @@ DeleteItemView = DeleteItemView.extend({
 			collection: affectedResourcesCollection,
 			itemCollection: this.itemCollection,
 			models: this.models,
-			type: "visualizations"
+			type: "visualizations",
+      parentModel: this.parentModel,
 		});
 		this.closeOverlay();
 		this.undelegateEvents();
 	},
+
+	afterSuccess: function(data){
+
+    var self = this;
+
+    this.itemCollection.fetch({
+       reset: true,
+       success: function(collection, response, options){ 
+          if( collection.length == 0){
+            self.parentModel.set('total_resources', 0);
+            self.parentModel.set('total_entries', 0);
+          }
+        },
+    });
+
+  },
 
 });

@@ -34,4 +34,20 @@ AffectedResourcesCollectionView = AffectedResourcesCollectionView.extend({
         
     },
 
+    afterSuccess: function(data){
+
+        var self = this;
+
+        this.itemCollection.fetch({
+            reset: true,
+            success: function(collection, response, options){ 
+                if( collection.length == 0){
+                    self.parentModel.set('total_resources', 0);
+                    self.parentModel.set('total_entries', 0);
+                }
+            },
+        });
+
+    },
+
 });
