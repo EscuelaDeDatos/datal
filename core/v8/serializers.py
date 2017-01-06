@@ -39,9 +39,12 @@ class EngineSerializer(serializers.Serializer):
         if 'result' in obj:
             json_data =  None
             redirect = False
-            if ('format' in obj and obj['format'].startswith('application/json') and obj['result']):
-                json_data = json.loads(obj['result'])
-                redirect = isinstance(json_data, dict) and json_data.get('fType') == 'REDIRECT'
+            if ('format' in obj and obj['result']):
+                try:
+                    json_data = json.loads(obj['result'])
+                    redirect = isinstance(json_data, dict) and json_data.get('fType') == 'REDIRECT'
+                except ValueError as e:
+                    pass
             
             filename = self.get_filename(obj, json_data, redirect)
             
