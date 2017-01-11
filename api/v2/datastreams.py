@@ -198,28 +198,29 @@ class DataStreamViewSet(mixins.CreateModelMixin, mixins.UpdateModelMixin, Resour
     def tableau(self, request, format=None, *args, **kwargs):
         resource = self.get_object()
 
-        items = {
-            'revision_id': resource['revision_id'],
-            'limit': 1
-        }
-        items.update(self.get_default_parameters(request))
-        
-        formset=formset_factory(DatastreamRequestForm, formset=RequestFormSet)
-        form = formset(items)
-        if not form.is_valid():
-            logger.errors("form errors: %s" % form.errors)
-            raise Exception("Wrong arguments")        
+        if format == 'js':
+            items = {
+                'revision_id': resource['revision_id'],
+                'limit': 1
+            }
+            items.update(self.get_default_parameters(request))
+            
+            formset=formset_factory(DatastreamRequestForm, formset=RequestFormSet)
+            form = formset(items)
+            if not form.is_valid():
+                logger.errors("form errors: %s" % form.errors)
+                raise Exception("Wrong arguments")        
 
-        command = AbstractCommandFactory(self.app).create("invoke", "ds",
-            form.cleaned_data)
-        result = command.run()
-        if not result:
-            logger.errors("wrong engine answer ")
-            raise Exception('Wrong engine answer')
+            command = AbstractCommandFactory(self.app).create("invoke", "ds",
+                form.cleaned_data)
+            result = command.run()
+            if not result:
+                logger.errors("wrong engine answer ")
+                raise Exception('Wrong engine answer')
 
-        
-        resource['result'] = result[0] if result[0] else {}
-        resource['format'] = result[1]
+            
+            resource['result'] = result[0] if result[0] else {}
+            resource['format'] = result[1]
 
         preferences = request.auth['preferences']
 
