@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from api.v2.serializers import ResourceSerializer
 from core.rest.views import ResourceViewSet
 from core.choices import DATASTREAM_IMPL_VALID_CHOICES
-from core.models import Dataset
+from core.models import Dataset, Preference
 from rest_framework import serializers
 from rest_framework import mixins
 from rest_framework import exceptions
@@ -21,7 +21,11 @@ from core.builders.datastreams import SelectStatementBuilder, DataSourceBuilder
 from core.v8.renderers import *
 from core.rest.renderers import *
 from core.forms import MetaForm
+from api.v2.renderers import TableuJSRenderer, TableuHTMLRenderer
 from django.conf import settings
+from core.v8.factories import AbstractCommandFactory
+from core.v8.forms import RequestFormSet, RequestForm
+from django.forms.formsets import formset_factory
 
 import json
 
@@ -187,3 +191,43 @@ class DataStreamViewSet(mixins.CreateModelMixin, mixins.UpdateModelMixin, Resour
         serializer = self.get_serializer(dsdao)
         return Response(serializer.data)
 
+
+    @detail_route(methods=['get'], renderer_classes=[
+        TableuJSRenderer,
+        TableuHTMLRenderer])
+    def tableau(self, request, format=None, *args, **kwargs):
+        resource = self.get_object()
+
+        items = {
+            'revision_id': resource['revision_id'],
+            'limit': 1
+        }
+        items.update(self.get_default_parameters(request))
+        
+        formset=formset_factory(DatastreamRequestForm, formset=RequestFormSet)
+        form = formset(items)
+        if not form.is_valid():
+            logger.errors("form errors: %s" % form.errors)
+            raise Exception("Wrong arguments")        
+
+        command = AbstractCommandFactory(self.app).create("invoke", "ds",
+            form.cleaned_data)
+        result = command.run()
+        if not result:
+            logger.errors("wrong engine answer ")
+            raise Exception('Wrong engine answer')
+
+        
+        resource['result'] = result[0] if result[0] else {}
+        resource['format'] = result[1]
+
+        preferences = request.auth['preferences']
+
+        serializer = self.get_serializer(resource)
+        answer = {
+            'auth_key': request.query_params.get('auth_key', None),
+            'domain': preferences["account.api.domain"],
+            'protocol': 'https' if preferences["account.microsite.https"] in ["ok","on","true","True","On"] else 'http'
+        }
+        answer.update(serializer.data)
+        return Response(answer)
