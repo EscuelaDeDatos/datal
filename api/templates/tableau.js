@@ -30,9 +30,9 @@
     myConnector.getData = function (table, doneCallback) {
          $.getJSON("{{obj.protocol}}://{{obj.domain}}/api/v2/datastreams/{{obj.guid}}/data.ajson/?auth_key={{obj.auth_key}}", function(resp) {
             var tableData = [];
-
+            var start = {% if obj.result.fArray.0.fHeader %}1{% else %}0{% endif %};
             // Iterate over the JSON object
-            for (var i = 0, len = resp.result.length; i < len; i++) {
+            for (var i = start, len = resp.result.length; i < len; i++) {
                 tableData.push({
                 {% for column in obj.result.fArray %}
                     "column{{forloop.counter0}}": resp.result[i][{{forloop.counter0}}],
