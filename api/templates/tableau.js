@@ -19,7 +19,8 @@
     {% endfor %}
         ];
         var tableInfo = {
-            id : "{{obj.guid}}",
+            // - is an invalid character in tableau
+            id : "{{obj.guid}}".split('-').join(''),
             alias : "{{obj.title}}",
             columns : cols
         };
